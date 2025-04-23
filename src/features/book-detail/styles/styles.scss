@@ -1,0 +1,18 @@
+@import "../../../styles/global.scss";
+
+.book-detail {
+    color: #333;
+}
+
+.star-icon {
+    font-size: 24px;
+}
+
+.book-info {
+    font-size: 14px;
+    margin-bottom: 12px;
+}
+
+.custom-divider {
+    border-block-start: 1px solid $divider-background-color !important;
+}

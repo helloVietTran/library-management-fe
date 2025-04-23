@@ -1,0 +1,9 @@
+@import "../../../styles/global.scss";
+
+.community-reviews{
+    color: $text-color-variant-2;
+    .filter-icon{
+        transform: rotate(90deg);
+    }
+}
+
