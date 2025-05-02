@@ -5,12 +5,11 @@ export interface CreateBorrowRecordData {
 }
 
 export interface ReturnBookData {
-  status: "ok" | "break" | "lost";
+  status: 'ok' | 'break' | 'lost';
   note?: string;
 }
 
-
-export interface SendOverdueMailData{
+export interface SendOverdueMailData {
   receiver: string;
   recordId: string;
 }

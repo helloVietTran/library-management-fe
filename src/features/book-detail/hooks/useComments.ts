@@ -1,19 +1,28 @@
-import { useQuery } from "@tanstack/react-query";
+import { useQuery } from '@tanstack/react-query';
+import { useSearchParams } from 'next/navigation';
+import api from '@/config/axios';
+import { ApiResponse } from '@/interfaces/api-response';
+import { Comment } from '@/interfaces/commom';
+import queryKeys from '@/config/queryKey';
 
-import api from "@/config/axios";
-import { Comment } from "@/types/types";
-import createQueryFn from "@/utils/createQueryFn";
-
-const getCommentsByBookId = async (bookId: string): Promise<Comment[]> => {
-  const { data } = await api.get(`/comments/books/${bookId}`);
+const fetchCommentsByBookId = async (bookId: string, sortBy: string | null) => {
+  const { data } = await api.get<ApiResponse<Comment[]>>(
+    `/comments/books/${bookId}`,
+    {
+      params: { sortBy },
+    }
+  );
   return data;
 };
 
 const useComments = (bookId: string) => {
-  return useQuery<Comment[]>({
-    queryKey: ["comments", bookId],
-    queryFn: createQueryFn(getCommentsByBookId),
-    staleTime: 5 * 60 * 1000,
+  const searchParams = useSearchParams();
+  const sortBy = searchParams.get('sortBy') || '1'; 
+
+  return useQuery<ApiResponse<Comment[]>>({
+    queryKey: [queryKeys.COMMENTS, bookId, sortBy],
+    queryFn: () => fetchCommentsByBookId(bookId, sortBy),
+    staleTime: 5 * 60 * 1000, 
   });
 };
 

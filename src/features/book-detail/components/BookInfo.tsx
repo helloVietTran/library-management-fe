@@ -17,10 +17,12 @@ const BookInfo: React.FC<BookInfoProps> = ({
   titles,
   content,
   genres,
-  className
+  className,
 }) => {
   return (
-    <div className={`table border-spacing-3 border-separate w-full ${className}`}>
+    <div
+      className={`table border-spacing-3 border-separate w-full ${className}`}
+    >
       {titles.map((title, index) => (
         <div className="table-row" key={index}>
           <div className="info-table-title table-cell font-semibold text-primary text-sm">
@@ -29,7 +31,7 @@ const BookInfo: React.FC<BookInfoProps> = ({
           <div className="table-cell">{content[title.key]}</div>
         </div>
       ))}
-      
+
       {genres && genres.length > 0 && (
         <div className="table-row">
           <div className="info-table-title table-cell font-semibold text-primary text-sm">

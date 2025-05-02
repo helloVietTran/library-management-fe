@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { Modal, Input, Select, Drawer, Button } from "antd";
+import React, { useState, useEffect } from 'react';
+import { Modal, Input, Select, Drawer, Button } from 'antd';
 
 const { Option } = Select;
 
@@ -19,15 +19,17 @@ interface SendEmailModalProps {
 }
 
 const SendEmailModal: React.FC<SendEmailModalProps> = ({
-  title = "Gửi mail cho người dùng",
+  title = 'Gửi mail cho người dùng',
   open,
   onClose,
   emailTemplates,
   templateProps,
-  onOK
+  onOK,
 }) => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
-  const [selectedTemplateKey, setSelectedTemplateKey] = useState(emailTemplates[0]?.key || "");
+  const [selectedTemplateKey, setSelectedTemplateKey] = useState(
+    emailTemplates[0]?.key || ''
+  );
 
   useEffect(() => {
     if (emailTemplates.length > 0) {
@@ -35,7 +37,9 @@ const SendEmailModal: React.FC<SendEmailModalProps> = ({
     }
   }, [emailTemplates]);
 
-  const selectedTemplate = emailTemplates.find((tpl) => tpl.key === selectedTemplateKey);
+  const selectedTemplate = emailTemplates.find(
+    (tpl) => tpl.key === selectedTemplateKey
+  );
 
   return (
     <>
@@ -53,13 +57,21 @@ const SendEmailModal: React.FC<SendEmailModalProps> = ({
         <div className="space-y-4 mt-4">
           <div>
             <label className="text-gay-600 font-medium mb-1">Từ</label>
-            <Select size="large" defaultValue="numberzero0909@gmail.com" className="w-full">
-              <Option value="numberzero0909@gmail.com">numberzero0909@gmail.com</Option>
+            <Select
+              size="large"
+              defaultValue="numberzero0909@gmail.com"
+              className="w-full"
+            >
+              <Option value="numberzero0909@gmail.com">
+                numberzero0909@gmail.com
+              </Option>
             </Select>
           </div>
 
           <div>
-            <label className="text-gay-600 font-medium mb-1 flex gap-1">Mẫu Email<span className="text-red-500">*</span></label>
+            <label className="text-gay-600 font-medium mb-1 flex gap-1">
+              Mẫu Email<span className="text-red-500">*</span>
+            </label>
             <Select
               size="large"
               value={selectedTemplateKey}
@@ -75,23 +87,30 @@ const SendEmailModal: React.FC<SendEmailModalProps> = ({
           </div>
 
           <div>
-            <span className="text-blue-500 cursor-pointer hover:underline" onClick={() => setIsDrawerOpen(true)}>
+            <span
+              className="text-blue-500 cursor-pointer hover:underline"
+              onClick={() => setIsDrawerOpen(true)}
+            >
               Xem trước
             </span>
           </div>
 
           <div className="flex justify-end space-x-2">
             <Button onClick={onClose}>Hủy</Button>
-            <Button type="primary" onClick={onOK}>Gửi</Button>
+            <Button type="primary" onClick={onOK}>
+              Gửi
+            </Button>
           </div>
         </div>
       </Modal>
 
       {/* Xem trước thông tin email */}
-      <Drawer title="Xem trước email"
+      <Drawer
+        title="Xem trước email"
         placement="right"
         onClose={() => setIsDrawerOpen(false)}
-        open={isDrawerOpen} width={500}
+        open={isDrawerOpen}
+        width={500}
       >
         {selectedTemplate && <selectedTemplate.component {...templateProps} />}
       </Drawer>

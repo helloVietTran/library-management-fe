@@ -1,6 +1,6 @@
 import React from 'react';
 
-import "../styles/AuthorInfo.scss";
+import '../styles/AuthorInfo.scss';
 
 interface TitleItem {
   label: string;
@@ -18,10 +18,12 @@ const AuthorInfo: React.FC<AuthorInfoProps> = ({
   titles,
   content,
   awards,
-  className
+  className,
 }) => {
   return (
-    <div className={`table border-spacing-4 border-separate w-full ${className}`}>
+    <div
+      className={`table border-spacing-4 border-separate w-full ${className}`}
+    >
       {titles.map((title, index) => (
         <div className="table-row" key={index}>
           <div className="info-table-title table-cell font-semibold text-primary text-sm w-[15%]">

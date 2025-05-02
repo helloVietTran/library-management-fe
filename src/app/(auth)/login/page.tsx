@@ -1,10 +1,8 @@
-"use client";
+'use client';
 import Login from '@/features/auth/login/Login';
 
 const page = () => {
-    return (
-        <Login />
-    )
-}
+  return <Login />;
+};
 
-export default page
+export default page;

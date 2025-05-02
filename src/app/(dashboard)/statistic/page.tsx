@@ -1,11 +1,9 @@
-"use client";
+'use client';
 
-import React from 'react'
+import React from 'react';
 
 const page = () => {
-  return (
-    <p>Chức năng đang được phát triển</p>
-  )
-}
+  return <p className='text-center p-10 text-lg text-primary'>Chức năng đang được lên ý tưởng</p>;
+};
 
-export default page
+export default page;

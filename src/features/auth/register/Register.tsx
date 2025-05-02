@@ -1,108 +1,127 @@
-import React from "react";
-import { Form, Input, Button, message } from "antd";
-import { GoShieldLock } from "react-icons/go";
-import { SlEnvolope } from "react-icons/sl";
-import { FaPenClip } from "react-icons/fa6";
+import React from 'react';
+import { Form, Input, Button, DatePicker } from 'antd';
+import { GoShieldLock } from 'react-icons/go';
+import { MdOutlineAlternateEmail } from "react-icons/md";
 
-import AuthLogo from "../components/AuthLogo";
-import AuthTitle from "../components/AuthTitle";
-import AuthAction from "../components/AuthAction";
+import AuthLogo from '../components/AuthLogo';
+import AuthTitle from '../components/AuthTitle';
+import AuthNavigation from '../components/AuthNavigation';
+import useSignUp from '../hooks/useSignUp';
+import { RegisterRequest } from '../types/types';
+import SplashScreen from '@/components/SplashScreen';
 
 function Register() {
-    const [form] = Form.useForm();
+  const [form] = Form.useForm();
+  const signUpMutation = useSignUp();
 
-    const onFinish = (values: any) => {
-        console.log("Form values:", values);
-        message.success("Đăng ký thành công!");
-    };
+  const onFinish = (values: RegisterRequest) => {
+    signUpMutation.mutate(values);
+  };
 
-    return (
-        <div className="register">
-            <AuthLogo />
-            <AuthTitle label="Sign Up" />
+  return (
+    <div className="readonly__register__class">
+      <SplashScreen />
+      <AuthLogo />
+      <AuthTitle label="Đăng ký" />
 
-            <Form form={form} layout="vertical" onFinish={onFinish}>
-                {/* Email */}
-                <Form.Item
-                    label="Email"
-                    name="email"
-                    rules={[
-                        { required: true, message: "Chưa nhập email" },
-                        { type: "email", message: "Email không hợp lệ" },
-                    ]}
-                >
-                    <Input size="large" prefix={<SlEnvolope />} placeholder="Enter your email" />
-                </Form.Item>
+      <Form form={form} layout="vertical" onFinish={onFinish} requiredMark={false}>
+        {/* Email */}
+        <Form.Item
+          label="Email"
+          name="email"
+          rules={[
+            { required: true, message: 'Chưa nhập email' },
+            { type: 'email', message: 'Email không hợp lệ' },
+          ]}
+        >
+          <Input
+            prefix={<MdOutlineAlternateEmail />}
+            size="large"
+            placeholder="Nhập email của bạn"
+          />
+        </Form.Item>
 
-                {/* First Name */}
-                <Form.Item
-                    label="First Name"
-                    name="firstName"
-                    rules={[
-                        { required: true, message: "First name is required" },
-                        { min: 3, message: "Must be at least 3 characters long" },
-                    ]}
-                >
-                    <Input size="large" prefix={<FaPenClip />} placeholder="Enter your first name" />
-                </Form.Item>
+        {/* Full Name */}
+        <Form.Item
+          label="Họ và tên"
+          name="fullName"
+          rules={[
+            { required: true, message: 'Vui lòng điền họ và tên' },
+            { min: 3, message: 'Họ và tên phải tối thiểu 3 ký tự' },
+          ]}
+        >
+          <Input
+            size="large"
+            placeholder="Nhập họ và tên của bạn"
+          />
+        </Form.Item>
 
-                {/* Last Name */}
-                <Form.Item
-                    label="Last Name"
-                    name="lastName"
-                    rules={[
-                        { required: true, message: "Last name is required" },
-                        { min: 3, message: "Must be at least 3 characters long" },
-                    ]}
-                >
-                    <Input size="large" prefix={<FaPenClip />} placeholder="Enter your last name" />
-                </Form.Item>
+        {/* Date of Birth */}
+        <Form.Item
+          label="Ngày sinh"
+          name="dob"
+          rules={[{ required: true, message: 'Vui lòng chọn ngày sinh' }]}
+        >
+          <DatePicker
+            size="large"
+            style={{ width: '100%' }}
+            placeholder="Chọn ngày sinh"
+            format="DD/MM/YYYY"
+          />
+        </Form.Item>
 
-                {/* Password */}
-                <Form.Item
-                    label="Password"
-                    name="password"
-                    rules={[
-                        { required: true, message: "Password is required" },
-                        { min: 6, message: "Must be at least 6 characters long" },
-                    ]}
-                >
-                    <Input.Password size="large" prefix={<GoShieldLock />} placeholder="Enter your password" />
-                </Form.Item>
+        {/* Password */}
+        <Form.Item
+          label="Mật khẩu"
+          name="password"
+          rules={[
+            { required: true, message: 'Vui lòng điền mật khẩu' },
+            { min: 6, message: 'Mật khẩu tối thiểu 6 ký tự' },
+          ]}
+        >
+          <Input.Password
+            size="large"
+            prefix={<GoShieldLock />}
+            placeholder="Nhập mật khẩu của bạn"
+          />
+        </Form.Item>
 
-                {/* Confirm Password */}
-                <Form.Item
-                    label="Confirm Password"
-                    name="confirmPassword"
-                    dependencies={["password"]}
-                    rules={[
-                        { required: true, message: "Confirm password is required" },
-                        { min: 6, message: "Must be at least 6 characters long" },
-                        ({ getFieldValue }) => ({
-                            validator(_, value) {
-                                if (!value || getFieldValue("password") === value) {
-                                    return Promise.resolve();
-                                }
-                                return Promise.reject(new Error("Confirm password not match"));
-                            },
-                        }),
-                    ]}
-                >
-                    <Input.Password size="large" prefix={<GoShieldLock />} placeholder="Confirm your password" />
-                </Form.Item>
+        {/* Confirm Password */}
+        <Form.Item
+          label="Nhập lại mật khẩu"
+          name="confirmPassword"
+          dependencies={['password']}
+          rules={[
+            { required: true, message: 'Vui lòng nhập lại mật khẩu' },
+            { min: 6, message: 'Mật khẩu tối thiểu 6 ký tự' },
+            ({ getFieldValue }) => ({
+              validator(_, value) {
+                if (!value || getFieldValue('password') === value) {
+                  return Promise.resolve();
+                }
+                return Promise.reject(new Error('Confirm password not match'));
+              },
+            }),
+          ]}
+        >
+          <Input.Password
+            size="large"
+            placeholder="Nhập lại mật khẩu của bạn"
+          />
+        </Form.Item>
 
-                <Button type="primary" htmlType="submit" block>
-                    Sign up
-                </Button>
-            </Form>
+        <Button type="primary" htmlType="submit" block size="large">
+          Đăng ký
+        </Button>
+      </Form>
 
-            <AuthAction
-                primaryLabel="Log in."
-                primaryDescription="Đã có tài khoản?"
-                primaryHref="/auth/login"
-            />
-        </div>
-    );
+      <AuthNavigation
+        primaryLabel="Đăng nhập."
+        primaryDescription="Đã có tài khoản?"
+        primaryHref="/login"
+      />
+    </div>
+  );
 }
 
 export default Register;

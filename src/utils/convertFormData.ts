@@ -1,19 +1,17 @@
-export default function convertToFormData(
-  formValues: Record<string, any>
-): FormData {
+export default function convertToFormData(formValues: Record<string, any>): FormData {
   const formData = new FormData();
 
   Object.entries(formValues).forEach(([key, value]) => {
-    if (key === "file" && value instanceof File) {
-      formData.append("file", value);
+    if (value == null) return; // skip null/undefined
+
+    if (value instanceof File) {
+      formData.append(key, value);
     } else if (Array.isArray(value)) {
-      // Nếu giá trị là một mảng, thêm từng item vào formData
+
       value.forEach((item) => {
-        if (item !== undefined && item !== null) {
-          formData.append(`${key}[]`, String(item));
-        }
+        formData.append(key, String(item));
       });
-    } else if (value !== undefined && value !== null) {
+    } else {
       formData.append(key, String(value));
     }
   });

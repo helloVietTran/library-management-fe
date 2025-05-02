@@ -1,65 +1,54 @@
-import React from "react";
-import { Form, Input, Button, message } from "antd";
-import { GoShieldLock } from "react-icons/go";
-import { SlEnvolope } from "react-icons/sl";
-import { useRouter } from "next/navigation";
-import { useMutation } from "@tanstack/react-query";
+import React from 'react';
+import { Form, Input, Button } from 'antd';
+import { MdOutlineAlternateEmail } from "react-icons/md";
+import { GoShieldCheck } from "react-icons/go";
 
-import api from "@/config/axios";
-import useAuthStore from "@/store/authStore";
-import AuthLogo from "../components/AuthLogo";
-import AuthTitle from "../components/AuthTitle";
-import AuthAction from "../components/AuthAction";
-import { setAuthCookies } from "@/utils/cookie";
-import { LoginResponse } from "../types/types";
+import AuthLogo from '../components/AuthLogo';
+import AuthTitle from '../components/AuthTitle';
+import AuthNavigation from '../components/AuthNavigation';
+import useLogin from '../hooks/useLogin';
+import { LoginRequest } from '../types/types';
+import SplashScreen from '@/components/SplashScreen';
 
 function Login() {
-  const router = useRouter();
   const [form] = Form.useForm();
-  const { login: loginAction } = useAuthStore();
+  const loginMutation = useLogin();
 
-  const mutation = useMutation<LoginResponse, unknown, { email: string; password: string }>({
-    mutationFn: async ({ email, password }) => {
-      const res = await api.post("/auth/login", { email, password });
-   
-      return res.data;
-    },
-    onSuccess: (data) => {
-      message.success("Đăng nhập thành công!");
-
-      loginAction(data.user);
-
-      setAuthCookies({
-        accessToken: data.accessToken,
-        refreshToken: data.refreshToken
-      });
-      router.push("/");
-    },
-    onError: () => {
-      message.error("Đăng nhập thất bại! Vui lòng kiểm tra lại thông tin.");
-    },
-
-  });
-
-  const handleSubmit = (values: { email: string; password: string }) => {
-    mutation.mutate(values);
+  const handleSubmit = (values: LoginRequest) => {
+    loginMutation.mutate(values);
   };
+
   return (
-    <div className="login">
+    <div className="readonly__login__class">
+      <SplashScreen />
       <AuthLogo />
       <AuthTitle label="Đăng nhập" />
 
-      <Form size="large" form={form} layout="vertical" onFinish={handleSubmit}>
+      <Form
+        size="large"
+        form={form}
+        layout="vertical"
+        onFinish={handleSubmit}
+        requiredMark={false}
+        initialValues={{
+          email: 'numberzero0909@gmail.com',
+          password: 'vietanh123',
+        }}
+      >
         {/* Email */}
         <Form.Item
           label="Email"
           name="email"
           rules={[
-            { required: true, message: "Email không được để trống" },
-            { type: "email", message: "Email sai định dạng" },
+            { required: true, message: 'Email không được để trống' },
+            { type: 'email', message: 'Email sai định dạng' },
           ]}
         >
-          <Input size="large" prefix={<SlEnvolope />} placeholder="Nhập email" />
+          <Input
+            size="large"
+            prefix={<MdOutlineAlternateEmail />}
+            placeholder="Nhập email"
+          />
         </Form.Item>
 
         {/* Password */}
@@ -67,11 +56,15 @@ function Login() {
           label="Mật khẩu"
           name="password"
           rules={[
-            { required: true, message: "Mật khẩu không được để trống" },
-            { min: 6, message: "Mật khẩu phải lớn hơn 6 kí tự" },
+            { required: true, message: 'Mật khẩu không được để trống' },
+            { min: 6, message: 'Mật khẩu phải lớn hơn 6 kí tự' },
           ]}
         >
-          <Input.Password size="large" prefix={<GoShieldLock />} placeholder="Nhập mật khẩu" />
+          <Input.Password
+            size="large"
+            prefix={<GoShieldCheck />}
+            placeholder="Nhập mật khẩu"
+          />
         </Form.Item>
 
         <Button type="primary" htmlType="submit" block>
@@ -79,10 +72,10 @@ function Login() {
         </Button>
       </Form>
 
-      <AuthAction
+      <AuthNavigation
         primaryLabel="Đăng kí."
         primaryDescription="Không có tài khoản?"
-        primaryHref="/auth/register"
+        primaryHref="/register"
       />
     </div>
   );

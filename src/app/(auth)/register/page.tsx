@@ -1,10 +1,8 @@
-"use client";
+'use client';
 import Register from '@/features/auth/register/Register';
 
 const page = () => {
-    return (
-        <Register />
-    )
-}
+  return <Register />;
+};
 
-export default page
+export default page;

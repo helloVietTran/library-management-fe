@@ -1,12 +1,10 @@
-"use client"
+'use client';
 
-import BookDetail from '@/features/book-detail/BookDetail'
-import React from 'react'
+import BookDetail from '@/features/book-detail/BookDetail';
+import React from 'react';
 
 const page = () => {
-  return (
-    <BookDetail />  
-  )
-}
+  return <BookDetail />;
+};
 
-export default page
+export default page;

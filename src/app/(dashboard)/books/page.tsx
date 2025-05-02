@@ -1,12 +1,14 @@
-"use client";
+'use client';
 
 import BookList from '@/features/book-list/BookList';
 import React from 'react';
 
 const page = () => {
   return (
-    <><BookList /></>
-  )
-}
+    <>
+      <BookList />
+    </>
+  );
+};
 
-export default page
+export default page;

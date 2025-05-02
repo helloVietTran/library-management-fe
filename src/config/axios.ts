@@ -1,12 +1,11 @@
-import axios from "axios";
-import Cookies from "js-cookie";
+import axios from 'axios';
 
 const API_BASE_URL =
-  process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:3001/api/v1";
+  process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:3001/api/v1';
 
 const api = axios.create({
   baseURL: API_BASE_URL,
-  withCredentials: true, // Cho phép gửi Cookie trong request
+  withCredentials: true, // Bạn có thể bỏ if không dùng cookie nữa
 });
 
 let isRefreshing = false;
@@ -14,10 +13,12 @@ let refreshSubscribers: ((token: string) => void)[] = [];
 
 // save access token
 const setToken = (token: string) => {
-  Cookies.set("lib_jwt_token", token, {
-    secure: false,
-    expires: 30 / (24 * 60),
-  }); // sửa lại sau
+  sessionStorage.setItem('lib_jwt_token', token);
+};
+
+// save refresh token
+const setRefreshToken = (token: string) => {
+  sessionStorage.setItem('lib_refresh_token', token);
 };
 
 const onRefreshed = (token: string) => {
@@ -25,9 +26,10 @@ const onRefreshed = (token: string) => {
   refreshSubscribers = [];
 };
 
+// Interceptor request
 api.interceptors.request.use(
   (config) => {
-    const token = Cookies.get("lib_jwt_token");
+    const token = sessionStorage.getItem('lib_jwt_token');
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }
@@ -56,9 +58,9 @@ api.interceptors.response.use(
       isRefreshing = true;
 
       try {
-        const refreshToken = Cookies.get("lib_refresh_token");
+        const refreshToken = sessionStorage.getItem('lib_refresh_token');
         if (!refreshToken) {
-          throw new Error("No refresh token available");
+          throw new Error('No refresh token available');
         }
 
         const { data } = await api.post(`/auth/refresh`, {
@@ -66,16 +68,11 @@ api.interceptors.response.use(
         });
 
         setToken(data.accessToken);
-        Cookies.set("lib_refresh_token", data.refreshToken, {
-            expires: 2, 
-            // secure: true,
-            // sameSite: "Strict",
-        });
-        
+        setRefreshToken(data.refreshToken);
+
         onRefreshed(data.accessToken);
         isRefreshing = false;
 
-        // gửi lại token
         originalRequest.headers.Authorization = `Bearer ${data.accessToken}`;
         return api(originalRequest);
       } catch (refreshError) {

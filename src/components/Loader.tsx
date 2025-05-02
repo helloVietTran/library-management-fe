@@ -1,11 +1,12 @@
-import React from 'react'
+import React from 'react';
+import FadeLoader from 'react-spinners/FadeLoader';
 
 const Loader = () => {
-    return (
-        <div className="flex justify-center items-center h-20">
-            <span className="animate-spin rounded-full h-10 w-10 border-t-2 border-blue-500"></span>
-        </div>
-    )
-}
+  return (
+    <div className="flex justify-center items-center h-20">
+      <FadeLoader color="#445ebf" speedMultiplier={1.2} />
+    </div>
+  );
+};
 
-export default Loader
+export default Loader;

@@ -1,55 +1,54 @@
 @import './global.scss';
 
-.sidebar-menu {
-  .custom-menu {
-    border: none !important;
-    font-weight: 400;
-  }
+.custom-menu {
+  border: none !important;
+  font-weight: 400;
+}
 
-  .sidebar-title {
-    color: $primary-text-color;
-  }
+.sidebar-title {
+  color: $primary-text-color;
+}
 
-  .custom-menu .ant-menu-item,
-  .custom-menu .ant-menu-submenu,
-  .custom-menu .ant-menu-submenu-title {
-    font-size: 14px !important;
-    color: $text-color-variant-3 !important;
-  }
+.custom-menu .ant-menu-item,
+.custom-menu .ant-menu-submenu,
+.custom-menu .ant-menu-submenu-title {
+  font-size: 14px !important;
+  color: $text-color-variant-3 !important;
+}
 
-  .custom-menu .ant-menu-item-selected {
-    background-color: $sidebar-item-background-color !important;
-    color: white !important;
-  }
+.custom-menu .ant-menu-item-selected {
+  background-color: $sidebar-item-background-color !important;
+  color: white !important;
+}
 
-  .custom-menu .ant-menu-sub {
-    font-size: 14px !important;
-  }
+.custom-menu .ant-menu-sub {
+  font-size: 14px !important;
+}
 
-  .custom-menu .ant-menu-submenu-title span,
-  .custom-menu .ant-menu-submenu-title i,
-  .custom-menu .ant-menu-submenu-title svg {
-    font-weight: 500 !important;
-  }
+.custom-menu .ant-menu-submenu-title span,
+.custom-menu .ant-menu-submenu-title i,
+.custom-menu .ant-menu-submenu-title svg {
+  font-weight: 500 !important;
+}
 
-  .custom-menu .ant-menu-inline {
-    background-color: transparent !important;
-  }
+.custom-menu .ant-menu-inline {
+  background-color: transparent !important;
+}
 
-  .custom-menu .ant-menu-item,
-  .custom-menu .ant-menu-submenu-title {
-    padding: 24px !important;
-  }
+.custom-menu .ant-menu-item,
+.custom-menu .ant-menu-submenu-title {
+  padding: 24px !important;
+}
 
-  .custom-sub-menu-link {
-    padding-left: 24px !important;
-    transition: all 0.3s;
+.custom-sub-menu-link {
+  padding-left: 24px !important;
+  transition: all 0.3s;
 
-    &:hover {
-      margin-left: 4px;
-    }
+  &:hover {
+    margin-left: 4px;
   }
 }
+
 
 .custom-pagination .ant-pagination-item-active a {
   color: white !important;
@@ -87,11 +86,10 @@
 
 .ant-select-selector {
   border-color: #a1afdf !important;
-
 }
 
 .ant-select-focused .ant-select-selector {
-  box-shadow: 0 0 0 .25rem rgba(67, 94, 190, .25) !important;
+  box-shadow: 0 0 0 0.25rem rgba(67, 94, 190, 0.25) !important;
 }
 
 .dataTable-input {
@@ -104,7 +102,9 @@
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  transition:
+    border-color 0.15s ease-in-out,
+    box-shadow 0.15s ease-in-out;
 
   &:focus {
     background-color: #fff;
@@ -124,7 +124,6 @@
     outline: 0;
     box-shadow: $primary-box-shadow;
   }
-
 }
 
 // css mask-description

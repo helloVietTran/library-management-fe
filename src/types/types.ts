@@ -18,7 +18,7 @@ export interface Author extends Id {
 }
 
 export interface Role extends Id {
-  name: "admin" | "librarian" | "user";
+  name: 'admin' | 'librarian' | 'user';
   description?: string;
 }
 
@@ -32,7 +32,7 @@ export interface User extends Id {
   phoneNumber?: string;
   address: Address;
   registeredDate: Date;
-  status: "active" | "locked" | "banned";
+  status: 'active' | 'locked' | 'banned';
   bio?: string;
   readBooksCount: number;
 }
@@ -80,7 +80,7 @@ export interface BorrowRecord extends Id {
   dueDate: Date;
   returnDate?: Date;
   fine?: Fine;
-  status: "ok" | "lost" | "break";
+  status: 'ok' | 'lost' | 'break';
   note?: string;
   createdAt: Date;
 }

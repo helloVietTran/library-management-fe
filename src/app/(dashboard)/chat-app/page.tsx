@@ -1,10 +1,8 @@
-"use client";
+'use client';
 import ChatApp from '@/features/chat-app/ChatApp';
 
 const page = () => {
-  return (
-    <ChatApp />
-  )
-}
+  return <ChatApp />;
+};
 
-export default page
+export default page;

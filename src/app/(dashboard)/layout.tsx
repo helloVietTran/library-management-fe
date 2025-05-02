@@ -1,30 +1,22 @@
-"use client"
+'use client';
 
 import Footer from '@/components/Footer';
-import Main from '@/components/Main';
-import PageTransitionWrapper from '@/components/PageTransitionWrapper';
 import Sidebar from '@/components/Sidebar';
-import { App } from 'antd';
+import withAuth from '@/HOC/withAuth';
 
 const SidebarLayout = ({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) => {
-
   return (
-    <App>
-      <PageTransitionWrapper>
-        <div className='sidebar-layout'>
-          <Sidebar />
-          <Main>
-            {children}
-            <Footer />
-          </Main>
-        </div>
-      </PageTransitionWrapper>
-    </App>
+    <>
+      <Sidebar />
+      <div className="min-h-screen bg-main-bg md:ml-[280px] lg:ml-[300px] p-6">
+        {children}
+      </div>
+    </>
   );
-}
+};
 
 export default SidebarLayout;

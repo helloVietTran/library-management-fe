@@ -1,27 +1,31 @@
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { message } from "antd";
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { App } from 'antd';
 
-import api from "@/config/axios";
-import queryKeys from "@/config/queryKey";
-import { CreateBorrowRecordData } from "../types/types";
+import api from '@/config/axios';
+import queryKeys from '@/config/queryKey';
+import { CreateBorrowRecordData } from '../types/types';
+import { handleErrResponseMsg } from '@/utils/handleErrResponseMsg';
 
-export const useCreateBorrowRecord = (onSuccessCallback: () => void) => {
+export const useCreateBorrowRecord = (successHandler: () => void) => {
   const queryClient = useQueryClient();
+  const { message } = App.useApp();
 
   return useMutation({
     mutationFn: async (borrowData: CreateBorrowRecordData) => {
-      return await api.post("/borrow-return", borrowData);
+      return await api.post('/borrow-return', borrowData);
     },
     onSuccess: () => {
-      message.success({ content: "Tạo yêu cầu thành công!", key: "borrow" });
+      message.success({ content: 'Chon mượn sách thành công!', key: 'borrow' });
       queryClient.invalidateQueries({ queryKey: [queryKeys.BORROW_RECORDS] });
 
-      onSuccessCallback();
+      successHandler();
     },
-    onError: () => {
+    onError: (error) => {
+      const msg = handleErrResponseMsg(error, 'Có lỗi xảy ra! Vui lòng thử lại sau.');
+
       message.error({
-        content: "Có lỗi xảy ra! Vui lòng thử lại.",
-        key: "borrow",
+        content: msg,
+        key: 'borrow',
       });
     },
   });

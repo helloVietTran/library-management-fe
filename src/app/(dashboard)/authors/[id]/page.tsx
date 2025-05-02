@@ -1,13 +1,13 @@
-"use client"
+'use client';
 
-import AuthorDetail from "@/features/author-detail/AuthorDetail"
+import AuthorDetail from '@/features/author-detail/AuthorDetail';
 
 const page = () => {
   return (
     <div>
       <AuthorDetail />
     </div>
-  )
-}
+  );
+};
 
-export default page
+export default page;

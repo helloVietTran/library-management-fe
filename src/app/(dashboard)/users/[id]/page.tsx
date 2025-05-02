@@ -1,11 +1,9 @@
-"use client"
+'use client';
 
-import UserDetail from "@/features/user-detail/UserDetail"
+import UserDetail from '@/features/user-detail/UserDetail';
 
 const page = () => {
-  return (
-    <UserDetail />
-  )
-}
+  return <UserDetail />;
+};
 
-export default page
+export default page;

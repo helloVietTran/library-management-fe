@@ -1,66 +1,47 @@
-import React from "react";
-import { Avatar, Space, Typography, Button } from "antd";
-import { FiSmile } from "react-icons/fi";
-import Link from "next/link";
+import React from 'react';
+import { Avatar, Space } from 'antd';
+import { FiSmile } from 'react-icons/fi';
 
-import translateRole from "@/utils/translateRole";
-import { User } from "@/types/types";
+import translateRole from '@/utils/translateRole';
+import useMyInfo from '../hooks/useMyInfo';
 
-const { Title, Text } = Typography;
+const DashboardHeader = () => {
+  const { data } = useMyInfo();
 
-interface DashboardHeaderProps {
-  user: User | null;
-  statsImageUrl?: string;
-}
-
-const DashboardHeader: React.FC<DashboardHeaderProps> = ({
-  user,
-  statsImageUrl = "/img/icon/result.png",
-}) => {
   return (
     <div
       style={{
         marginBottom: 16,
-        border: "1px solid #e8e8e8",
+        border: '1px solid #e8e8e8',
         borderRadius: 4,
-        background: "linear-gradient(to right, #f0f9ff, #cbebff)",
-        padding: "0px",
+        background: 'linear-gradient(to right, #f0f9ff, #cbebff)',
+        padding: '0px',
       }}
     >
       <header className="flex items-center justify-between p-4">
-        {user ? (
+        {
+          data?.data &&
           <Space size="large">
-            <Avatar size={60} src={user.avatar}>
-              {!user.avatar && user.fullName.charAt(0).toUpperCase()}
+            <Avatar size={60} src={data?.data.avatar || null}>
+              {!data?.data.avatar && data?.data.fullName.charAt(0).toUpperCase()}
             </Avatar>
             <div>
-              <h2 className="text-primary text-xl font-semibold mb-2">
-                {translateRole(user.role.name)}: {user.fullName}
+              <h2 className="text-primary md:text-xl text-base font-semibold mb-2">
+                {translateRole(data?.data.role.name)}: {data?.data.fullName}
               </h2>
-              <p className="flex items-center text-sm text-gray-500">
-                <FiSmile className="mr-1 text-blue-500" />
-                Chào mừng {user.fullName} đến với hệ thống quản lý thư viện
+              <p className="flex items-center gap-1 text-sm text-gray-500 md:text-base">
+                <FiSmile className="text-blue-500 flex-shrink-0" />
+                Chào mừng {data?.data.fullName} đến với hệ thống quản lý thư viện
               </p>
             </div>
           </Space>
-        ) : (
-          <div>
-            <Title level={5} style={{ marginBottom: 4 }} className="text-primary">
-              <Link href="/login">
-                Vui lòng đăng nhập!
-              </Link>
-            </Title>
+        }
 
-          </div>
-        )}
-
-        {statsImageUrl && (
-          <img
-            src={statsImageUrl}
-            alt="Thống kê"
-            style={{ height: "64px", marginLeft: "auto" }}
-          />
-        )}
+        <img
+          src="/img/icon/result.png"
+          alt="Thống kê"
+          style={{ height: '64px', marginLeft: 'auto' }}
+        />
       </header>
     </div>
   );

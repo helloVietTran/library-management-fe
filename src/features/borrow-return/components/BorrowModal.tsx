@@ -1,18 +1,21 @@
-import React, { useState } from "react";
-import { Modal, DatePicker, message, Form, Input, Select } from "antd";
-import dayjs from "dayjs";
-import { debounce } from "lodash";
+import React, { useState } from 'react';
+import { Modal, DatePicker, message, Form, Input, Select } from 'antd';
+import dayjs from 'dayjs';
+import { debounce } from 'lodash';
 
-import api from "@/config/axios";
-import { Book, User } from "@/types/types";
-import { useCreateBorrowRecord } from "../hooks/useCreateBorrowRecord";
+import api from '@/config/axios';
+import { Book, User } from '@/types/types';
+import { useCreateBorrowRecord } from '../hooks/useCreateBorrowRecord';
 
 interface BorrowModalProps {
   openModal: boolean;
   setOpenModal: (value: boolean) => void;
 }
 
-const BorrowModal: React.FC<BorrowModalProps> = ({ openModal, setOpenModal }) => {
+const BorrowModal: React.FC<BorrowModalProps> = ({
+  openModal,
+  setOpenModal,
+}) => {
   const [form] = Form.useForm();
 
   const [users, setUsers] = useState<User[]>([]);
@@ -42,7 +45,7 @@ const BorrowModal: React.FC<BorrowModalProps> = ({ openModal, setOpenModal }) =>
       });
       setUsers(response.data.data);
     } catch (error) {
-      console.error("Lỗi khi tìm người dùng:", error);
+      console.error('Lỗi khi tìm người dùng:', error);
     } finally {
       setLoadingUser(false);
     }
@@ -62,7 +65,7 @@ const BorrowModal: React.FC<BorrowModalProps> = ({ openModal, setOpenModal }) =>
       });
       setBooks(response.data.data);
     } catch (error) {
-      console.error("Lỗi khi tìm sách:", error);
+      console.error('Lỗi khi tìm sách:', error);
     } finally {
       setLoadingBook(false);
     }
@@ -70,7 +73,7 @@ const BorrowModal: React.FC<BorrowModalProps> = ({ openModal, setOpenModal }) =>
 
   // lấy _id từ sách
   const handleSelectBook = (bookId: string) => {
-    const selectedBook = books.find(book => book._id === bookId);
+    const selectedBook = books.find((book) => book._id === bookId);
     if (selectedBook) {
       form.setFieldsValue({ bookId });
     }
@@ -78,7 +81,7 @@ const BorrowModal: React.FC<BorrowModalProps> = ({ openModal, setOpenModal }) =>
 
   // lấy _id từ người dùng
   const handleSelectUser = (userId: string) => {
-    const selectedUser = users.find(user => user._id === userId);
+    const selectedUser = users.find((user) => user._id === userId);
     if (selectedUser) {
       form.setFieldsValue({ userId: userId });
     }
@@ -86,20 +89,25 @@ const BorrowModal: React.FC<BorrowModalProps> = ({ openModal, setOpenModal }) =>
 
   // ok
   const handleOk = () => {
-    form.validateFields()
+    form
+      .validateFields()
       .then((values) => {
         values.dueDate = values.dueDate.toISOString();
         console.log(values);
         createBorrowRecord.mutate(values);
       })
       .catch(() => {
-        message.error("Vui lòng điền đầy đủ thông tin hợp lệ!");
+        message.error('Vui lòng điền đầy đủ thông tin hợp lệ!');
       });
   };
 
   return (
     <Modal
-      title={<h1 className="text-primary text-xl font-semibold mb-2 pb-2 border-b border-gray-300 text-center">Lập phiếu mượn</h1>}
+      title={
+        <h1 className="text-primary text-xl font-semibold mb-2 pb-2 border-b border-gray-300 text-center">
+          Lập phiếu mượn
+        </h1>
+      }
       open={openModal}
       onOk={handleOk}
       onCancel={handleCancel}
@@ -111,14 +119,18 @@ const BorrowModal: React.FC<BorrowModalProps> = ({ openModal, setOpenModal }) =>
         layout="vertical"
         name="borrowForm"
         initialValues={{
-          userId: "",
-          bookId: "",
-          dueDate: dayjs().add(7, "day")
+          userId: '',
+          bookId: '',
+          dueDate: dayjs().add(7, 'day'),
         }}
         requiredMark={false}
         className="space-y-4"
       >
-        <Form.Item name="userId" label="Tên người mượn" rules={[{ required: true, message: "Tên người mượn là bắt buộc." }]}>
+        <Form.Item
+          name="userId"
+          label="Tên người mượn"
+          rules={[{ required: true, message: 'Tên người mượn là bắt buộc.' }]}
+        >
           <Select
             showSearch
             placeholder="Nhập tên người mượn"
@@ -128,7 +140,7 @@ const BorrowModal: React.FC<BorrowModalProps> = ({ openModal, setOpenModal }) =>
             filterOption={false}
             size="large"
           >
-            {users.map(user => (
+            {users.map((user) => (
               <Select.Option key={user._id} value={user._id}>
                 {user.fullName}
               </Select.Option>
@@ -136,7 +148,11 @@ const BorrowModal: React.FC<BorrowModalProps> = ({ openModal, setOpenModal }) =>
           </Select>
         </Form.Item>
 
-        <Form.Item name="bookId" label="Tên sách" rules={[{ required: true, message: "Tên sách mượn là bắt buộc." }]}>
+        <Form.Item
+          name="bookId"
+          label="Tên sách"
+          rules={[{ required: true, message: 'Tên sách mượn là bắt buộc.' }]}
+        >
           <Select
             showSearch
             placeholder="Nhập tên sách"
@@ -146,7 +162,7 @@ const BorrowModal: React.FC<BorrowModalProps> = ({ openModal, setOpenModal }) =>
             filterOption={false}
             size="large"
           >
-            {books.map(book => (
+            {books.map((book) => (
               <Select.Option key={book._id} value={book._id}>
                 {book.title}
               </Select.Option>
@@ -157,7 +173,7 @@ const BorrowModal: React.FC<BorrowModalProps> = ({ openModal, setOpenModal }) =>
         <Form.Item
           name="dueDate"
           label="Ngày dự kiến trả"
-          rules={[{ required: true, message: "Ngày dự kiến trả là bắt buộc." }]}
+          rules={[{ required: true, message: 'Ngày dự kiến trả là bắt buộc.' }]}
         >
           <DatePicker size="large" format="YYYY-MM-DD" />
         </Form.Item>

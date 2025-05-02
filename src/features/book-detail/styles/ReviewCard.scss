@@ -1,12 +1,11 @@
-@import "../../../styles/global.scss";
-.review-card{
-    color: $text-color-variant-2;
-    .user-name{
-        color: $primary-text-color;
-        &:hover{
-            text-decoration: underline ;
-            text-decoration-color: $primary-text-color;
-            
-        }
+@import '../../../styles/global.scss';
+.review-card {
+  color: $text-color-variant-2;
+  .user-name {
+    color: $primary-text-color;
+    &:hover {
+      text-decoration: underline;
+      text-decoration-color: $primary-text-color;
     }
+  }
 }

@@ -1,11 +1,9 @@
-"use client";
-import React from 'react'
-import BorrowReturnList from '@/features/borrow-return/BorrowReturn';
+'use client';
+import React from 'react';
+import BorrowReturnList from '@/features/borrow-return/BorrowReturnList';
 
 const page = () => {
-    return (
-        <BorrowReturnList />
-    )
-}
+  return <BorrowReturnList />;
+};
 
-export default page
+export default page;

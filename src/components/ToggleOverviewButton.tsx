@@ -8,15 +8,11 @@ interface ToggleOverviewButtonProps {
 
 const ToggleOverviewButton: React.FC<ToggleOverviewButtonProps> = ({
   openOverview,
-  setOpenOverview
+  setOpenOverview,
 }) => {
-
   return (
     <div className="flex items-center space-x-2">
-      <button
-        onClick={setOpenOverview}
-        className="flex items-center"
-      >
+      <button onClick={setOpenOverview} className="flex items-center">
         {openOverview ? (
           <IoEyeOutline size={18} className="text-gray-500" />
         ) : (

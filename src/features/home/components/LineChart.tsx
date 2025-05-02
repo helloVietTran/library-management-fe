@@ -1,10 +1,25 @@
 import { Line } from 'react-chartjs-2';
-import { Chart as ChartJS, LineElement, PointElement, CategoryScale, LinearScale, Tooltip, Legend, ChartOptions } from 'chart.js';
+import {
+  Chart as ChartJS,
+  LineElement,
+  PointElement,
+  CategoryScale,
+  LinearScale,
+  Tooltip,
+  Legend,
+  ChartOptions,
+} from 'chart.js';
 import BoxContent from '@/components/BoxContent';
 import useBorrowReturnStats from '../hooks/useBorrowReturnStats';
 
-
-ChartJS.register(LineElement, PointElement, CategoryScale, LinearScale, Tooltip, Legend);
+ChartJS.register(
+  LineElement,
+  PointElement,
+  CategoryScale,
+  LinearScale,
+  Tooltip,
+  Legend
+);
 
 interface LineChartProps {
   chartTitle: string;
@@ -26,15 +41,21 @@ const LineChart: React.FC<LineChartProps> = ({ chartTitle }) => {
     return (
       <BoxContent className="relative bg-white p-4 rounded-lg shadow-md">
         <h2 className="text-primary text-sm font-bold mb-2">{chartTitle}</h2>
-        <p>Lỗi khi tải dữ liệu thống kê: {error?.message || 'Không có dữ liệu'}</p>
+        <p>
+          Lỗi khi tải dữ liệu thống kê: {error?.message || 'Không có dữ liệu'}
+        </p>
       </BoxContent>
     );
   }
 
-  // Prepare chart data 
+  // Prepare chart data
   const labels = Object.keys(statsData);
-  const borrowedData = labels.map((month) => statsData[month]?.borrowedBooksCount || 0);
-  const returnedData = labels.map((month) => statsData[month]?.returnedBooksCount || 0);
+  const borrowedData = labels.map(
+    (month) => statsData[month]?.borrowedBooksCount || 0
+  );
+  const returnedData = labels.map(
+    (month) => statsData[month]?.returnedBooksCount || 0
+  );
 
   const chartData = {
     labels: labels,
@@ -68,8 +89,9 @@ const LineChart: React.FC<LineChartProps> = ({ chartTitle }) => {
     ],
   };
 
-  const options: ChartOptions<"line"> = {
+  const options: ChartOptions<'line'> = {
     responsive: true,
+    maintainAspectRatio: false,
     scales: {
       x: {
         grid: {
@@ -81,7 +103,8 @@ const LineChart: React.FC<LineChartProps> = ({ chartTitle }) => {
           display: false,
         },
         ticks: {
-          stepSize: Math.max(...[...borrowedData, ...returnedData]) > 10 ? 20 : 2, 
+          stepSize:
+            Math.max(...[...borrowedData, ...returnedData]) > 10 ? 20 : 2,
         },
       },
     },

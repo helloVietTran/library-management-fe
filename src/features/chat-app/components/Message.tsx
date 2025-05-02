@@ -1,36 +1,43 @@
-import { Avatar, Skeleton } from "antd";
-import { MessageType, mockConversations, mockUser, User } from "../types/types";
-import { useState } from "react";
-import { FaCheck } from "react-icons/fa6";
+import { Avatar, Skeleton } from 'antd';
+import { useState } from 'react';
+import { FaCheck } from 'react-icons/fa6';
 
-// Giả lập hàm để lấy thông tin người gửi (với user khác)
-const conversationUser = (message: MessageType): User => {
-  // Ở đây giả sử nếu sender không phải current user thì nó thuộc về conversation người nhận
-  // Trong thực tế bạn sẽ lấy từ conversation đã chọn
-  return mockConversations[0].participants[0];
-};
+import { Message as MessageType } from '@/interfaces/commom';
+import { Conversation as ConversationType } from '@/interfaces/commom';
+import useAuthStore from '@/store/authStore';
+
 interface MessageProps {
   message: MessageType;
-  ownMessage: boolean;
+  conversation: ConversationType;
+  previousMessage?: MessageType;
 }
 
-const Message: React.FC<MessageProps> = ({ message, ownMessage }) => {
+const Message: React.FC<MessageProps> = ({ message, conversation, previousMessage }) => {
   const [imgLoaded, setImgLoaded] = useState(false);
+  const { user: currentUser } = useAuthStore();
+  const ownMessage = message.sender === currentUser?._id;
+  const shouldHideAvatar =
+    !ownMessage &&
+    previousMessage?.sender === message.sender;
+
   return (
-    <div className={`flex ${ownMessage ? "justify-end" : "justify-start"} gap-2`}>
+    <div
+      className={`flex ${ownMessage ? 'justify-end' : 'justify-start'} gap-2`}
+    >
       {ownMessage ? (
         <>
-          <div className="flex flex-col bg-green-700 text-white p-2 rounded max-w-xs">
+          <div className={`flex flex-col ${!imgLoaded ? 'bg-green-700 p-2 mt-1' : ''} text-white rounded max-w-xs`}>
             {message.text && <p className="text-sm">{message.text}</p>}
             {message.img && (
               <div className="mt-2">
-                {!imgLoaded && <Skeleton.Image style={{ width: 200, height: 200 }} />}
+                {!imgLoaded && (
+                  <Skeleton.Image style={{ width: 200, height: 200 }} />
+                )}
                 <img
                   src={message.img}
                   alt="Message"
-                  className={`${imgLoaded ? "block" : "hidden"} rounded h-[160px] object-cover`}
+                  className={`${imgLoaded ? 'block' : 'hidden'} rounded h-[160px] object-cover`}
                   onLoad={() => setImgLoaded(true)}
-                
                 />
               </div>
             )}
@@ -38,24 +45,37 @@ const Message: React.FC<MessageProps> = ({ message, ownMessage }) => {
         </>
       ) : (
         <>
-          <Avatar src={conversationUser(message).profilePic}  />
-          <div className="flex flex-col bg-gray-300 text-black p-2 rounded max-w-xs">
-            {message.text && <p className="text-sm text-gray-700">{message.text}</p>}
+          {shouldHideAvatar ? (
+            <div className="w-[40px]" />
+          ) : (
+            <Avatar
+              src={conversation.participants[0].avatar || '/img/default/default-avatar.png'}
+              size={40}
+            />
+          )}
+          <div className="flex flex-col bg-gray-300 text-black p-2 rounded max-w-xs mt-1">
+            {message.text && (
+              <p className="text-sm text-gray-700">{message.text}</p>
+            )}
             {message.img && (
               <div className="mt-2">
-                {!imgLoaded && <Skeleton.Image style={{ width: 200, height: 200 }} />}
+                {!imgLoaded && (
+                  <Skeleton.Image style={{ width: 200, height: 200 }} />
+                )}
                 <img
                   src={message.img}
                   alt="Message"
-                  className={`${imgLoaded ? "block" : "hidden"} rounded`}
+                  className={`${imgLoaded ? 'block' : 'hidden'} rounded`}
                   onLoad={() => setImgLoaded(true)}
                 />
               </div>
             )}
           </div>
-          <div className="self-end ml-1 text-blue-500 font-bold">
-            <FaCheck size={14} />
-          </div>
+          {
+            message.seen && <div className="self-end ml-1 text-blue-500 font-bold">
+              <FaCheck size={14} />
+            </div>
+          }
         </>
       )}
     </div>

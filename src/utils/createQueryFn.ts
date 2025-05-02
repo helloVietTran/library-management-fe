@@ -1,5 +1,5 @@
 const createQueryFn = (apiFn: any) => {
-  return ({ queryKey } : any) => {
+  return ({ queryKey }: any) => {
     const [, ...params] = queryKey;
     return apiFn(...params);
   };

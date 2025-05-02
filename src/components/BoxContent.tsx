@@ -1,19 +1,19 @@
-import React from 'react'
+import React from 'react';
 
 interface BoxContentProps {
-    children: React.ReactNode,
-    className?: string,
+  children: React.ReactNode;
+  className?: string;
 }
 
 const BoxContent: React.FC<BoxContentProps> = ({
-    children,
-    className="",
+  children,
+  className = '',
 }) => {
-    return (
-        <div className={`p-4 bg-white rounded-lg shadow ${className}`}>{
-            children
-        }</div>
-    )
-}
+  return (
+    <div className={`p-4 bg-white rounded-lg shadow ${className}`}>
+      {children}
+    </div>
+  );
+};
 
-export default BoxContent
+export default BoxContent;

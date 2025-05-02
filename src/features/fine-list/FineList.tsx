@@ -4,14 +4,13 @@ import FineTable from './components/FineTable';
 import { Select } from 'antd';
 
 const FineList = () => {
-
   return (
-    <div className='fine-list'>
+    <div className="fine-list">
       <PageTitle
         title="Quản lý khoản phạt"
         breadcrumbs={[
           { label: 'Home', href: '/' },
-          { label: "QL khoản phạt", href: '/fines', isActive: true }
+          { label: 'QL khoản phạt', href: '/fines', isActive: true },
         ]}
       />
 

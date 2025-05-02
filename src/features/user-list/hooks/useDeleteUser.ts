@@ -1,8 +1,8 @@
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { message } from "antd";
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { message } from 'antd';
 
-import api from "@/config/axios";
-import queryKeys from "@/config/queryKey";
+import api from '@/config/axios';
+import queryKeys from '@/config/queryKey';
 
 const useDeleteUser = (onSuccessCallback?: () => void) => {
   const queryClient = useQueryClient();
@@ -13,8 +13,8 @@ const useDeleteUser = (onSuccessCallback?: () => void) => {
     },
     onSuccess: () => {
       message.success({
-        content: "Xóa người dùng thành công!",
-        key: "deleteUser",
+        content: 'Xóa người dùng thành công!',
+        key: 'deleteUser',
       });
       queryClient.invalidateQueries({ queryKey: [queryKeys.USERS] });
 
@@ -24,8 +24,8 @@ const useDeleteUser = (onSuccessCallback?: () => void) => {
     },
     onError: (err: any) => {
       const errorMessage =
-        err?.response?.data?.message || "Có lỗi xảy ra! Vui lòng thử lại.";
-      message.error({ content: errorMessage, key: "deleteUser" });
+        err?.response?.data?.message || 'Có lỗi xảy ra! Vui lòng thử lại.';
+      message.error({ content: errorMessage, key: 'deleteUser' });
     },
   });
 };

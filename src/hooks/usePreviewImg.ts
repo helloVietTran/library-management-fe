@@ -1,5 +1,5 @@
-import { useState, ChangeEvent } from "react";
-import useShowNotification from "./useShowNotification";
+import { useState, ChangeEvent } from 'react';
+import useShowNotification from './useShowNotification';
 
 const usePreviewImg = () => {
   const [imgUrl, setImgUrl] = useState<string | null>(null);
@@ -7,7 +7,7 @@ const usePreviewImg = () => {
 
   const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files && e.target.files[0];
-    if (file && file.type.startsWith("image/")) {
+    if (file && file.type.startsWith('image/')) {
       const reader = new FileReader();
 
       reader.onloadend = () => {
@@ -16,7 +16,7 @@ const usePreviewImg = () => {
 
       reader.readAsDataURL(file);
     } else {
-      showToast("Invalid file type", "Please select an image file", "error");
+      showToast('Invalid file type', 'Please select an image file', 'error');
       setImgUrl(null);
     }
   };

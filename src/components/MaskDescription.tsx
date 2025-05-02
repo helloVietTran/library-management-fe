@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from 'react';
 
 interface MaskDescriptionProps {
   content: string;
@@ -7,7 +7,7 @@ interface MaskDescriptionProps {
 
 const MaskDescription: React.FC<MaskDescriptionProps> = ({
   content,
-  className
+  className,
 }) => {
   const [isExpanded, setIsExpanded] = useState<boolean>(false);
   const [hasMore, setHasMore] = useState<boolean>(false);
@@ -25,14 +25,12 @@ const MaskDescription: React.FC<MaskDescriptionProps> = ({
   }, [content]);
 
   return (
-    <div
-      className={`mask-des ${className}`}
-    >
+    <div className={`mask-des ${className}`}>
       <p
         ref={contentRef}
         className={`description text-gray-700 ${
-          isExpanded ? "expanded" : "collapsed"
-        } ${hasMore ? "has-more" : "no-has-more"}`}
+          isExpanded ? 'expanded' : 'collapsed'
+        } ${hasMore ? 'has-more' : 'no-has-more'}`}
       >
         {content}
       </p>
@@ -41,7 +39,7 @@ const MaskDescription: React.FC<MaskDescriptionProps> = ({
           onClick={toggleExpanded}
           className="text-blue-500 text-sm hover:underline mt-2"
         >
-          {isExpanded ? "Ẩn bớt" : "Xem thêm"}
+          {isExpanded ? 'Ẩn bớt' : 'Xem thêm'}
         </button>
       )}
     </div>

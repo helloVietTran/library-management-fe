@@ -1,15 +1,14 @@
-import jsPDF from "jspdf";
-import "jspdf-autotable";
-import "@/config/font/TimesNewRoman";
-import { getNestedValue, Header } from "./downloadExcel";
-
+import jsPDF from 'jspdf';
+import 'jspdf-autotable';
+import '@/config/font/TimesNewRoman';
+import { getNestedValue, Header } from './downloadExcel';
 
 const downloadPDF = (data: any[], headers: Header[], fileName: string) => {
   const doc = new jsPDF();
-  doc.setFont("Times New Roman", "normal");
+  doc.setFont('Times New Roman', 'normal');
 
   doc.setFontSize(18);
-  const title = "Danh sách mượn trả sách";
+  const title = 'Danh sách mượn trả sách';
   const pageWidth = doc.internal.pageSize.width;
   const titleWidth =
     (doc.getStringUnitWidth(title) * 18) / doc.internal.scaleFactor;
@@ -21,7 +20,7 @@ const downloadPDF = (data: any[], headers: Header[], fileName: string) => {
   );
 
   if (tableRows.length === 0) {
-    tableRows.push(Array(tableColumn.length).fill("Không có dữ liệu"));
+    tableRows.push(Array(tableColumn.length).fill('Không có dữ liệu'));
   }
 
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -30,9 +29,9 @@ const downloadPDF = (data: any[], headers: Header[], fileName: string) => {
     head: [tableColumn],
     body: tableRows,
     startY: 30,
-    styles: { font: "Times New Roman", fontSize: 10 },
+    styles: { font: 'Times New Roman', fontSize: 10 },
     headStyles: { fillColor: [22, 160, 133] },
-    columnStyles: { 0: { cellWidth: "auto" } },
+    columnStyles: { 0: { cellWidth: 'auto' } },
   });
 
   doc.save(`${fileName}.pdf`);

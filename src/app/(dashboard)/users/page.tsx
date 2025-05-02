@@ -1,11 +1,9 @@
-"use client"
+'use client';
 
-import UserList from "@/features/user-list/UserList"
+import UserList from '@/features/user-list/UserList';
 
 const page = () => {
-  return (
-    <UserList />
-  )
-}
+  return <UserList />;
+};
 
-export default page
+export default page;
