@@ -5,14 +5,12 @@ import { Conversation } from '@/interfaces/commom';
 import queryKeys from '@/config/queryKey';
 
 const fetchConversations = async () => {
-  const { data } = await api.get<ApiResponse<Conversation[]>>(
-    '/messages/conversations'
-  );
+  const { data } = await api.get<ApiResponse>('/messages/conversations');
   return data;
 };
 
 const useFetchConversations = () => {
-  return useQuery<ApiResponse<Conversation[]>>({
+  return useQuery<ApiResponse>({
     queryKey: [queryKeys.CONVERSATIONS],
     queryFn: () => fetchConversations(),
     staleTime: 5 * 60 * 1000,

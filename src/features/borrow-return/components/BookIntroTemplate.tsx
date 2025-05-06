@@ -5,16 +5,16 @@ interface BookIntroTemplateProps {
   description?: string;
 }
 
-const BookIntroTemplate: React.FC<BookIntroTemplateProps> = ({
+const BookIntroTemplate: React.FC = ({
   name,
   bookTitle,
   author,
   description,
 }) => {
   return (
-    <div className="text-gray-800 font-sans">
-      <div className="max-w-md mx-auto bg-white shadow-lg rounded-lg overflow-hidden">
-        <div className="bg-blue-600 text-white text-center py-4">
+    <div className="font-sans text-gray-800">
+      <div className="mx-auto max-w-md overflow-hidden rounded-lg bg-white shadow-lg">
+        <div className="bg-blue-600 py-4 text-center text-white">
           <h1 className="text-xl font-bold">Giới thiệu sách mới</h1>
         </div>
         <div className="p-6">
@@ -25,7 +25,7 @@ const BookIntroTemplate: React.FC<BookIntroTemplateProps> = ({
             Thư viện Vbrary xin giới thiệu đến bạn một tựa sách hấp dẫn mà bạn
             không nên bỏ lỡ:
           </p>
-          <div className="bg-gray-100 p-4 rounded-lg">
+          <div className="rounded-lg bg-gray-100 p-4">
             <p className="font-semibold">Thông tin sách:</p>
             <ul className="list-disc pl-6">
               <li>
@@ -36,7 +36,7 @@ const BookIntroTemplate: React.FC<BookIntroTemplateProps> = ({
               </li>
             </ul>
           </div>
-          <div className="mt-4 bg-gray-50 p-4 rounded-lg">
+          <div className="mt-4 rounded-lg bg-gray-50 p-4">
             <p className="font-semibold">Mô tả:</p>
             <p>{description}</p>
           </div>
@@ -48,7 +48,7 @@ const BookIntroTemplate: React.FC<BookIntroTemplateProps> = ({
             Cảm ơn bạn đã tin tưởng và sử dụng dịch vụ của chúng tôi!
           </p>
         </div>
-        <div className="bg-gray-200 text-center py-4 text-sm text-gray-600">
+        <div className="bg-gray-200 py-4 text-center text-sm text-gray-600">
           © 2025 Thư viện Vbrary. Mọi quyền được bảo lưu.
         </div>
       </div>

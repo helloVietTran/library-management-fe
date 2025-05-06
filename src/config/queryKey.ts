@@ -12,7 +12,7 @@ const queryKeys = {
   USERS: 'users',
   NEW_USERS_STATS: 'new-user-stats',
   userDetail: (userId: string) => `user-${userId}`,
-  readBooksOfUser:  (userId: string) => `read-books-user-${userId}`,
+  readBooksOfUser: (userId: string) => `read-books-user-${userId}`,
 
   // authors
   AUTHORS: 'authors',
@@ -31,14 +31,14 @@ const queryKeys = {
   MONTHLY_BORROW_RECORD_STATS: 'monthly-borrow-record-stats',
 
   //stats
-  RATING_STATS : 'rating-stats',
+  RATING_STATS: 'rating-stats',
 
   //COMMENTS
   COMMENTS: 'comments',
 
   // messages
   CONVERSATIONS: 'conversations',
-  MESSAGES: 'messages'
+  MESSAGES: 'messages',
 };
 
 export default queryKeys;

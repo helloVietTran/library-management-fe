@@ -26,10 +26,7 @@ export const useCreateBook = (successHandler?: () => void) => {
     mutationFn: async (bookData: CreateBookRequest) => {
       const { file, ...filterBookData } = bookData;
 
-      const response = await api.post<ApiResponse<Book>>(
-        '/books',
-        filterBookData
-      );
+      const response = await api.post<ApiResponse>('/books', filterBookData);
       // Nếu có file ảnh, gửi tiếp
       if (file && response.data.data) {
         await uploadFile(response.data.data._id, file);

@@ -19,23 +19,26 @@ const DashboardHeader = () => {
       }}
     >
       <header className="flex items-center justify-between p-4">
-        {
-          data?.data &&
+        {data?.data && (
           <Space size="large">
             <Avatar size={60} src={data?.data.avatar || null}>
-              {!data?.data.avatar && data?.data.fullName.charAt(0).toUpperCase()}
+              {!data?.data.avatar &&
+                data?.data.fullName.charAt(0).toUpperCase()}
             </Avatar>
             <div>
-              <h2 className="text-primary md:text-xl text-base font-semibold mb-2">
+              <h2 className="text-primary mb-2 text-base font-semibold md:text-xl">
                 {translateRole(data?.data.role.name)}: {data?.data.fullName}
               </h2>
               <p className="flex items-center gap-1 text-sm text-gray-500 md:text-base">
-                <FiSmile className="text-blue-500 flex-shrink-0" />
-                <span>Chào mừng {data?.data.fullName} đến với hệ thống quản lý thư viện</span>
+                <FiSmile className="flex-shrink-0 text-blue-500" />
+                <span>
+                  Chào mừng {data?.data.fullName} đến với hệ thống quản lý thư
+                  viện
+                </span>
               </p>
             </div>
           </Space>
-        }
+        )}
 
         <img
           src="/img/icon/result.png"

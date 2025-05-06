@@ -16,7 +16,7 @@ const ReviewActions = () => {
   const id = params.id as string;
   const createCommentMutation = useCreateComment();
 
-  const handleCommentChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleCommentChange = (e: React.ChangeEvent) => {
     setComment(e.target.value);
   };
 
@@ -34,8 +34,8 @@ const ReviewActions = () => {
     createCommentMutation.mutate({
       bookId: id,
       content: comment,
-      rating
-    })
+      rating,
+    });
 
     setComment('');
     setRating(0);
@@ -56,30 +56,30 @@ const ReviewActions = () => {
       <div className="flex flex-col gap-3">
         {/* Star Rating */}
         <div className="flex items-center gap-2">
-          <span className="text-gray-700 text-sm font-medium">Đánh giá:</span>
+          <span className="text-sm font-medium text-gray-700">Đánh giá:</span>
           <Rate value={rating} onChange={setRating} />
         </div>
 
         <div className="flex items-center gap-4">
-          <div className="comment-input-wrapper flex items-center bg-gray-100 px-3 py-2 w-[500px]">
+          <div className="comment-input-wrapper flex w-[500px] items-center bg-gray-100 px-3 py-2">
             <input
               type="text"
               placeholder="Nhập bình luận..."
               value={comment}
               onChange={handleCommentChange}
-              className="ml-2 bg-transparent focus:outline-none flex-1"
+              className="ml-2 flex-1 bg-transparent focus:outline-none"
             />
             <IoMdSend
-              className="cursor-pointer size-5 text-gray-500 hover:text-gray-700"
+              className="size-5 cursor-pointer text-gray-500 hover:text-gray-700"
               onClick={handlePostComment}
             />
           </div>
 
           <button className="sort-btn cursor-pointer" onClick={toggleSortOrder}>
             {isAscending ? (
-              <GoSortAsc className="text-gray-600 size-6" />
+              <GoSortAsc className="size-6 text-gray-600" />
             ) : (
-              <GoSortDesc className="text-gray-600 size-6" />
+              <GoSortDesc className="size-6 text-gray-600" />
             )}
           </button>
         </div>

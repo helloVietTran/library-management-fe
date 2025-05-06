@@ -12,10 +12,7 @@ interface BorrowModalProps {
   setOpenModal: (value: boolean) => void;
 }
 
-const BorrowModal: React.FC<BorrowModalProps> = ({
-  openModal,
-  setOpenModal,
-}) => {
+const BorrowModal: React.FC = ({ openModal, setOpenModal }) => {
   const [form] = Form.useForm();
 
   const [users, setUsers] = useState<User[]>([]);
@@ -104,7 +101,7 @@ const BorrowModal: React.FC<BorrowModalProps> = ({
   return (
     <Modal
       title={
-        <h1 className="text-primary text-xl font-semibold mb-2 pb-2 border-b border-gray-300 text-center">
+        <h1 className="text-primary mb-2 border-b border-gray-300 pb-2 text-center text-xl font-semibold">
           Lập phiếu mượn
         </h1>
       }

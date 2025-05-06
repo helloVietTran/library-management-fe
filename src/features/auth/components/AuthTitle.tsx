@@ -4,10 +4,8 @@ interface AuthTitle {
   label: string;
 }
 
-const AuthTitle: React.FC<AuthTitle> = ({ label }) => {
-  return (
-    <h1 className="text-3xl py-6 font-bold text-primary">{label}</h1>
-  );
+const AuthTitle: React.FC = ({ label }) => {
+  return <h1 className="text-primary py-6 text-3xl font-bold">{label}</h1>;
 };
 
 export default AuthTitle;

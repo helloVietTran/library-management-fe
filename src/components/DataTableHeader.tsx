@@ -9,7 +9,7 @@ interface DataTableHeaderProps {
   pageSize?: number;
 }
 
-const DataTableHeader: React.FC<DataTableHeaderProps> = ({
+const DataTableHeader: React.FC = ({
   onPageSizeChange,
   onSearch,
   searchValue,
@@ -18,16 +18,16 @@ const DataTableHeader: React.FC<DataTableHeaderProps> = ({
 }) => {
   return (
     <div>
-      <div className="py-[12px] flex justify-between">
+      <div className="flex justify-between py-[12px]">
         <div className="relative">
           <input
             placeholder={searchPlaceholder}
-            className="data-table-input rounded bg-white pl-12 w-[300px]"
+            className="data-table-input w-[300px] rounded bg-white pl-12"
             onChange={(e) => onSearch(e.target.value)}
             value={searchValue}
           />
           <CiSearch
-            className="absolute left-3 top-1/2 transform -translate-y-1/2"
+            className="absolute top-1/2 left-3 -translate-y-1/2 transform"
             color="#555252"
             size={20}
           />
@@ -44,7 +44,7 @@ const DataTableHeader: React.FC<DataTableHeaderProps> = ({
             <option value="20">20</option>
             <option value="25">25</option>
           </select>
-          <span className="text-gray-700 text-sm">tài liệu / trang</span>
+          <span className="text-sm text-gray-700">tài liệu / trang</span>
         </div>
       </div>
     </div>

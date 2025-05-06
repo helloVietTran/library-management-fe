@@ -20,7 +20,7 @@ const CommunityReviews = () => {
   return (
     <div className="community-reviews">
       <Divider className="custom-divider" />
-      <p className="text-xl font-semibold mb-2 text-gray-600 mb-4">
+      <p className="mb-2 mb-4 text-xl font-semibold text-gray-600">
         Đánh giá từ người dùng thư viện
       </p>
 
@@ -28,7 +28,7 @@ const CommunityReviews = () => {
         ratingsBreakdown={ratingsBreakdown}
         totalComments={totalComments}
       />
-      
+
       <ReviewActions />
     </div>
   );

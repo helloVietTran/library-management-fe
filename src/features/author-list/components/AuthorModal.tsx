@@ -1,5 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import { Modal, Input, message, Form, Row, Col, Select, DatePicker } from 'antd';
+import {
+  Modal,
+  Input,
+  message,
+  Form,
+  Row,
+  Col,
+  Select,
+  DatePicker,
+} from 'antd';
 import { countries, ICountry } from 'countries-list';
 import dayjs from 'dayjs';
 
@@ -15,11 +24,7 @@ interface AuthorModalProps {
   authorId?: string;
 }
 
-const AuthorModal: React.FC<AuthorModalProps> = ({
-  openModal,
-  setOpenModal,
-  authorId,
-}) => {
+const AuthorModal: React.FC = ({ openModal, setOpenModal, authorId }) => {
   const [form] = Form.useForm();
   const [countryOptions, setCountryOptions] = useState<
     { label: string; value: string }[]
@@ -35,7 +40,7 @@ const AuthorModal: React.FC<AuthorModalProps> = ({
     setCountryOptions(countryList);
 
     if (authorId)
-      api.get<ApiResponse<Author>>(`/authors/${authorId}`).then((res) => {
+      api.get<ApiResponse>(`/authors/${authorId}`).then((res) => {
         const authorData = res.data.data;
         form.setFieldsValue({
           ...authorData,
@@ -69,7 +74,7 @@ const AuthorModal: React.FC<AuthorModalProps> = ({
   return (
     <Modal
       title={
-        <h1 className="text-primary text-xl font-semibold pb-4 border-b border-gray-300">
+        <h1 className="text-primary border-b border-gray-300 pb-4 text-xl font-semibold">
           {authorId ? 'Sửa thông tin tác giả' : 'Nhập thông tin tác giả'}
         </h1>
       }
@@ -82,7 +87,7 @@ const AuthorModal: React.FC<AuthorModalProps> = ({
       <Form
         form={form}
         layout="vertical"
-        name={authorId ? "update-author-form" : "create-author-form"}
+        name={authorId ? 'update-author-form' : 'create-author-form'}
         initialValues={{
           name: '',
           biography: '',
@@ -107,10 +112,7 @@ const AuthorModal: React.FC<AuthorModalProps> = ({
               <Input size="large" placeholder="Nhập tên tác giả" />
             </Form.Item>
 
-            <Form.Item
-              name="dob"
-              label="Ngày sinh"
-            >
+            <Form.Item name="dob" label="Ngày sinh">
               <DatePicker size="large" format="YYYY-MM-DD" />
             </Form.Item>
           </Col>

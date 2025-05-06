@@ -20,8 +20,8 @@ const Home = () => {
       <SplashScreen />
       <DashboardHeader />
 
-      <div className="grid grid-cols-3 gap-4 mb-6 mt-4">
-        <BoxContent className="bg-[url('/img/bg/overview-bg-6.jpg')] bg-no-repeat bg-cover bg-center rounded-none border-s-5 border-[#76ca36]">
+      <div className="mt-4 mb-6 grid grid-cols-3 gap-4">
+        <BoxContent className="rounded-none border-s-5 border-[#76ca36] bg-[url('/img/bg/overview-bg-6.jpg')] bg-cover bg-center bg-no-repeat">
           <StatisticCard
             title="Người dùng mới"
             currentValue={userStatsData?.data.currentMonth || 0}
@@ -29,7 +29,7 @@ const Home = () => {
           />
         </BoxContent>
 
-        <BoxContent className="bg-[url('/img/bg/overview-bg-7.jpg')] bg-no-repeat bg-cover bg-center rounded-none border-s-5 border-[#fd8a54]">
+        <BoxContent className="rounded-none border-s-5 border-[#fd8a54] bg-[url('/img/bg/overview-bg-7.jpg')] bg-cover bg-center bg-no-repeat">
           <StatisticCard
             title="Lượt mượn mới"
             currentValue={borrowRecordStatsData?.data.currentMonth || 0}
@@ -37,7 +37,7 @@ const Home = () => {
           />
         </BoxContent>
 
-        <BoxContent className="bg-[url('/img/bg/overview-bg-8.jpg')] bg-no-repeat bg-cover bg-center rounded-none border-s-5 border-[#5788ec]">
+        <BoxContent className="rounded-none border-s-5 border-[#5788ec] bg-[url('/img/bg/overview-bg-8.jpg')] bg-cover bg-center bg-no-repeat">
           <StatisticCard
             title="Sách mới"
             currentValue={bookStatsData?.data.currentMonth || 0}
@@ -46,7 +46,7 @@ const Home = () => {
         </BoxContent>
       </div>
 
-      <div className="flex gap-4 mb-4 flex-col md:flex-row">
+      <div className="mb-4 flex flex-col gap-4 md:flex-row">
         <div className="w-full md:w-1/2">
           <LineChart chartTitle="Biến động mượn trả" />
         </div>
@@ -61,4 +61,3 @@ const Home = () => {
 };
 
 export default Home;
-

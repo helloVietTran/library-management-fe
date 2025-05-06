@@ -14,11 +14,7 @@ const inter = Inter({ subsets: ['latin'] });
 
 const queryClient = new QueryClient({});
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({ children }: React.PropsWithChildren<{}>) {
   return (
     <html lang="en">
       <body className={inter.className}>

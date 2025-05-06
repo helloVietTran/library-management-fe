@@ -46,7 +46,11 @@ const BookTable: React.FC = () => {
   const [openUpdateModal, setOpenUpdateModal] = useState<boolean>(false);
 
   // Data & mutations
-  const { data: bookData, isLoading: loadingBooks } = useFetchBooks(currentPage, pageSize, searchValue);
+  const { data: bookData, isLoading: loadingBooks } = useFetchBooks(
+    currentPage,
+    pageSize,
+    searchValue
+  );
   const deleteManyMutation = useDeleteManyBooks();
   const deleteMutation = useDeleteBook();
 
@@ -135,30 +139,38 @@ const BookTable: React.FC = () => {
       title: 'Tác giả',
       dataIndex: 'authors',
       key: 'authors',
-      render: (authors: { name: string }[]) => authors.map(a => a.name).join(', '),
+      render: (authors: { name: string }[]) =>
+        authors.map((a) => a.name).join(', '),
     },
     {
       title: 'Giá',
       dataIndex: 'price',
       key: 'price',
-      render: (price: number) => <span style={{ color: 'green' }}>{price.toLocaleString()}đ</span>,
+      render: (price: number) => (
+        <span style={{ color: 'green' }}>{price.toLocaleString()}đ</span>
+      ),
     },
     {
       title: 'Thể loại',
       dataIndex: 'genres',
       key: 'genres',
-      render: (genres: string[]) => genres.map(g => <Tag key={g} color="blue">{g}</Tag>),
+      render: (genres: string[]) =>
+        genres.map((g) => (
+          <Tag key={g} color="blue">
+            {g}
+          </Tag>
+        )),
     },
     { title: 'Nhà xuất bản', dataIndex: 'publisher', key: 'publisher' },
     {
       title: 'Ngày xuất bản',
       dataIndex: 'publishedDate',
       key: 'publishedDate',
-      render: (date: string) => date ? new Date(date).toLocaleDateString() : 'N/A',
+      render: (date: string) =>
+        date ? new Date(date).toLocaleDateString() : 'N/A',
     },
     { title: 'Số lượng', dataIndex: 'quantity', key: 'quantity' },
   ];
-
 
   return (
     <>
@@ -166,26 +178,26 @@ const BookTable: React.FC = () => {
       <BookOverview openOverview={openOverview} />
 
       <div className="page-content">
-        <div className="flex justify-between items-center mb-4">
-          <div className="flex gap-2 items-center">
+        <div className="mb-4 flex items-center justify-between">
+          <div className="flex items-center gap-2">
             <ToggleOverviewButton
               openOverview={openOverview}
               setOpenOverview={() => setOpenOverview(!openOverview)}
             />
             {selectedRowKeys.length > 0 && (
               <button
-                className="text-gray-500 hover:text-red-500 relative cursor-pointer hover:bg-red-100 rounded-full p-1 transition-colors duration-200"
+                className="relative cursor-pointer rounded-full p-1 text-gray-500 transition-colors duration-200 hover:bg-red-100 hover:text-red-500"
                 onClick={handleDeleteMany}
               >
                 <DeleteOutlined className="text-lg" />
-                <span className="absolute top-0 -right-1 bg-red-500 text-white text-[8px] w-4 h-4 flex items-center justify-center rounded-full">
+                <span className="absolute top-0 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-red-500 text-[8px] text-white">
                   {selectedRowKeys.length}
                 </span>
               </button>
             )}
           </div>
 
-          <div className="flex gap-2 items-center">
+          <div className="flex items-center gap-2">
             <ExportDropdown
               downloadExcel={handleExportExcel}
               downloadPDF={handleExportPDF}

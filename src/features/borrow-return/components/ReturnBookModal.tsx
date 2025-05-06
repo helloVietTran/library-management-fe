@@ -8,11 +8,7 @@ interface ReturnBookModalProps {
   recordId?: string;
 }
 
-const ReturnBookModal: React.FC<ReturnBookModalProps> = ({
-  openModal,
-  setOpenModal,
-  recordId,
-}) => {
+const ReturnBookModal: React.FC = ({ openModal, setOpenModal, recordId }) => {
   const [form] = Form.useForm();
 
   const handleCancel = () => {
@@ -37,7 +33,7 @@ const ReturnBookModal: React.FC<ReturnBookModalProps> = ({
   return (
     <Modal
       title={
-        <h1 className="text-primary text-xl font-semibold mb-2 pb-2 border-b border-gray-300">
+        <h1 className="text-primary mb-2 border-b border-gray-300 pb-2 text-xl font-semibold">
           Nhận sách
         </h1>
       }

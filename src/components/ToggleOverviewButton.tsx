@@ -6,10 +6,7 @@ interface ToggleOverviewButtonProps {
   openOverview: boolean;
 }
 
-const ToggleOverviewButton: React.FC<ToggleOverviewButtonProps> = ({
-  openOverview,
-  setOpenOverview,
-}) => {
+const ToggleOverviewButton: React.FC = ({ openOverview, setOpenOverview }) => {
   return (
     <div className="flex items-center space-x-2">
       <button onClick={setOpenOverview} className="flex items-center">
@@ -18,7 +15,7 @@ const ToggleOverviewButton: React.FC<ToggleOverviewButtonProps> = ({
         ) : (
           <IoEyeOffOutline size={18} className="text-gray-500" />
         )}
-        <span className="ml-2 font-semibold text-sm text-gray-500 hover:underline">
+        <span className="ml-2 text-sm font-semibold text-gray-500 hover:underline">
           {openOverview ? 'Ẩn tổng quan' : 'Hiện tổng quan'}
         </span>
       </button>

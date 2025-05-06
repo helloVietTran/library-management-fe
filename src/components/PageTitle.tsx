@@ -13,16 +13,12 @@ interface PageTitleProps {
   breadcrumbs: BreadcrumbItem[];
 }
 
-const PageTitle: React.FC<PageTitleProps> = ({
-  title,
-  subtitle,
-  breadcrumbs,
-}) => {
+const PageTitle: React.FC = ({ title, subtitle, breadcrumbs }) => {
   return (
-    <div className="page-title text-primary text-xl mb-3">
-      <div className="flex flex-row justify-between items-start ">
+    <div className="page-title text-primary mb-3 text-xl">
+      <div className="flex flex-row items-start justify-between">
         <div className="mb-4 md:mb-0">
-          <h3 className="text-gray-800 font-medium mb-1 text-xl md:block hidden">
+          <h3 className="mb-1 hidden text-xl font-medium text-gray-800 md:block">
             {title}
           </h3>
           {subtitle && <p className="text-sm">{subtitle}</p>}
@@ -36,12 +32,12 @@ const PageTitle: React.FC<PageTitleProps> = ({
                   {breadcrumb.href && !isLast ? (
                     <Link
                       href={breadcrumb.href}
-                      className="!text-gray-500 font-medium hover:!text-gray-800"
+                      className="font-medium !text-gray-500 hover:!text-gray-800"
                     >
                       {breadcrumb.label} /
                     </Link>
                   ) : (
-                    <span className="text-gray-800 font-medium">
+                    <span className="font-medium text-gray-800">
                       {breadcrumb.label}
                     </span>
                   )}

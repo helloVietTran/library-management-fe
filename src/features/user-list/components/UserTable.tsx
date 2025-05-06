@@ -69,7 +69,7 @@ const UserTable: React.FC = () => {
   };
 
   // columns
-  const columns: TableColumnsType<User> = [
+  const columns: TableColumnsType = [
     {
       title: '',
       key: 'action',

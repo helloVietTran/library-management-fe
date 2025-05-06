@@ -4,7 +4,10 @@ import { App } from 'antd';
 import queryKeys from '@/config/queryKey';
 import api from '@/config/axios';
 
-const useCreateOrUpdateAuthor = (authorId?: string, successCallback?: () => void) => {
+const useCreateOrUpdateAuthor = (
+  authorId?: string,
+  successCallback?: () => void
+) => {
   const queryClient = useQueryClient();
   const { message } = App.useApp();
 

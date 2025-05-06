@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 const Footer = () => {
   return (
-    <div className="flex flex-col md:flex-row justify-between items-center text-gray-600 text-sm pt-4 mt-8 px-6 border-t">
+    <div className="mt-8 flex flex-col items-center justify-between border-t px-6 pt-4 text-sm text-gray-600 md:flex-row">
       <div className="mb-2 md:mb-0">
         © 2025, Vbrary project. Made <span className="text-red-500">❤️</span>{' '}
         by{' '}

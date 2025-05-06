@@ -5,14 +5,14 @@ import { Message } from '@/interfaces/commom';
 import { SendMessageRequest } from '../types/types';
 
 const sendMessage = async (payload: SendMessageRequest) => {
-    const { data } = await api.post<ApiResponse<Message>>('/messages', payload);
-    return data;
-  };
-  
-  const useSendMessage = () => {
-    return useMutation<ApiResponse<Message>, Error, SendMessageRequest>({
-      mutationFn: sendMessage,
-    });
-  };
-  
-  export default useSendMessage;
+  const { data } = await api.post<ApiResponse>('/messages', payload);
+  return data;
+};
+
+const useSendMessage = () => {
+  return useMutation<ApiResponse, Error, SendMessageRequest>({
+    mutationFn: sendMessage,
+  });
+};
+
+export default useSendMessage;

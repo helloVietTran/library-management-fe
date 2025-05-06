@@ -1,4 +1,4 @@
-import { User } from "@/interfaces/commom";
+import { User } from '@/interfaces/commom';
 
 export interface LoginRequest {
   email: string;

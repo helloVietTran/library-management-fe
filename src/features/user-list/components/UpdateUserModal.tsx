@@ -14,25 +14,20 @@ interface UpdateUserModalProps {
   userId?: string;
 }
 
-const UpdateUserModal: React.FC<UpdateUserModalProps> = ({
-  openModal,
-  setOpenModal,
-  userId,
-}) => {
+const UpdateUserModal: React.FC = ({ openModal, setOpenModal, userId }) => {
   const [form] = Form.useForm();
   const { message } = App.useApp();
 
   const fetchUserData = useCallback(async () => {
     if (userId) {
       try {
-        const res = await api.get<ApiResponse<User>>(`/users/${userId}`);
+        const res = await api.get<ApiResponse>(`/users/${userId}`);
         const userData = res.data.data;
 
         form.setFieldsValue({
           ...userData,
-          dob: userData.dob ? dayjs(userData.dob) : dayjs()
+          dob: userData.dob ? dayjs(userData.dob) : dayjs(),
         });
-
       } catch (error) {
         message.error('Lỗi khi tải thông tin người dùng.');
       }
@@ -40,8 +35,7 @@ const UpdateUserModal: React.FC<UpdateUserModalProps> = ({
   }, [userId, form]);
 
   useEffect(() => {
-    if (userId)
-      fetchUserData();
+    if (userId) fetchUserData();
     else {
       form.resetFields();
     }
@@ -58,14 +52,13 @@ const UpdateUserModal: React.FC<UpdateUserModalProps> = ({
     form
       .validateFields()
       .then((values) => {
-        // lọc bỏ email 
+        // lọc bỏ email
         const { email, ...filteredValues } = values;
 
         filteredValues.dob = filteredValues.dob.format('YYYY-MM-DD');
         const formData = convertToFormData(filteredValues);
 
         updateMutation.mutate(formData);
-
       })
       .catch((error) => {
         message.error('Vui lòng điền đầy đủ thông tin hợp lệ!');
@@ -76,7 +69,7 @@ const UpdateUserModal: React.FC<UpdateUserModalProps> = ({
     <Modal
       width={600}
       title={
-        <h3 className="text-primary font-semibold text-xl pb-2 border-b">
+        <h3 className="text-primary border-b pb-2 text-xl font-semibold">
           Chỉnh sửa thông tin người dùng
         </h3>
       }
@@ -94,10 +87,9 @@ const UpdateUserModal: React.FC<UpdateUserModalProps> = ({
         className="space-y-4"
         requiredMark={false}
         initialValues={{
-          fullName: "",
+          fullName: '',
           dob: null,
           file: null,
-
         }}
       >
         <Form.Item
@@ -124,7 +116,9 @@ const UpdateUserModal: React.FC<UpdateUserModalProps> = ({
           <DatePicker
             size="large"
             format="DD-MM-YYYY"
-            disabledDate={(current) => current && current > dayjs().endOf('day')}
+            disabledDate={(current) =>
+              current && current > dayjs().endOf('day')
+            }
           />
         </Form.Item>
 

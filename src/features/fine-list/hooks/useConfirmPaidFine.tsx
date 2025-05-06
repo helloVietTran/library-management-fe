@@ -26,7 +26,10 @@ const useConfirmPaidFine = (fineId: string, successCallback: () => void) => {
       successCallback();
     },
     onError: (error: any) => {
-      const msg = handleErrResponseMsg(error, "Thanh toán thất bại, có lỗi xảy ra.");
+      const msg = handleErrResponseMsg(
+        error,
+        'Thanh toán thất bại, có lỗi xảy ra.'
+      );
       console.error(error);
 
       message.error(msg);

@@ -4,9 +4,7 @@ import api from '@/config/axios';
 import { BorrowedCountStatsResponse } from '../types/types';
 import queryKeys from '@/config/queryKey';
 
-const getBorrowedCountStats = async (): Promise<
-  BorrowedCountStatsResponse[]
-> => {
+const getBorrowedCountStats = async (): Promise => {
   const res = await api.get<BorrowedCountStatsResponse[]>(
     '/books/stats?by=borrowedTurn'
   );

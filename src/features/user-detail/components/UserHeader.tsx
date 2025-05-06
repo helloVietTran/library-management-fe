@@ -13,11 +13,11 @@ interface UserHeaderProps {
   data: User;
 }
 
-const UserHeader: React.FC<UserHeaderProps> = ({ data }) => {
+const UserHeader: React.FC = ({ data }) => {
   const params = useParams();
   const id = params.id as string;
 
-  const {data: borrowedQuantityData } = useBorrowedQuantity(data._id);
+  const { data: borrowedQuantityData } = useBorrowedQuantity(data._id);
 
   // không thể sửa chính bản thân
   const isDisabled = id === data._id;
@@ -27,10 +27,10 @@ const UserHeader: React.FC<UserHeaderProps> = ({ data }) => {
       key: 'block-user',
       label: (
         <div
-          onClick={() => { }}
-          className="flex items-center cursor-pointer text-gray-600 font-semibold px-2"
+          onClick={() => {}}
+          className="flex cursor-pointer items-center px-2 font-semibold text-gray-600"
         >
-          <GoBlocked className="text-red-500 mr-2 size-4" />
+          <GoBlocked className="mr-2 size-4 text-red-500" />
           Chặn người dùng
         </div>
       ),
@@ -39,10 +39,10 @@ const UserHeader: React.FC<UserHeaderProps> = ({ data }) => {
       key: 'promote-user-by-admin',
       label: (
         <div
-          onClick={() => { }}
-          className="flex items-center cursor-pointer text-gray-600 font-semibold px-2"
+          onClick={() => {}}
+          className="flex cursor-pointer items-center px-2 font-semibold text-gray-600"
         >
-          <AiOutlineSafety className="text-blue-500 mr-2" />
+          <AiOutlineSafety className="mr-2 text-blue-500" />
           Phân quyền
         </div>
       ),
@@ -51,7 +51,7 @@ const UserHeader: React.FC<UserHeaderProps> = ({ data }) => {
           key: 'promote-librarian',
           label: (
             <div className="flex items-center">
-              <AiOutlineSafety className="text-green-500 mr-2" />
+              <AiOutlineSafety className="mr-2 text-green-500" />
               Thủ thư
             </div>
           ),
@@ -60,7 +60,7 @@ const UserHeader: React.FC<UserHeaderProps> = ({ data }) => {
           key: 'promote-user',
           label: (
             <div className="flex items-center">
-              <AiOutlineSafety className="text-purple-500 mr-2" />
+              <AiOutlineSafety className="mr-2 text-purple-500" />
               Người dùng
             </div>
           ),
@@ -70,14 +70,14 @@ const UserHeader: React.FC<UserHeaderProps> = ({ data }) => {
   ];
 
   return (
-    <div className="flex flex-col w-full">
-      <div className="flex justify-between items-center w-full">
+    <div className="flex w-full flex-col">
+      <div className="flex w-full items-center justify-between">
         <div>
-          <h2 className="text-xl font-bold text-primary">{data.fullName}</h2>
-          <div className="flex items-center gap-2 text-gray-500 text-sm mt-2">
+          <h2 className="text-primary text-xl font-bold">{data.fullName}</h2>
+          <div className="mt-2 flex items-center gap-2 text-sm text-gray-500">
             <span>@{data.email}</span>
-            <span className="px-2 py-1 bg-gray-800 text-white rounded-full text-xs">
-              {translateRole(data?.role?.name || "user")}
+            <span className="rounded-full bg-gray-800 px-2 py-1 text-xs text-white">
+              {translateRole(data?.role?.name || 'user')}
             </span>
           </div>
         </div>
@@ -88,15 +88,17 @@ const UserHeader: React.FC<UserHeaderProps> = ({ data }) => {
         />
       </div>
 
-      <p className="text-gray-700 text-sm mt-4 mb-2">
+      <p className="mt-4 mb-2 text-sm text-gray-700">
         {data?.bio || 'Loving books, coding, and coffee ☕'}
       </p>
 
-      <div className="flex justify-between items-center text-gray-500 text-sm w-full">
-        <div className="flex gap-2 items-center">
+      <div className="flex w-full items-center justify-between text-sm text-gray-500">
+        <div className="flex items-center gap-2">
           <span>Đã đọc: {data.readBooksCount}</span>
-          <div className="w-1 h-1 bg-gray-500 rounded-full"></div>
-          <span className="text-blue-500">Đang mượn: {borrowedQuantityData?.data.quantity || 0}</span>
+          <div className="h-1 w-1 rounded-full bg-gray-500"></div>
+          <span className="text-blue-500">
+            Đang mượn: {borrowedQuantityData?.data.quantity || 0}
+          </span>
         </div>
 
         {!isDisabled && (
@@ -112,7 +114,7 @@ const UserHeader: React.FC<UserHeaderProps> = ({ data }) => {
         )}
       </div>
 
-      <span className="pb-2 font-semibold border-b-2 border-black cursor-pointer mt-6 mb-2">
+      <span className="mt-6 mb-2 cursor-pointer border-b-2 border-black pb-2 font-semibold">
         Bình luận
       </span>
     </div>

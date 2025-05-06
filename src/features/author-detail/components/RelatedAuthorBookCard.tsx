@@ -12,14 +12,14 @@ interface RelatedAuthorBookCardProps {
   bookId: string;
 }
 
-const RelatedAuthorBookCard: React.FC<RelatedAuthorBookCardProps> = ({
+const RelatedAuthorBookCard: React.FC = ({
   title,
   authors,
   rating,
   ratingsCount,
   publishedYear,
   bookImage,
-  bookId
+  bookId,
 }) => {
   return (
     <div className="author-book-card">
@@ -36,18 +36,19 @@ const RelatedAuthorBookCard: React.FC<RelatedAuthorBookCardProps> = ({
         </Link>
         <div className="ml-4 flex-1">
           <Link href={`/books/${bookId}`} className="book-link">
-            <h2 className="text-base text-primary font-semibold">{title}</h2>
+            <h2 className="text-primary text-base font-semibold">{title}</h2>
           </Link>
           <p className="text-sm text-gray-600">by {authors.join(', ')}</p>
 
-          <div className="flex items-center mt-2">
+          <div className="mt-2 flex items-center">
             <div className="flex items-center text-yellow-500">
               {Array.from({ length: 5 }, (_, i) => (
                 <svg
                   key={i}
                   xmlns="http://www.w3.org/2000/svg"
-                  className={`h-4 w-4 ${i < Math.round(rating) ? 'text-yellow-500' : 'text-gray-300'
-                    }`}
+                  className={`h-4 w-4 ${
+                    i < Math.round(rating) ? 'text-yellow-500' : 'text-gray-300'
+                  }`}
                   fill="currentColor"
                   viewBox="0 0 24 24"
                 >
@@ -55,12 +56,13 @@ const RelatedAuthorBookCard: React.FC<RelatedAuthorBookCardProps> = ({
                 </svg>
               ))}
             </div>
-            <span className="text-sm text-gray-600 ml-2">
+            <span className="ml-2 text-sm text-gray-600">
               {rating.toFixed(2)}
             </span>
           </div>
-          <p className="text-sm text-gray-600 mt-1">
-            {ratingsCount.toLocaleString()} lượt đánh giá — xuất bản năm {publishedYear}
+          <p className="mt-1 text-sm text-gray-600">
+            {ratingsCount.toLocaleString()} lượt đánh giá — xuất bản năm{' '}
+            {publishedYear}
           </p>
         </div>
       </div>

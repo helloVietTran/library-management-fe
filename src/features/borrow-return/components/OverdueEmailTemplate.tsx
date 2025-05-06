@@ -9,7 +9,7 @@ interface OverdueEmailTemplateProps {
   returnDate?: Date | string;
 }
 
-const OverdueEmailTemplate: React.FC<OverdueEmailTemplateProps> = ({
+const OverdueEmailTemplate: React.FC = ({
   name = 'Nguyễn Văn A',
   bookTitle = 'Sách X',
   dueDate,
@@ -20,9 +20,9 @@ const OverdueEmailTemplate: React.FC<OverdueEmailTemplateProps> = ({
   borrowDate = dayjs(borrowDate).format('DD/MM/YYYY');
   dueDate = dayjs(dueDate).format('DD/MM/YYYY');
   return (
-    <div className="text-gray-800 font-sans flex justify-center items-center min-h-screen p-2">
-      <div className="max-w-md bg-white shadow-xl rounded-lg overflow-hidden">
-        <div className="bg-red-600 text-white text-center py-5">
+    <div className="flex min-h-screen items-center justify-center p-2 font-sans text-gray-800">
+      <div className="max-w-md overflow-hidden rounded-lg bg-white shadow-xl">
+        <div className="bg-red-600 py-5 text-center text-white">
           <h1 className="text-xl font-bold uppercase">
             Thông báo quá hạn trả sách
           </h1>
@@ -33,12 +33,12 @@ const OverdueEmailTemplate: React.FC<OverdueEmailTemplateProps> = ({
           </p>
           <p className="mb-4">
             Hệ thống thư viện Vbrary xin thông báo rằng bạn đã{' '}
-            <span className="text-red-600 font-semibold">quá hạn trả sách</span>
+            <span className="font-semibold text-red-600">quá hạn trả sách</span>
             .
           </p>
-          <div className="bg-gray-100 p-4 rounded-lg">
-            <p className="font-semibold text-lg mb-2">Thông tin sách:</p>
-            <ul className="list-disc pl-6 space-y-2">
+          <div className="rounded-lg bg-gray-100 p-4">
+            <p className="mb-2 text-lg font-semibold">Thông tin sách:</p>
+            <ul className="list-disc space-y-2 pl-6">
               <li>
                 <strong>Tên sách:</strong> {bookTitle}
               </li>
@@ -59,11 +59,11 @@ const OverdueEmailTemplate: React.FC<OverdueEmailTemplateProps> = ({
             Vui lòng trả sách sớm nhất có thể để tránh các khoản phạt phát sinh.
             Nếu bạn đã trả sách hoặc cần hỗ trợ, vui lòng liên hệ với chúng tôi.
           </p>
-          <p className="mt-4 text-gray-600 text-sm">
+          <p className="mt-4 text-sm text-gray-600">
             Cảm ơn bạn đã sử dụng dịch vụ của thư viện Vbrary!
           </p>
         </div>
-        <div className="bg-gray-200 text-center py-4 text-sm text-gray-600">
+        <div className="bg-gray-200 py-4 text-center text-sm text-gray-600">
           © 2025 Thư viện Vbrary. Mọi quyền được bảo lưu.
         </div>
       </div>

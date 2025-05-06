@@ -27,7 +27,7 @@ const AuthorDetail = () => {
     { label: 'Năm sinh', key: 'dob' },
     { label: 'Quốc tịch', key: 'nationality' },
   ];
-  
+
   if (isLoading) {
     return <Loader />;
   }
@@ -50,19 +50,21 @@ const AuthorDetail = () => {
         ]}
       />
       <BoxContent>
-        <div className="flex flex-col md:flex-row py-8">
+        <div className="flex flex-col py-8 md:flex-row">
           <div className="flex-shrink-0 md:w-1/4">
-            <div className="w-[80%] mx-auto">
+            <div className="mx-auto w-[80%]">
               <img
                 src={author.imgSrc || '/img/default/default-avatar.png'}
                 alt={author.name}
-                className="w-full h-auto rounded-lg shadow"
+                className="h-auto w-full rounded-lg shadow"
               />
             </div>
           </div>
 
-          <div className="flex-1 md:ml-6 mt-6 md:mt-0">
-            <h2 className="text-lg text-primary font-semibold">{author.name}</h2>
+          <div className="mt-6 flex-1 md:mt-0 md:ml-6">
+            <h2 className="text-primary text-lg font-semibold">
+              {author.name}
+            </h2>
 
             <Divider className="custom-divider" />
 

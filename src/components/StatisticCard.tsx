@@ -8,7 +8,7 @@ interface StatisticCardProps {
   borderRightColor?: 'green' | 'orange' | 'blue';
 }
 
-const StatisticCard: FC<StatisticCardProps> = ({
+const StatisticCard: FC = ({
   title,
   currentValue,
   previousValue,
@@ -19,15 +19,15 @@ const StatisticCard: FC<StatisticCardProps> = ({
     <div
       className={`statistic-card w-full border-${borderRightColor} text-primary`}
     >
-      <div className="flex justify-between items-center gap">
+      <div className="gap flex items-center justify-between">
         <h3 className="text-sm font-bold">{title}</h3>
       </div>
-      <div className="flex items-center mt-2">
-        <span className="total text-3xl font-bold mr-4">{currentValue}</span>
+      <div className="mt-2 flex items-center">
+        <span className="total mr-4 text-3xl font-bold">{currentValue}</span>
 
         <div>
           <div
-            className={`flex items-center text-sm mt-2 ${difference >= 0 ? 'text-green-500' : 'text-red-500'}`}
+            className={`mt-2 flex items-center text-sm ${difference >= 0 ? 'text-green-500' : 'text-red-500'}`}
           >
             {difference >= 0 ? (
               <FaArrowTrendUp size={20} className="mr-2" />
@@ -39,7 +39,7 @@ const StatisticCard: FC<StatisticCardProps> = ({
           </div>
         </div>
       </div>
-      <div className="text-sm text-gray-500 mt-2">
+      <div className="mt-2 text-sm text-gray-500">
         Tháng trước: {previousValue}
       </div>
     </div>

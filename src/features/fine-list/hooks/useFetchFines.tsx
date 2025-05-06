@@ -9,7 +9,7 @@ const fetchFines = async (
   pageSize: number,
   search?: string,
   paid?: string
-): Promise<PaginatedResponse<Fine>> => {
+): Promise => {
   const { data } = await api.get('/fines', {
     params: { page, pageSize, search, paid },
   });
@@ -22,12 +22,12 @@ const useFetchFines = (
   search: string,
   paid: string
 ) => {
-  return useQuery<PaginatedResponse<Fine>>({
+  return useQuery<PaginatedResponse>({
     queryKey: [queryKeys.FINES, page, pageSize, search, paid],
     queryFn: () => fetchFines(page, pageSize, search, paid),
     placeholderData: (prevData) => prevData,
     staleTime: 5 * 60 * 1000,
-    enabled: !!page && !!pageSize, 
+    enabled: !!page && !!pageSize,
   });
 };
 

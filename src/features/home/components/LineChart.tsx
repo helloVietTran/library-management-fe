@@ -25,13 +25,13 @@ interface LineChartProps {
   chartTitle: string;
 }
 
-const LineChart: React.FC<LineChartProps> = ({ chartTitle }) => {
+const LineChart: React.FC = ({ chartTitle }) => {
   const { data: statsData, isLoading, isError, error } = useBorrowReturnStats();
 
   if (isLoading) {
     return (
-      <BoxContent className="relative bg-white p-4 rounded-lg shadow-md">
-        <h2 className="text-primary text-sm font-bold mb-2">{chartTitle}</h2>
+      <BoxContent className="relative rounded-lg bg-white p-4 shadow-md">
+        <h2 className="text-primary mb-2 text-sm font-bold">{chartTitle}</h2>
         <p>Đang tải dữ liệu thống kê...</p>
       </BoxContent>
     );
@@ -39,8 +39,8 @@ const LineChart: React.FC<LineChartProps> = ({ chartTitle }) => {
 
   if (isError || !statsData) {
     return (
-      <BoxContent className="relative bg-white p-4 rounded-lg shadow-md">
-        <h2 className="text-primary text-sm font-bold mb-2">{chartTitle}</h2>
+      <BoxContent className="relative rounded-lg bg-white p-4 shadow-md">
+        <h2 className="text-primary mb-2 text-sm font-bold">{chartTitle}</h2>
         <p>
           Lỗi khi tải dữ liệu thống kê: {error?.message || 'Không có dữ liệu'}
         </p>
@@ -89,7 +89,7 @@ const LineChart: React.FC<LineChartProps> = ({ chartTitle }) => {
     ],
   };
 
-  const options: ChartOptions<'line'> = {
+  const options: ChartOptions = {
     responsive: true,
     maintainAspectRatio: false,
     scales: {
@@ -97,7 +97,6 @@ const LineChart: React.FC<LineChartProps> = ({ chartTitle }) => {
         grid: {
           display: false,
         },
-       
       },
       y: {
         title: {
@@ -125,8 +124,8 @@ const LineChart: React.FC<LineChartProps> = ({ chartTitle }) => {
   };
 
   return (
-    <BoxContent className="relative bg-white p-4 rounded-lg shadow-md">
-      <h2 className="text-primary text-sm font-bold mb-2">{chartTitle}</h2>
+    <BoxContent className="relative rounded-lg bg-white p-4 shadow-md">
+      <h2 className="text-primary mb-2 text-sm font-bold">{chartTitle}</h2>
       <div className="w-full">
         <Line data={chartData} options={options} />
       </div>

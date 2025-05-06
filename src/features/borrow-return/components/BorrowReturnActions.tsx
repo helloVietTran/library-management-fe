@@ -10,7 +10,7 @@ interface BorrowReturnActionsProps {
   onNotifyUser: (record: any) => void;
 }
 
-const BorrowReturnActions: React.FC<BorrowReturnActionsProps> = ({
+const BorrowReturnActions: React.FC = ({
   record,
   onReceiveBook,
   onNotifyUser,
@@ -21,7 +21,7 @@ const BorrowReturnActions: React.FC<BorrowReturnActionsProps> = ({
       label: (
         <div
           onClick={() => onReceiveBook(record)}
-          className="flex items-center gap-2 cursor-pointer font-semibold p-1"
+          className="flex cursor-pointer items-center gap-2 p-1 font-semibold"
         >
           <FaCheckCircle className="text-green-500" />
           <span>Nhận sách</span>
@@ -33,7 +33,7 @@ const BorrowReturnActions: React.FC<BorrowReturnActionsProps> = ({
       label: (
         <div
           onClick={() => onNotifyUser(record)}
-          className="flex items-center gap-2 cursor-pointer font-semibold p-1"
+          className="flex cursor-pointer items-center gap-2 p-1 font-semibold"
         >
           <FaEnvelope className="text-yellow-500" />
           <span>Gửi mail yêu cầu trả sách</span>

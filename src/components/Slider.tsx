@@ -7,10 +7,10 @@ import 'swiper/css/pagination';
 
 interface SliderProps {
   data: any;
-  SliderCard: React.ComponentType<{ data: any }>;
+  SliderCard: React.ComponentType;
 }
 
-const Slider: React.FC<SliderProps> = ({ data, SliderCard }) => {
+const Slider: React.FC = ({ data, SliderCard }) => {
   const prevRef = useRef<HTMLDivElement>(null);
   const nextRef = useRef<HTMLDivElement>(null);
 
@@ -30,13 +30,13 @@ const Slider: React.FC<SliderProps> = ({ data, SliderCard }) => {
     <div className="relative">
       <div
         ref={prevRef}
-        className="absolute top-1/2 -translate-y-1/2 left-2 w-12 h-12 bg-gray-100 shadow-md rounded-full flex items-center justify-center z-10 cursor-pointer hover:scale-105 transition-all"
+        className="absolute top-1/2 left-2 z-10 flex h-12 w-12 -translate-y-1/2 cursor-pointer items-center justify-center rounded-full bg-gray-100 shadow-md transition-all hover:scale-105"
       >
         &lt;
       </div>
       <div
         ref={nextRef}
-        className="absolute top-1/2 -translate-y-1/2 right-2 w-12 h-12 bg-gray-100 shadow-md rounded-full flex items-center justify-center z-10 cursor-pointer hover:scale-105 transition-all"
+        className="absolute top-1/2 right-2 z-10 flex h-12 w-12 -translate-y-1/2 cursor-pointer items-center justify-center rounded-full bg-gray-100 shadow-md transition-all hover:scale-105"
       >
         &gt;
       </div>

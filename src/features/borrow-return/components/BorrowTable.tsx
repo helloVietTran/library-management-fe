@@ -25,7 +25,7 @@ import SendEmailModal from '@/components/SendEmailModal';
 import ReturnBookModal from './ReturnBookModal';
 import useSendEmail from '../hooks/useSendEmail';
 import { BorrowRecord, User, Book } from '@/interfaces/commom';
-import Loader from '@/components/Loader'
+import Loader from '@/components/Loader';
 import Footer from '@/components/Footer';
 
 const emailTemplates = [
@@ -102,7 +102,7 @@ const BorrowTable: React.FC = () => {
     setIsOpenEmailModal(true);
   };
 
-  const statusMap: Record<string, { color: string; text: string }> = {
+  const statusMap: Record = {
     ok: { color: 'green', text: 'Bình thường' },
     lost: { color: 'volcano', text: 'Mất sách' },
     break: { color: 'red', text: 'Hư hỏng' },
@@ -117,7 +117,7 @@ const BorrowTable: React.FC = () => {
   };
 
   // Định nghĩa cột bảng
-  const columns: TableColumnsType<BorrowRecord> = [
+  const columns: TableColumnsType = [
     {
       title: '',
       key: 'action',
@@ -137,10 +137,7 @@ const BorrowTable: React.FC = () => {
       render: (user: User | null) => {
         if (!user) return null;
         return (
-          <Link
-            href={`/users/${user._id}`}
-            className="flex items-center gap-4"
-          >
+          <Link href={`/users/${user._id}`} className="flex items-center gap-4">
             <Avatar
               size={32}
               src={user.avatar || null}
@@ -164,10 +161,7 @@ const BorrowTable: React.FC = () => {
       render: (book: Book | null) => {
         if (!book) return null;
         return (
-          <Link
-            href={`/books/${book._id}`}
-            className="flex items-center gap-4"
-          >
+          <Link href={`/books/${book._id}`} className="flex items-center gap-4">
             <Avatar
               shape="square"
               size={32}
@@ -257,7 +251,7 @@ const BorrowTable: React.FC = () => {
 
   return (
     <>
-      <div className="flex items-center justify-between my-4">
+      <div className="my-4 flex items-center justify-between">
         <Select defaultValue="all" onChange={handleChange}>
           <Select.Option value="all">Tất cả</Select.Option>
           <Select.Option value="not-returned">Chưa trả</Select.Option>

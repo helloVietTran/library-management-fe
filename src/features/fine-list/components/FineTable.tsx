@@ -11,7 +11,7 @@ import FineActionButtons from './FineActionButtons';
 import FineModal from './FineModal';
 import { BorrowRecord, Fine, PaymentMethod } from '@/interfaces/commom';
 import Footer from '@/components/Footer';
-import { translatePaymentMethod } from '@/utils/translatePaymentMethod'
+import { translatePaymentMethod } from '@/utils/translatePaymentMethod';
 
 const FineTable = () => {
   const [currentPage, setCurrentPage] = useState<number>(1);
@@ -38,8 +38,7 @@ const FineTable = () => {
     setIsConfirmModalOpen(true);
   };
 
-
-  const columns: TableColumnsType<Fine> = [
+  const columns: TableColumnsType = [
     {
       title: '',
       key: 'action',
@@ -87,7 +86,7 @@ const FineTable = () => {
       key: 'paidDate',
       render: (paidDate: string) => (
         <Tag color={paidDate ? 'green' : 'volcano'}>
-          {paidDate ? 'Đã thanh toán' : 'Chưa thanh toán' }
+          {paidDate ? 'Đã thanh toán' : 'Chưa thanh toán'}
         </Tag>
       ),
     },
@@ -102,7 +101,8 @@ const FineTable = () => {
       title: 'Phương thức thanh toán',
       dataIndex: 'paymentMethod',
       key: 'paymentMethod',
-      render: (method: PaymentMethod | undefined) => translatePaymentMethod(method),
+      render: (method: PaymentMethod | undefined) =>
+        translatePaymentMethod(method),
     },
     {
       title: 'Người thu',
@@ -119,7 +119,7 @@ const FineTable = () => {
 
   return (
     <>
-      <div className="flex items-center justify-between my-4">
+      <div className="my-4 flex items-center justify-between">
         <Select value={filter} onChange={handleSelectChange}>
           <Select.Option value="all">Tất cả</Select.Option>
           <Select.Option value="false">Chưa thu</Select.Option>

@@ -12,19 +12,14 @@ interface AuthorInfoProps {
   className?: string;
 }
 
-const AuthorInfo: React.FC<AuthorInfoProps> = ({
-  titles,
-  content,
-  awards,
-  className,
-}) => {
+const AuthorInfo: React.FC = ({ titles, content, awards, className }) => {
   return (
     <div
-      className={`table border-spacing-4 border-separate w-full ${className}`}
+      className={`table w-full border-separate border-spacing-4 ${className}`}
     >
       {titles.map((title, index) => (
         <div className="table-row" key={index}>
-          <div className="info-table-title table-cell font-semibold text-primary text-sm w-[15%]">
+          <div className="info-table-title text-primary table-cell w-[15%] text-sm font-semibold">
             {title.label}
           </div>
           <div className="table-cell">{content[title.key]}</div>
@@ -33,7 +28,7 @@ const AuthorInfo: React.FC<AuthorInfoProps> = ({
 
       {awards && awards.length > 0 && (
         <div className="table-row">
-          <div className="info-table-title table-cell font-semibold text-primary text-sm w-[15%]">
+          <div className="info-table-title text-primary table-cell w-[15%] text-sm font-semibold">
             Giải thưởng
           </div>
           <div className="table-cell">

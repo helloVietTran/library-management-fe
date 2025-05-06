@@ -12,19 +12,14 @@ interface BookInfoProps {
   className?: string;
 }
 
-const BookInfo: React.FC<BookInfoProps> = ({
-  titles,
-  content,
-  genres,
-  className,
-}) => {
+const BookInfo: React.FC = ({ titles, content, genres, className }) => {
   return (
     <div
-      className={`table border-spacing-3 border-separate w-full ${className}`}
+      className={`table w-full border-separate border-spacing-3 ${className}`}
     >
       {titles.map((title, index) => (
         <div className="table-row" key={index}>
-          <div className="info-table-title table-cell font-semibold text-primary text-sm">
+          <div className="info-table-title text-primary table-cell text-sm font-semibold">
             {title.label}
           </div>
           <div className="table-cell">{content[title.key]}</div>
@@ -33,7 +28,7 @@ const BookInfo: React.FC<BookInfoProps> = ({
 
       {genres && genres.length > 0 && (
         <div className="table-row">
-          <div className="info-table-title table-cell font-semibold text-primary text-sm">
+          <div className="info-table-title text-primary table-cell text-sm font-semibold">
             Thể loại
           </div>
           <div className="table-cell">

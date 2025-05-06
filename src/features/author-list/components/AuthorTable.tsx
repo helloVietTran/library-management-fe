@@ -30,7 +30,7 @@ const AuthorTable = () => {
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
   };
-  
+
   const handleSearch = (value: string) => {
     setSearchValue(value);
   };
@@ -38,7 +38,7 @@ const AuthorTable = () => {
     setPageSize(value);
   };
 
-  const columns: TableColumnsType<Author> = [
+  const columns: TableColumnsType = [
     {
       title: '',
       key: 'action',
@@ -56,7 +56,10 @@ const AuthorTable = () => {
       dataIndex: 'name',
       key: 'name',
       render: (text: string, record: Author) => (
-        <Link href={`/authors/${record._id}`} className="flex items-center gap-4">
+        <Link
+          href={`/authors/${record._id}`}
+          className="flex items-center gap-4"
+        >
           <Avatar
             size={32}
             src={record.imgSrc || null}
@@ -102,7 +105,7 @@ const AuthorTable = () => {
 
   if (error) {
     return (
-      <div className="text-red-500 text-center">
+      <div className="text-center text-red-500">
         Lỗi khi tải dữ liệu tác giả.
       </div>
     );
@@ -142,7 +145,6 @@ const AuthorTable = () => {
           setOpenModal={setOpenModal}
           authorId={selectedAuthor?._id}
         />
-
       </BoxContent>
 
       <Footer />

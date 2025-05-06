@@ -29,7 +29,7 @@ interface BarChartProps {
   chartLabel: string;
 }
 
-const BarChart: React.FC<BarChartProps> = ({
+const BarChart: React.FC = ({
   barColor = '#438afe',
   chartTitle,
   chartLabel,
@@ -41,8 +41,8 @@ const BarChart: React.FC<BarChartProps> = ({
 
   if (isLoading) {
     return (
-      <BoxContent className="relative bg-white p-4 rounded-lg shadow-md">
-        <h2 className="text-primary text-sm font-bold mb-2">{chartTitle}</h2>
+      <BoxContent className="relative rounded-lg bg-white p-4 shadow-md">
+        <h2 className="text-primary mb-2 text-sm font-bold">{chartTitle}</h2>
         <p>Đang tải dữ liệu thống kê...</p>
       </BoxContent>
     );
@@ -50,8 +50,8 @@ const BarChart: React.FC<BarChartProps> = ({
 
   if (isError || !statsData) {
     return (
-      <BoxContent className="relative bg-white p-4 rounded-lg shadow-md">
-        <h2 className="text-primary text-sm font-bold mb-2">{chartTitle}</h2>
+      <BoxContent className="relative rounded-lg bg-white p-4 shadow-md">
+        <h2 className="text-primary mb-2 text-sm font-bold">{chartTitle}</h2>
         <p>Lỗi khi tải dữ liệu thống kê</p>
       </BoxContent>
     );
@@ -73,7 +73,7 @@ const BarChart: React.FC<BarChartProps> = ({
     ],
   };
 
-  const options: ChartOptions<'bar'> = {
+  const options: ChartOptions = {
     responsive: true,
     maintainAspectRatio: false,
     plugins: {
@@ -147,18 +147,17 @@ const BarChart: React.FC<BarChartProps> = ({
   };
 
   return (
-    <BoxContent className="relative bg-white p-4 rounded-lg shadow-md">
-      <h2 className="text-primary text-sm font-bold mb-2">{chartTitle}</h2>
-      <div className="absolute right-4 top-4">
+    <BoxContent className="relative rounded-lg bg-white p-4 shadow-md">
+      <h2 className="text-primary mb-2 text-sm font-bold">{chartTitle}</h2>
+      <div className="absolute top-4 right-4">
         <div className="relative">
           <FaBars
-            className="text-gray-500 cursor-pointer"
+            className="cursor-pointer text-gray-500"
             size={12}
             onClick={() => setIsToolBarOpen(!isToolbarOpen)}
           />
           <div
-            className={`${isToolbarOpen ? 'block' : 'hidden'} 
-                        absolute top-full right-0 mt-2 w-40 bg-white border border-gray-200 rounded-lg shadow-lg`}
+            className={`${isToolbarOpen ? 'block' : 'hidden'} absolute top-full right-0 mt-2 w-40 rounded-lg border border-gray-200 bg-white shadow-lg`}
           >
             <button
               onClick={() => downloadChart('png')}

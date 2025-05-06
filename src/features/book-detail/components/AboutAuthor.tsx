@@ -8,11 +8,11 @@ interface AboutAuthorProps {
   data: Author;
 }
 
-const AboutAuthor: React.FC<AboutAuthorProps> = ({ data }) => {
+const AboutAuthor: React.FC = ({ data }) => {
   return (
     <div key={data._id}>
-      <div className="flex items-center mt-4">
-        <div className="w-16 h-16 relative">
+      <div className="mt-4 flex items-center">
+        <div className="relative h-16 w-16">
           <Link href={`/authors/${data._id}`}>
             <Avatar
               src={data.imgSrc || undefined}
@@ -31,7 +31,7 @@ const AboutAuthor: React.FC<AboutAuthorProps> = ({ data }) => {
         </div>
 
         <div className="ml-4">
-          <h2 className="text-sm font-semibold mb-2 text-primary">
+          <h2 className="text-primary mb-2 text-sm font-semibold">
             {data.name}
           </h2>
           <p className="text-sm text-gray-600">quốc tịch: {data.nationality}</p>

@@ -31,4 +31,3 @@ export interface UpdateBookRequest {
   publishedDate?: Date | string;
   file: File;
 }
-

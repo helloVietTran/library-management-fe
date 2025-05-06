@@ -4,17 +4,17 @@ import queryKeys from '@/config/queryKey';
 import { ApiResponse } from '@/interfaces/api-response';
 import { User } from '@/interfaces/commom';
 
-const fetchUserById = async (userId: string): Promise<ApiResponse<User>> => {
-  const { data } = await api.get<ApiResponse<User>>(`/users/${userId}`);
+const fetchUserById = async (userId: string): Promise => {
+  const { data } = await api.get<ApiResponse>(`/users/${userId}`);
   return data;
 };
 
 const useFetchUserDetail = (userId: string) => {
-  return useQuery<ApiResponse<User>>({
+  return useQuery<ApiResponse>({
     queryKey: [queryKeys.userDetail(userId), userId],
     queryFn: () => fetchUserById(userId),
-    staleTime: 5 * 60 * 1000,  
-    enabled: !!userId
+    staleTime: 5 * 60 * 1000,
+    enabled: !!userId,
   });
 };
 

@@ -6,23 +6,20 @@ import { Comment } from '@/interfaces/commom';
 import queryKeys from '@/config/queryKey';
 
 const fetchCommentsByBookId = async (bookId: string, sortBy: string | null) => {
-  const { data } = await api.get<ApiResponse<Comment[]>>(
-    `/comments/books/${bookId}`,
-    {
-      params: { sortBy },
-    }
-  );
+  const { data } = await api.get<ApiResponse>(`/comments/books/${bookId}`, {
+    params: { sortBy },
+  });
   return data;
 };
 
 const useFetchComments = (bookId: string) => {
   const searchParams = useSearchParams();
-  const sortBy = searchParams.get('sortBy') || '1'; 
+  const sortBy = searchParams.get('sortBy') || '1';
 
-  return useQuery<ApiResponse<Comment[]>>({
+  return useQuery<ApiResponse>({
     queryKey: [queryKeys.COMMENTS, bookId, sortBy],
     queryFn: () => fetchCommentsByBookId(bookId, sortBy),
-    staleTime: 5 * 60 * 1000, 
+    staleTime: 5 * 60 * 1000,
   });
 };
 

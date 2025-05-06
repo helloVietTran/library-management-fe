@@ -9,13 +9,10 @@ const fetchBorrows = async (
   pageSize: number,
   search?: string,
   filter?: string
-): Promise<PaginatedResponse<BorrowRecord>> => {
-  const { data } = await api.get<PaginatedResponse<BorrowRecord>>(
-    '/borrow-return',
-    {
-      params: { page, pageSize, search, filter },
-    }
-  );
+): Promise => {
+  const { data } = await api.get<PaginatedResponse>('/borrow-return', {
+    params: { page, pageSize, search, filter },
+  });
   return data;
 };
 
@@ -24,8 +21,8 @@ const useFetchBorrowRecords = (
   pageSize: number,
   search: string,
   filter: string
-): UseQueryResult<PaginatedResponse<BorrowRecord>> => {
-  return useQuery<PaginatedResponse<BorrowRecord>>({
+): UseQueryResult => {
+  return useQuery<PaginatedResponse>({
     queryKey: [queryKeys.BORROW_RECORDS, page, pageSize, search, filter],
     queryFn: () => fetchBorrows(page, pageSize, search, filter),
     staleTime: 5 * 60 * 1000,

@@ -39,7 +39,9 @@ const UserDetail = () => {
 
       <div className="flex flex-col gap-4">
         {!Array.isArray(commentData?.data) || commentData.data.length === 0 ? (
-          <span className="text-sm text-gray-600">Người dùng chưa bình luận!</span>
+          <span className="text-sm text-gray-600">
+            Người dùng chưa bình luận!
+          </span>
         ) : (
           commentData.data.map((comment: Comment) => (
             <ReviewCard

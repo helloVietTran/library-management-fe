@@ -23,7 +23,7 @@ const AuthorList = () => {
         ]}
       />
       <div className="page-content">
-        <div className="flex justify-end mb-4">
+        <div className="mb-4 flex justify-end">
           <Button
             onClick={showModal}
             type="primary"

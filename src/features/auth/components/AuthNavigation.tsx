@@ -9,7 +9,7 @@ interface AuthNavigationProps {
   secondaryHref?: string;
 }
 
-const AuthNavigation : React.FC<AuthNavigationProps> = ({
+const AuthNavigation: React.FC = ({
   primaryLabel,
   primaryHref,
   secondaryHref,
@@ -17,16 +17,16 @@ const AuthNavigation : React.FC<AuthNavigationProps> = ({
   primaryDescription,
 }) => {
   return (
-    <div className="auth-action text-center pt-4 text-base text-gray-600">
+    <div className="auth-action pt-4 text-center text-base text-gray-600">
       <p>
         {primaryDescription}
-        <Link href={primaryHref} className="font-semibold !text-primary">
+        <Link href={primaryHref} className="!text-primary font-semibold">
           {' ' + primaryLabel}
         </Link>
       </p>
       {secondaryHref ? (
         <p>
-          <Link href={secondaryHref} className="font-semibold text-primary">
+          <Link href={secondaryHref} className="text-primary font-semibold">
             {secondaryLabel}
           </Link>
         </p>
@@ -37,4 +37,4 @@ const AuthNavigation : React.FC<AuthNavigationProps> = ({
   );
 };
 
-export default AuthNavigation ;
+export default AuthNavigation;

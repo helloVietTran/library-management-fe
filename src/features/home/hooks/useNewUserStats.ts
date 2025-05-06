@@ -5,17 +5,13 @@ import { TimeBasedStatsResponse } from '../types/types';
 import { ApiResponse } from '@/interfaces/api-response';
 import queryKeys from '@/config/queryKey';
 
-const getUsersCountThisAndLastMonth = async (): Promise<
-  ApiResponse<TimeBasedStatsResponse>
-> => {
-  const res = await api.get<ApiResponse<TimeBasedStatsResponse>>(
-    '/users/stats/new-users'
-  );
+const getUsersCountThisAndLastMonth = async (): Promise => {
+  const res = await api.get<ApiResponse>('/users/stats/new-users');
   return res.data;
 };
 
 const useNewUserStats = () => {
-  return useQuery<ApiResponse<TimeBasedStatsResponse>, Error>({
+  return useQuery<ApiResponse, Error>({
     queryKey: [queryKeys.NEW_USERS_STATS],
     queryFn: getUsersCountThisAndLastMonth,
     staleTime: 60 * 60 * 1000,

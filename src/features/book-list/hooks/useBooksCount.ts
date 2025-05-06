@@ -5,13 +5,13 @@ import { CountResponse } from '../types/types';
 import queryKeys from '@/config/queryKey';
 import { ApiResponse } from '@/interfaces/api-response';
 
-const getBooksCount = async (): Promise<ApiResponse<CountResponse>> => {
-  const res = await api.get<ApiResponse<CountResponse>>('/books/count');
+const getBooksCount = async (): Promise => {
+  const res = await api.get<ApiResponse>('/books/count');
   return res.data;
 };
 
 const useBooksCount = () => {
-  return useQuery<ApiResponse<CountResponse>>({
+  return useQuery<ApiResponse>({
     queryKey: [queryKeys.BOOKS_COUNT],
     queryFn: getBooksCount,
     staleTime: 60 * 60 * 1000,

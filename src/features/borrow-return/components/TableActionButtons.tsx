@@ -9,7 +9,7 @@ interface TableActionButtonsProps {
   handleNotification?: () => void;
 }
 
-const TableActionButtons: React.FC<TableActionButtonsProps> = ({
+const TableActionButtons: React.FC = ({
   handleNotification,
   handleUpdate,
   handleDelete,
@@ -19,7 +19,7 @@ const TableActionButtons: React.FC<TableActionButtonsProps> = ({
       <Tooltip title="Sửa">
         <button
           onClick={handleDelete}
-          className="p-2 rounded-full hover:bg-blue-100 transition duration-200 ease-in-out"
+          className="rounded-full p-2 transition duration-200 ease-in-out hover:bg-blue-100"
         >
           <TiEdit className="text-primary" size={21} />
         </button>
@@ -28,7 +28,7 @@ const TableActionButtons: React.FC<TableActionButtonsProps> = ({
       <Tooltip title="Xóa">
         <button
           onClick={handleUpdate}
-          className="p-2 rounded-full hover:bg-red-100 transition duration-200 ease-in-out"
+          className="rounded-full p-2 transition duration-200 ease-in-out hover:bg-red-100"
         >
           <FaTrashAlt className="text-red-500 hover:text-red-600" size={14} />
         </button>
@@ -38,7 +38,7 @@ const TableActionButtons: React.FC<TableActionButtonsProps> = ({
         <Tooltip title="Gửi thông báo">
           <button
             onClick={handleNotification}
-            className="p-2 rounded-full hover:bg-yellow-100 transition duration-200 ease-in-out"
+            className="rounded-full p-2 transition duration-200 ease-in-out hover:bg-yellow-100"
           >
             <FaRegBell
               className="text-yellow-500 hover:text-yellow-600"

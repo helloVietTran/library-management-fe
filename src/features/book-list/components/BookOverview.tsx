@@ -16,15 +16,17 @@ interface BookOverviewProps {
   openOverview: boolean;
 }
 
-const BookOverview: React.FC<BookOverviewProps> = ({ openOverview }) => {
-  const [filter, setFilter] = useState<string>("borrowedTurn");
+const BookOverview: React.FC = ({ openOverview }) => {
+  const [filter, setFilter] = useState<string>('borrowedTurn');
 
   const { data: booksCountData } = useBooksCount();
   const { data: borrowedCountData } = useBorrowedCount();
   const { data: borrowedCountStatsData } = useBorrowedCountStats();
 
   const chartData = useMemo(() => {
-    const stats = Array.isArray(borrowedCountStatsData) ? borrowedCountStatsData : [];
+    const stats = Array.isArray(borrowedCountStatsData)
+      ? borrowedCountStatsData
+      : [];
     return {
       labels: stats.map((item) => `${item.label} lượt`),
       datasets: [
@@ -33,10 +35,9 @@ const BookOverview: React.FC<BookOverviewProps> = ({ openOverview }) => {
           backgroundColor: ['#60A5FA', '#FBBF24', '#F472B6'],
           hoverBackgroundColor: ['#3B82F6', '#F59E0B', '#EC4899'],
         },
-      ]
+      ],
     };
   }, [borrowedCountStatsData]);
-
 
   const options = {
     cutout: '65%',
@@ -52,15 +53,15 @@ const BookOverview: React.FC<BookOverviewProps> = ({ openOverview }) => {
 
   return (
     <div
-      className={`grid grid-cols-12 gap-4 mb-4 transition-all duration-500 
-          ${openOverview
-          ? 'opacity-100 translate-y-0'
-          : 'opacity-0 -translate-y-4 pointer-events-none h-[0px] overflow-hidden'
-        }`}
+      className={`mb-4 grid grid-cols-12 gap-4 transition-all duration-500 ${
+        openOverview
+          ? 'translate-y-0 opacity-100'
+          : 'pointer-events-none h-[0px] -translate-y-4 overflow-hidden opacity-0'
+      }`}
     >
       <BoxContent className="col-span-12 md:col-span-6 lg:col-span-7">
-        <div className="flex justify-between items-center mb-2">
-          <div className="text-gray-600 font-medium">Phân loại theo:</div>
+        <div className="mb-2 flex items-center justify-between">
+          <div className="font-medium text-gray-600">Phân loại theo:</div>
           <Select
             defaultValue={filter}
             onChange={(value) => setFilter(value)}
@@ -76,12 +77,13 @@ const BookOverview: React.FC<BookOverviewProps> = ({ openOverview }) => {
           <div>
             <ul>
               {chartData.labels.map((label: string, index: number) => (
-                <li key={index} className="flex items-center mb-2">
+                <li key={index} className="mb-2 flex items-center">
                   <div
                     style={{
                       width: '10px',
                       height: '10px',
-                      backgroundColor: chartData.datasets[0].backgroundColor[index],
+                      backgroundColor:
+                        chartData.datasets[0].backgroundColor[index],
                       marginRight: '6px',
                       borderRadius: '50%',
                     }}
@@ -94,22 +96,16 @@ const BookOverview: React.FC<BookOverviewProps> = ({ openOverview }) => {
         </div>
       </BoxContent>
 
-      <div className="flex gap-4 col-span-12 md:col-span-6 lg:col-span-5">
-        <BoxContent
-          className="relative basis-[50%] p-3 text-gray-600 min-h-[120px]
-                  bg-[url('/img/bg/overview-bg-7.jpg')] bg-cover bg-center"
-        >
-          <div className="text-gray-600 font-medium">Tổng số sách</div>
-          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-3xl font-bold">
+      <div className="col-span-12 flex gap-4 md:col-span-6 lg:col-span-5">
+        <BoxContent className="relative min-h-[120px] basis-[50%] bg-[url('/img/bg/overview-bg-7.jpg')] bg-cover bg-center p-3 text-gray-600">
+          <div className="font-medium text-gray-600">Tổng số sách</div>
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 transform text-3xl font-bold">
             {booksCountData?.data.quantity || 0}
           </div>
         </BoxContent>
-        <BoxContent
-          className="relative basis-[50%] p-3 text-gray-600 min-h-[120px]
-                  bg-[url('/img/bg/overview-bg-6.jpg')] bg-cover bg-center"
-        >
-          <div className="text-gray-600 font-medium">Số lượt mượn</div>
-          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-3xl font-bold">
+        <BoxContent className="relative min-h-[120px] basis-[50%] bg-[url('/img/bg/overview-bg-6.jpg')] bg-cover bg-center p-3 text-gray-600">
+          <div className="font-medium text-gray-600">Số lượt mượn</div>
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 transform text-3xl font-bold">
             {borrowedCountData?.data.quantity}
           </div>
         </BoxContent>

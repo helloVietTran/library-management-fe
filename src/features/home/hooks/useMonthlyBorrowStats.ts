@@ -3,13 +3,12 @@ import { useQuery } from '@tanstack/react-query';
 import { MonthlyBorrowCountResponse } from '../types/types';
 import queryKeys from '@/config/queryKey';
 
-const getMonthlyBorrowCounts =
-  async (): Promise<MonthlyBorrowCountResponse> => {
-    const { data } = await api.get<MonthlyBorrowCountResponse>(
-      '/borrow-return/stats/monthly'
-    );
-    return data;
-  };
+const getMonthlyBorrowCounts = async (): Promise => {
+  const { data } = await api.get<MonthlyBorrowCountResponse>(
+    '/borrow-return/stats/monthly'
+  );
+  return data;
+};
 
 const useMonthlyBorrowStats = () => {
   return useQuery<MonthlyBorrowCountResponse, Error>({

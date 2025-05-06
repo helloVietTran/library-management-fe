@@ -4,12 +4,12 @@ let socket: Socket | null = null;
 
 export const getSocket = (token: string) => {
   if (!socket) {
-    socket = io("http://localhost:3001/chat", {
-      transports: ["websocket"],
+    socket = io('http://localhost:3001/chat', {
+      transports: ['websocket'],
       auth: {
-        token: token, 
+        token: token,
       },
-      withCredentials: false
+      withCredentials: false,
     });
   }
   return socket;

@@ -7,10 +7,7 @@ import { Book } from '@/interfaces/commom';
 import { handleErrResponseMsg } from '@/utils/handleErrResponseMsg';
 import { UpdateBookRequest } from '../types/types';
 
-export const useUpdateBook = (
-  bookId: string,
-  successHandler?: () => void
-) => {
+export const useUpdateBook = (bookId: string, successHandler?: () => void) => {
   const queryClient = useQueryClient();
   const { message } = App.useApp();
 
@@ -30,7 +27,7 @@ export const useUpdateBook = (
       // không gửi file
       const { file, ...filterBookData } = bookData;
 
-      const response = await api.put<ApiResponse<Book>>(
+      const response = await api.put<ApiResponse>(
         `/books/${bookId}`,
         filterBookData
       );

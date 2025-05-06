@@ -1,4 +1,4 @@
-export default function convertToFormData(formValues: Record<string, any>): FormData {
+export default function convertToFormData(formValues: Record): FormData {
   const formData = new FormData();
 
   Object.entries(formValues).forEach(([key, value]) => {
@@ -7,7 +7,6 @@ export default function convertToFormData(formValues: Record<string, any>): Form
     if (value instanceof File) {
       formData.append(key, value);
     } else if (Array.isArray(value)) {
-
       value.forEach((item) => {
         formData.append(key, String(item));
       });

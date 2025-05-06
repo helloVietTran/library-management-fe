@@ -51,35 +51,39 @@ const BookDetail: React.FC = () => {
         title="Thông tin chi tiết"
         breadcrumbs={[
           { label: 'DS đầu sách', href: '/books' },
-          { label: bookData?.data.title, href: `/books/${book._id}`, isActive: true },
+          {
+            label: bookData?.data.title,
+            href: `/books/${book._id}`,
+            isActive: true,
+          },
         ]}
       />
       <BoxContent className="mt-4">
-        <div className="flex flex-col md:flex-row py-8">
+        <div className="flex flex-col py-8 md:flex-row">
           <div className="flex-shrink-0 md:w-1/4">
-            <div className="w-[80%] mx-auto">
+            <div className="mx-auto w-[80%]">
               <img
                 src={book.coverImage || '/img/default/default-book.png'}
                 alt="Book Cover"
-                className="w-full h-auto rounded-lg shadow"
+                className="h-auto w-full rounded-lg shadow"
               />
-              <p className="text-center text-green-700 font-semibold mt-4">
+              <p className="mt-4 text-center font-semibold text-green-700">
                 {book.price + ' VND'}
               </p>
             </div>
           </div>
 
           {/* Right: Book Details */}
-          <div className="flex-1 md:ml-6 mt-6 md:mt-0">
-            <h2 className="text-xl font-semibold mb-2 text-primary">
+          <div className="mt-6 flex-1 md:mt-0 md:ml-6">
+            <h2 className="text-primary mb-2 text-xl font-semibold">
               {book.title}
             </h2>
 
-            <p className="text-gray-700 text-lg mb-2 text-sm">
+            <p className="mb-2 text-lg text-sm text-gray-700">
               by {book.authors.map((author: Author) => author.name).join(', ')}
             </p>
 
-            <div className="flex items-center gap-2 mb-4">
+            <div className="mb-4 flex items-center gap-2">
               <Rate
                 disabled
                 defaultValue={book.rating || 3.5}
@@ -91,7 +95,7 @@ const BookDetail: React.FC = () => {
                 <span className="text-lg font-semibold">
                   {book.rating || 3.5}
                 </span>
-                <span className="text-xs text-gray-500 ml-2">
+                <span className="ml-2 text-xs text-gray-500">
                   được đánh giá từ cộng đồng
                 </span>
               </div>
@@ -108,7 +112,7 @@ const BookDetail: React.FC = () => {
             <Divider className="custom-divider" />
 
             <div className="about-author">
-              <span className="font-semibold mb-2 text-gray-600">
+              <span className="mb-2 font-semibold text-gray-600">
                 Về tác giả
               </span>
 
@@ -122,7 +126,7 @@ const BookDetail: React.FC = () => {
         </div>
 
         <div className="mb-4 px-6">
-          <p className="text-xl font-semibold mb-2 text-gray-600 mb-4">
+          <p className="mb-2 mb-4 text-xl font-semibold text-gray-600">
             Đề xuất cho độc giả
           </p>
           <Slider data={mockBooks} SliderCard={BookCard} />
@@ -132,7 +136,6 @@ const BookDetail: React.FC = () => {
           <CommunityReviews />
           <ReviewList />
         </div>
-
       </BoxContent>
       <Footer />
     </div>

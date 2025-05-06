@@ -1,14 +1,5 @@
 import React, { useEffect } from 'react';
-import {
-  Modal,
-  Input,
-  App,
-  Form,
-  Select,
-  Row,
-  Col,
-  InputNumber,
-} from 'antd';
+import { Modal, Input, App, Form, Select, Row, Col, InputNumber } from 'antd';
 
 import { useUpdateBook } from '../hooks/useUpdateBook';
 import { ApiResponse } from '@/interfaces/api-response';
@@ -21,11 +12,7 @@ interface UpdateBookModalProps {
   bookId: string;
 }
 
-const UpdateBookModal: React.FC<UpdateBookModalProps> = ({
-  openModal,
-  setOpenModal,
-  bookId,
-}) => {
+const UpdateBookModal: React.FC = ({ openModal, setOpenModal, bookId }) => {
   const { message } = App.useApp();
   const [form] = Form.useForm();
 
@@ -33,14 +20,12 @@ const UpdateBookModal: React.FC<UpdateBookModalProps> = ({
     const getBookById = async () => {
       try {
         if (bookId) {
-          const res = await api.get<ApiResponse<Book>>(`/books/${bookId}`);
+          const res = await api.get<ApiResponse>(`/books/${bookId}`);
 
           form.setFieldsValue({
             ...res.data.data,
           });
-        } else
-          form.resetFields();
-
+        } else form.resetFields();
       } catch (error) {
         console.error('Lấy thông tin sách thất bại:', error);
       }
@@ -59,7 +44,6 @@ const UpdateBookModal: React.FC<UpdateBookModalProps> = ({
     form
       .validateFields()
       .then((values) => {
-
         if (values.publishedDate && values.publishedDate.format) {
           values.publishedDate = values.publishedDate.format('YYYY-MM-DD');
         }
@@ -74,7 +58,7 @@ const UpdateBookModal: React.FC<UpdateBookModalProps> = ({
   return (
     <Modal
       title={
-        <h1 className="text-primary text-xl text-center font-semibold pb-4 border-b border-gray-300">
+        <h1 className="text-primary border-b border-gray-300 pb-4 text-center text-xl font-semibold">
           Cập nhật thông tin sách
         </h1>
       }
@@ -87,7 +71,7 @@ const UpdateBookModal: React.FC<UpdateBookModalProps> = ({
       <Form
         form={form}
         layout="vertical"
-        name={bookId ? "update-book-form" : "create-book-form"}
+        name={bookId ? 'update-book-form' : 'create-book-form'}
         initialValues={{
           title: '',
           description: '',
@@ -109,7 +93,6 @@ const UpdateBookModal: React.FC<UpdateBookModalProps> = ({
               <Input size="large" placeholder="Nhập tiêu đề" />
             </Form.Item>
 
-
             <Form.Item
               name="price"
               label="Giá bán"
@@ -125,7 +108,6 @@ const UpdateBookModal: React.FC<UpdateBookModalProps> = ({
                 placeholder="Nhập giá bán"
               />
             </Form.Item>
-
 
             <Form.Item name="publisher" label="Nhà xuất bản">
               <Input size="large" placeholder="Nhập nhà xuất bản" />
@@ -155,8 +137,8 @@ const UpdateBookModal: React.FC<UpdateBookModalProps> = ({
                     Array.isArray(value)
                       ? Promise.resolve()
                       : Promise.reject(
-                        new Error('Thể loại phải là một mảng chuỗi.')
-                      ),
+                          new Error('Thể loại phải là một mảng chuỗi.')
+                        ),
                 },
               ]}
             >
@@ -188,8 +170,6 @@ const UpdateBookModal: React.FC<UpdateBookModalProps> = ({
             <Form.Item name="description" label="Mô tả">
               <Input.TextArea size="large" placeholder="Nhập mô tả" rows={4} />
             </Form.Item>
-
-
           </Col>
         </Row>
       </Form>

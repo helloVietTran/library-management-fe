@@ -3,16 +3,9 @@
 import React, { useState } from 'react';
 import { useMutation } from '@tanstack/react-query';
 import { App, Menu, Drawer } from 'antd';
-import {
-  BiPen,
-  BiSolidGridAlt
-} from 'react-icons/bi';
-import {
-  AiOutlineUsergroupDelete
-} from 'react-icons/ai';
-import {
-  IoArrowUndoOutline,
-} from 'react-icons/io5';
+import { BiPen, BiSolidGridAlt } from 'react-icons/bi';
+import { AiOutlineUsergroupDelete } from 'react-icons/ai';
+import { IoArrowUndoOutline } from 'react-icons/io5';
 import { BsChatLeftDots } from 'react-icons/bs';
 import { GiChart } from 'react-icons/gi';
 import { TbMoneybag } from 'react-icons/tb';
@@ -108,24 +101,28 @@ const Sidebar = () => {
     <>
       <div className="block md:hidden">
         <button
-          className='cursor-pointer p-1 rounded-sm bg-gray-200 shadow-sm hover:bg-gray-300 ml-2.5 fixed top-4 left-4 z-20'
+          className="fixed top-4 left-4 z-20 ml-2.5 cursor-pointer rounded-sm bg-gray-200 p-1 shadow-sm hover:bg-gray-300"
           onClick={() => setOpenDrawer(true)}
         >
-          <RxHamburgerMenu size={24} className='text-primary' />
+          <RxHamburgerMenu size={24} className="text-primary" />
         </button>
       </div>
 
-      <div className="md:w-[280px] lg:w-[300px] h-screen fixed top-0 bottom-0 z-10 overflow-y-auto">
-        <div className="hidden md:block px-8 mt-8 mb-4">
+      <div className="fixed top-0 bottom-0 z-10 h-screen overflow-y-auto md:w-[280px] lg:w-[300px]">
+        <div className="mt-8 mb-4 hidden px-8 md:block">
           <Link href="/">
-            <img src="/img/logo/logo.png" className="w-[60px] mx-auto" alt="logo" />
+            <img
+              src="/img/logo/logo.png"
+              className="mx-auto w-[60px]"
+              alt="logo"
+            />
           </Link>
         </div>
 
         {/* Sidebar for large screens */}
         <div className="sidebar-menu hidden md:block">
           <ul className="menu mt-6 px-6">
-            <li className="text-primary px-4 my-6 mb-4 text-base list-none font-bold">
+            <li className="text-primary my-6 mb-4 list-none px-4 text-base font-bold">
               Menu
             </li>
             <Menu
@@ -139,13 +136,16 @@ const Sidebar = () => {
         </div>
       </div>
 
-
       {/* Drawer for small screens */}
       <Drawer
         title={
           <div className="flex items-center justify-between">
-            <span className="text-lg font-semibold text-primary">Menu</span>
-            <IoClose size={24} onClick={() => setOpenDrawer(false)} className="cursor-pointer" />
+            <span className="text-primary text-lg font-semibold">Menu</span>
+            <IoClose
+              size={24}
+              onClick={() => setOpenDrawer(false)}
+              className="cursor-pointer"
+            />
           </div>
         }
         placement="left"
@@ -155,7 +155,7 @@ const Sidebar = () => {
         width={300}
       >
         <Menu
-          className='custom-menu'
+          className="custom-menu"
           theme="light"
           mode="inline"
           defaultSelectedKeys={['dashboard']}

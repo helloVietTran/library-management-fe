@@ -3,7 +3,7 @@ export interface UpdateUserStatusData {
   status: 'active' | 'banned';
 }
 
-export interface CreateUserRequest{
+export interface CreateUserRequest {
   fullName: string;
   email: string;
   dob: string;

@@ -23,7 +23,7 @@ interface ReviewCardProps {
   isLast?: boolean; // Thêm tham số isLast
 }
 
-const ReviewCard: React.FC<ReviewCardProps> = ({
+const ReviewCard: React.FC = ({
   avatar,
   name,
   likeCount,
@@ -50,27 +50,29 @@ const ReviewCard: React.FC<ReviewCardProps> = ({
     {
       key: `like-${reviewId}`,
       label: (
-        <div className="flex items-center cursor-pointer px-[10px] py-[4px] hover:text-blue-600">
+        <div className="flex cursor-pointer items-center px-[10px] py-[4px] hover:text-blue-600">
           <AiOutlineLike className="mr-2" size={18} />
           Thích bình luận
         </div>
       ),
-      onClick: handleLike, 
+      onClick: handleLike,
     },
     {
       key: `delete-${reviewId}`,
       label: (
-        <div className="flex items-center cursor-pointer px-[10px] py-[4px] hover:text-red-600">
+        <div className="flex cursor-pointer items-center px-[10px] py-[4px] hover:text-red-600">
           <FaBan className="mr-2" />
           Xóa bình luận
         </div>
       ),
-      onClick: handleDeleteComment, 
+      onClick: handleDeleteComment,
     },
   ];
 
   return (
-    <div className={`review-card flex gap-4 p-4 px-6 ${!isLast ? 'border-b border-gray-400' : ''}`}>
+    <div
+      className={`review-card flex gap-4 p-4 px-6 ${!isLast ? 'border-b border-gray-400' : ''}`}
+    >
       <div className="flex-shrink-0">
         <Link href={`/users/${userId}`}>
           <Avatar src={avatar} alt={userId} size={50} />

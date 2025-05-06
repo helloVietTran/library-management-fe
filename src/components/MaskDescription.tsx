@@ -5,10 +5,7 @@ interface MaskDescriptionProps {
   className?: string;
 }
 
-const MaskDescription: React.FC<MaskDescriptionProps> = ({
-  content,
-  className,
-}) => {
+const MaskDescription: React.FC = ({ content, className }) => {
   const [isExpanded, setIsExpanded] = useState<boolean>(false);
   const [hasMore, setHasMore] = useState<boolean>(false);
   const contentRef = useRef<HTMLParagraphElement>(null);
@@ -37,7 +34,7 @@ const MaskDescription: React.FC<MaskDescriptionProps> = ({
       {hasMore && (
         <button
           onClick={toggleExpanded}
-          className="text-blue-500 text-sm hover:underline mt-2"
+          className="mt-2 text-sm text-blue-500 hover:underline"
         >
           {isExpanded ? 'Ẩn bớt' : 'Xem thêm'}
         </button>

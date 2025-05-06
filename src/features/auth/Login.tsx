@@ -1,7 +1,7 @@
 import React from 'react';
 import { Form, Input, Button } from 'antd';
-import { MdOutlineAlternateEmail } from "react-icons/md";
-import { GoShieldCheck } from "react-icons/go";
+import { MdOutlineAlternateEmail } from 'react-icons/md';
+import { GoShieldCheck } from 'react-icons/go';
 
 import AuthLogo from './components/AuthLogo';
 import AuthTitle from './components/AuthTitle';

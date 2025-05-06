@@ -7,19 +7,17 @@ interface FineActionButtonsProps {
   handleConfirmPayment: () => void;
 }
 
-const FineActionButtons: React.FC<FineActionButtonsProps> = ({
-  handleConfirmPayment,
-}) => {
+const FineActionButtons: React.FC = ({ handleConfirmPayment }) => {
   const menuItems = [
     {
       key: 'confirmPayment',
       label: (
         <div
           onClick={handleConfirmPayment}
-          className="flex items-center cursor-pointer text-gray-600 font-semibold px-2"
+          className="flex cursor-pointer items-center px-2 font-semibold text-gray-600"
         >
           <BsCash
-            className="text-green-600 hover:text-green-700 mr-2"
+            className="mr-2 text-green-600 hover:text-green-700"
             size={16}
           />
           Xác nhận thu tiền

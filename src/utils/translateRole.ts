@@ -1,4 +1,4 @@
-const roleMap: Record<string, string> = {
+const roleMap: Record = {
   admin: 'Quản trị viên',
   librarian: 'Thủ thư',
   user: 'Người dùng',

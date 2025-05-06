@@ -5,14 +5,12 @@ import { Comment } from '@/interfaces/commom';
 import queryKeys from '@/config/queryKey';
 
 const fetchCommentsByUserId = async (userId: string) => {
-  const { data } = await api.get<ApiResponse<Comment[]>>(
-    `/comments/users/${userId}`
-  );
+  const { data } = await api.get<ApiResponse>(`/comments/users/${userId}`);
   return data;
 };
 
 const useComments = (userId: string) => {
-  return useQuery<ApiResponse<Comment[]>>({
+  return useQuery<ApiResponse>({
     queryKey: [queryKeys.COMMENTS, userId],
     queryFn: () => fetchCommentsByUserId(userId),
     staleTime: 5 * 60 * 1000,

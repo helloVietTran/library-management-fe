@@ -12,7 +12,7 @@ interface UserActionButtonsProps {
   record: User;
 }
 
-const UserActionButtons: React.FC<UserActionButtonsProps> = ({
+const UserActionButtons: React.FC = ({
   handleUpdateUserStatus,
   handleUpdate,
   handleDelete,
@@ -24,7 +24,7 @@ const UserActionButtons: React.FC<UserActionButtonsProps> = ({
       label: (
         <div
           onClick={handleUpdate}
-          className="flex items-center cursor-pointer text-gray-600 font-semibold px-2"
+          className="flex cursor-pointer items-center px-2 font-semibold text-gray-600"
         >
           <EditOutlined
             style={{ color: '#25396f', fontSize: '14px', marginRight: '8px' }}
@@ -39,7 +39,7 @@ const UserActionButtons: React.FC<UserActionButtonsProps> = ({
       label: (
         <div
           onClick={handleDelete}
-          className="flex items-center cursor-pointer text-gray-600 font-semibold px-2"
+          className="flex cursor-pointer items-center px-2 font-semibold text-gray-600"
         >
           <DeleteOutlined
             style={{ color: '#FF0000', fontSize: '14px', marginRight: '8px' }}
@@ -53,12 +53,12 @@ const UserActionButtons: React.FC<UserActionButtonsProps> = ({
       label: (
         <div
           onClick={handleUpdateUserStatus}
-          className="flex items-center cursor-pointer text-gray-600 font-semibold px-2"
+          className="flex cursor-pointer items-center px-2 font-semibold text-gray-600"
         >
           {record.status === 'active' ? (
             <>
               <MdLock
-                className="text-yellow-500 hover:text-yellow-600 mr-2"
+                className="mr-2 text-yellow-500 hover:text-yellow-600"
                 size={16}
               />
               Khóa người dùng
@@ -66,7 +66,7 @@ const UserActionButtons: React.FC<UserActionButtonsProps> = ({
           ) : (
             <>
               <MdLockOpen
-                className="text-green-500 hover:text-green-600 mr-2"
+                className="mr-2 text-green-500 hover:text-green-600"
                 size={16}
               />
               Mở khóa người dùng

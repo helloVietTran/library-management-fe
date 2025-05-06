@@ -5,15 +5,19 @@ import queryKeys from '@/config/queryKey';
 import { PaginatedResponse } from '@/interfaces/api-response';
 import { Book } from '@/interfaces/commom';
 
-const fetchBooks = async (page: number, pageSize: number, search?: string): Promise<PaginatedResponse<Book>> => {
-  const { data } = await api.get<PaginatedResponse<Book>>('/books', {
+const fetchBooks = async (
+  page: number,
+  pageSize: number,
+  search?: string
+): Promise => {
+  const { data } = await api.get<PaginatedResponse>('/books', {
     params: { page, pageSize, search },
   });
   return data;
 };
 
 const useFetchBooks = (page: number, pageSize: number, search?: string) => {
-  return useQuery<PaginatedResponse<Book>>({
+  return useQuery<PaginatedResponse>({
     queryKey: [queryKeys.BOOKS, page, pageSize, search],
     queryFn: () => fetchBooks(page, pageSize, search),
     placeholderData: (prevData) => prevData,

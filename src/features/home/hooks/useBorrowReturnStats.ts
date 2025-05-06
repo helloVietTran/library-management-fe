@@ -3,7 +3,7 @@ import { useQuery } from '@tanstack/react-query';
 import { BorrowReturnStatsResponse } from '../types/types';
 import queryKeys from '@/config/queryKey';
 
-const getBorrowReturnStats = async (): Promise<BorrowReturnStatsResponse> => {
+const getBorrowReturnStats = async (): Promise => {
   const { data } = await api.get<BorrowReturnStatsResponse>(
     '/borrow-return/stats'
   );

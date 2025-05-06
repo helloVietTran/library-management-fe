@@ -1,22 +1,22 @@
 import { Input } from 'antd';
 import { useState } from 'react';
 
-import { AiOutlineSend } from "react-icons/ai";
-import { Message as MessageType, Conversation as ConversationType } from '@/interfaces/commom';
+import { AiOutlineSend } from 'react-icons/ai';
+import {
+  Message as MessageType,
+  Conversation as ConversationType,
+} from '@/interfaces/commom';
 import useAuthStore from '@/store/authStore';
 import useSendMessage from '../hooks/useSendMessage';
 import { getSocket } from '@/config/socket';
 import { getTokenFromSession } from '@/utils/auth';
 
 interface MessageInputProps {
-  setMessages: React.Dispatch<React.SetStateAction<MessageType[]>>;
-  conversation: ConversationType
+  setMessages: React.Dispatch;
+  conversation: ConversationType;
 }
 
-const MessageInput: React.FC<MessageInputProps> = ({
-  setMessages,
-  conversation
-}) => {
+const MessageInput: React.FC = ({ setMessages, conversation }) => {
   const { user: currentUser } = useAuthStore();
 
   const [messageText, setMessageText] = useState('');
@@ -54,9 +54,7 @@ const MessageInput: React.FC<MessageInputProps> = ({
         conversationId: conversation._id,
         userId: currentUser?._id,
       });
-
     } catch (err) {
-
       setMessages((prev) => prev.filter((m) => m._id !== tempMessage._id));
     } finally {
       setMessageText('');
@@ -64,7 +62,7 @@ const MessageInput: React.FC<MessageInputProps> = ({
     }
   };
   return (
-    <div className="flex items-center gap-2 p-2 pt-3 border-t border-gray-200">
+    <div className="flex items-center gap-2 border-t border-gray-200 p-2 pt-3">
       <form
         onSubmit={(e) => {
           e.preventDefault();
@@ -79,7 +77,7 @@ const MessageInput: React.FC<MessageInputProps> = ({
           suffix={
             <AiOutlineSend
               onClick={handleSendMessage}
-              className="cursor-pointer text-primary"
+              className="text-primary cursor-pointer"
               size={22}
             />
           }
@@ -88,7 +86,6 @@ const MessageInput: React.FC<MessageInputProps> = ({
           className="shadow-xs"
         />
       </form>
-
     </div>
   );
 };

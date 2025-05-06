@@ -14,9 +14,7 @@ export const useDeleteComment = (
 
   const mutation = useMutation({
     mutationFn: async () => {
-      const response = await api.delete<ApiResponse<null>>(
-        `/comments/${commentId}`
-      );
+      const response = await api.delete<ApiResponse>(`/comments/${commentId}`);
       return response.data;
     },
     onSuccess: () => {
@@ -27,7 +25,7 @@ export const useDeleteComment = (
 
       queryClient.invalidateQueries({ queryKey: [queryKeys.COMMENTS] });
       queryClient.invalidateQueries({ queryKey: [queryKeys.RATING_STATS] });
-      
+
       if (successHandler) {
         successHandler();
       }

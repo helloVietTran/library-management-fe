@@ -8,23 +8,19 @@ const fetchUsers = async (
   page: number,
   pageSize: number,
   search?: string
-): Promise<PaginatedResponse<User>> => {
-  const { data } = await api.get<PaginatedResponse<User>>('/users', {
+): Promise => {
+  const { data } = await api.get<PaginatedResponse>('/users', {
     params: { page, pageSize, search },
   });
   return data;
 };
 
-const useFetchUsers = (
-  page: number,
-  pageSize: number,
-  search: string
-) => {
-  return useQuery<PaginatedResponse<User>>({
+const useFetchUsers = (page: number, pageSize: number, search: string) => {
+  return useQuery<PaginatedResponse>({
     queryKey: [queryKeys.USERS, page, pageSize, search],
     queryFn: () => fetchUsers(page, pageSize, search),
     placeholderData: (prevData) => prevData,
-    staleTime: 5 * 60 * 1000, 
+    staleTime: 5 * 60 * 1000,
   });
 };
 

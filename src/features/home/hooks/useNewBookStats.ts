@@ -4,17 +4,13 @@ import { useQuery } from '@tanstack/react-query';
 import { TimeBasedStatsResponse } from '../types/types';
 import { ApiResponse } from '@/interfaces/api-response';
 
-const getBookSCountThisAndLastMonth = async (): Promise<
-  ApiResponse<TimeBasedStatsResponse>
-> => {
-  const { data } = await api.get<ApiResponse<TimeBasedStatsResponse>>(
-    '/books/stats/new-books'
-  );
+const getBookSCountThisAndLastMonth = async (): Promise => {
+  const { data } = await api.get<ApiResponse>('/books/stats/new-books');
   return data;
 };
 
 const useNewBookStats = () => {
-  return useQuery<ApiResponse<TimeBasedStatsResponse>, Error>({
+  return useQuery<ApiResponse, Error>({
     queryKey: ['new-books-stats'],
     queryFn: getBookSCountThisAndLastMonth,
     staleTime: 60 * 60 * 1000,

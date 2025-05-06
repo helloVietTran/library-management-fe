@@ -6,7 +6,7 @@ const { Option } = Select;
 interface EmailTemplate {
   key: string;
   label: string;
-  component: React.FC<any>;
+  component: React.FC;
 }
 
 interface SendEmailModalProps {
@@ -14,11 +14,11 @@ interface SendEmailModalProps {
   open: boolean;
   onClose: () => void;
   emailTemplates: EmailTemplate[];
-  templateProps: Record<string, any>;
+  templateProps: Record;
   onOK: () => void;
 }
 
-const SendEmailModal: React.FC<SendEmailModalProps> = ({
+const SendEmailModal: React.FC = ({
   title = 'Gửi mail cho người dùng',
   open,
   onClose,
@@ -45,7 +45,7 @@ const SendEmailModal: React.FC<SendEmailModalProps> = ({
     <>
       <Modal
         title={
-          <h1 className="text-xl text-primary pb-2 border-b border-gray-300 text-center font-semibold">
+          <h1 className="text-primary border-b border-gray-300 pb-2 text-center text-xl font-semibold">
             {title}
           </h1>
         }
@@ -54,9 +54,9 @@ const SendEmailModal: React.FC<SendEmailModalProps> = ({
         footer={null}
         centered
       >
-        <div className="space-y-4 mt-4">
+        <div className="mt-4 space-y-4">
           <div>
-            <label className="text-gay-600 font-medium mb-1">Từ</label>
+            <label className="text-gay-600 mb-1 font-medium">Từ</label>
             <Select
               size="large"
               defaultValue="numberzero0909@gmail.com"
@@ -69,7 +69,7 @@ const SendEmailModal: React.FC<SendEmailModalProps> = ({
           </div>
 
           <div>
-            <label className="text-gay-600 font-medium mb-1 flex gap-1">
+            <label className="text-gay-600 mb-1 flex gap-1 font-medium">
               Mẫu Email<span className="text-red-500">*</span>
             </label>
             <Select
@@ -88,7 +88,7 @@ const SendEmailModal: React.FC<SendEmailModalProps> = ({
 
           <div>
             <span
-              className="text-blue-500 cursor-pointer hover:underline"
+              className="cursor-pointer text-blue-500 hover:underline"
               onClick={() => setIsDrawerOpen(true)}
             >
               Xem trước

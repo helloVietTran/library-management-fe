@@ -5,12 +5,9 @@ interface BoxContentProps {
   className?: string;
 }
 
-const BoxContent: React.FC<BoxContentProps> = ({
-  children,
-  className = '',
-}) => {
+const BoxContent: React.FC = ({ children, className = '' }) => {
   return (
-    <div className={`p-4 bg-white rounded-lg shadow ${className}`}>
+    <div className={`rounded-lg bg-white p-4 shadow ${className}`}>
       {children}
     </div>
   );

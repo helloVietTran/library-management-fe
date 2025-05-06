@@ -8,14 +8,14 @@ interface PaginationProps {
   handlePageChange: (page: number) => void;
 }
 
-const Pagination: React.FC<PaginationProps> = ({
+const Pagination: React.FC = ({
   currentPage,
   totalElement,
   pageSize,
   handlePageChange,
 }) => {
   return (
-    <div className="pagination-wrapper pt-[16px] px-[10px]">
+    <div className="pagination-wrapper px-[10px] pt-[16px]">
       <ConfigProvider
         theme={{
           token: {

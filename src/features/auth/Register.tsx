@@ -1,7 +1,7 @@
 import React from 'react';
 import { Form, Input, Button, DatePicker } from 'antd';
 import { GoShieldLock } from 'react-icons/go';
-import { MdOutlineAlternateEmail } from "react-icons/md";
+import { MdOutlineAlternateEmail } from 'react-icons/md';
 
 import AuthLogo from './components/AuthLogo';
 import AuthTitle from './components/AuthTitle';
@@ -24,7 +24,12 @@ function Register() {
       <AuthLogo />
       <AuthTitle label="Đăng ký" />
 
-      <Form form={form} layout="vertical" onFinish={onFinish} requiredMark={false}>
+      <Form
+        form={form}
+        layout="vertical"
+        onFinish={onFinish}
+        requiredMark={false}
+      >
         {/* Email */}
         <Form.Item
           label="Email"
@@ -50,10 +55,7 @@ function Register() {
             { min: 3, message: 'Họ và tên phải tối thiểu 3 ký tự' },
           ]}
         >
-          <Input
-            size="large"
-            placeholder="Nhập họ và tên của bạn"
-          />
+          <Input size="large" placeholder="Nhập họ và tên của bạn" />
         </Form.Item>
 
         {/* Date of Birth */}

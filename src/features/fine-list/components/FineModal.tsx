@@ -10,11 +10,7 @@ interface FineModalProps {
   fineId?: string;
 }
 
-const FineModal: React.FC<FineModalProps> = ({
-  openModal,
-  setOpenModal,
-  fineId = '',
-}) => {
+const FineModal: React.FC = ({ openModal, setOpenModal, fineId = '' }) => {
   const [form] = Form.useForm();
 
   const { user } = useAuthStore();
@@ -43,7 +39,7 @@ const FineModal: React.FC<FineModalProps> = ({
   return (
     <Modal
       title={
-        <h1 className="text-primary text-xl font-semibold mb-2 pb-2 border-b border-gray-300 text-center">
+        <h1 className="text-primary mb-2 border-b border-gray-300 pb-2 text-center text-xl font-semibold">
           Chọn phương thức thanh toán
         </h1>
       }

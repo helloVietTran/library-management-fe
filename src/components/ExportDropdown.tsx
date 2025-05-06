@@ -7,10 +7,7 @@ interface ExportDropdownProps {
   downloadExcel: () => void;
 }
 
-const ExportDropdown: React.FC<ExportDropdownProps> = ({
-  downloadPDF,
-  downloadExcel,
-}) => {
+const ExportDropdown: React.FC = ({ downloadPDF, downloadExcel }) => {
   const menuItems: MenuProps['items'] = [
     {
       key: 'pdf',
@@ -26,7 +23,7 @@ const ExportDropdown: React.FC<ExportDropdownProps> = ({
 
   return (
     <Dropdown menu={{ items: menuItems }} trigger={['click']}>
-      <span className="flex text-gray-600 font-semibold hover:text-gray-700 text-sm mr-4 cursor-pointer">
+      <span className="mr-4 flex cursor-pointer text-sm font-semibold text-gray-600 hover:text-gray-700">
         <FaFileExport size={16} className="mr-1 text-gray-500" />
         Xuất file
       </span>

@@ -21,7 +21,10 @@ export const useCreateBorrowRecord = (successHandler: () => void) => {
       successHandler();
     },
     onError: (error) => {
-      const msg = handleErrResponseMsg(error, 'Có lỗi xảy ra! Vui lòng thử lại sau.');
+      const msg = handleErrResponseMsg(
+        error,
+        'Có lỗi xảy ra! Vui lòng thử lại sau.'
+      );
 
       message.error({
         content: msg,

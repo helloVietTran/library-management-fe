@@ -4,15 +4,13 @@ import { ApiResponse } from '@/interfaces/api-response';
 import { Author } from '@/interfaces/commom';
 import { useQuery } from '@tanstack/react-query';
 
-const fetchAuthorById = async (
-  authorId: string
-): Promise<ApiResponse<Author>> => {
-  const { data } = await api.get<ApiResponse<Author>>(`/authors/${authorId}`);
+const fetchAuthorById = async (authorId: string): Promise => {
+  const { data } = await api.get<ApiResponse>(`/authors/${authorId}`);
   return data;
 };
 
 const useFetchAuthorById = (authorId: string) => {
-  return useQuery<ApiResponse<Author>>({
+  return useQuery<ApiResponse>({
     queryKey: [queryKeys.authorDetail(authorId), authorId],
     queryFn: () => fetchAuthorById(authorId),
     staleTime: 5 * 60 * 1000,

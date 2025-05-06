@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 export default function SplashScreen() {
@@ -37,8 +37,8 @@ export default function SplashScreen() {
                 ease: 'easeInOut',
                 duration: 1.2,
               }}
-              className="w-[100px] h-[100px] absolute border opacity-24"
-              style={{ borderColor: '#445ebf' }} 
+              className="absolute h-[100px] w-[100px] border opacity-24"
+              style={{ borderColor: '#445ebf' }}
             />
 
             <motion.div
@@ -53,8 +53,8 @@ export default function SplashScreen() {
                 ease: 'easeInOut',
                 duration: 1.2,
               }}
-              className="w-[120px] h-[120px] absolute border-[6px] opacity-24"
-              style={{ borderColor: '#5a73d1' }} 
+              className="absolute h-[120px] w-[120px] border-[6px] opacity-24"
+              style={{ borderColor: '#5a73d1' }}
             />
           </>
         </motion.div>

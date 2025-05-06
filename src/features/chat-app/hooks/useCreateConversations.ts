@@ -14,13 +14,9 @@ const useCreateConversation = () => {
   const { message } = App.useApp();
   const queryClient = useQueryClient();
 
-  return useMutation<
-    ApiResponse<Conversation>,
-    Error,
-    CreateConversationRequest
-  >({
+  return useMutation<ApiResponse, Error, CreateConversationRequest>({
     mutationFn: async (payload) => {
-      const { data } = await api.post<ApiResponse<Conversation>>(
+      const { data } = await api.post<ApiResponse>(
         '/messages/conversations',
         payload
       );

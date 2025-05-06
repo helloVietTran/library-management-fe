@@ -10,7 +10,7 @@ interface ActionButtonsProps {
   handleNotification?: () => void;
 }
 
-const ActionButtons: React.FC<ActionButtonsProps> = ({
+const ActionButtons: React.FC = ({
   handleNotification,
   handleUpdate,
   handleDelete,
@@ -21,7 +21,7 @@ const ActionButtons: React.FC<ActionButtonsProps> = ({
       label: (
         <div
           onClick={handleUpdate}
-          className="flex items-center cursor-pointer text-gray-600 font-semibold px-2"
+          className="flex cursor-pointer items-center px-2 font-semibold text-gray-600"
         >
           <EditOutlined
             style={{ color: '#25396f', fontSize: '14px', marginRight: '8px' }}
@@ -38,7 +38,7 @@ const ActionButtons: React.FC<ActionButtonsProps> = ({
             label: (
               <div
                 onClick={handleDelete}
-                className="flex items-center cursor-pointer text-gray-600 font-semibold px-2"
+                className="flex cursor-pointer items-center px-2 font-semibold text-gray-600"
               >
                 <DeleteOutlined
                   style={{
@@ -60,10 +60,10 @@ const ActionButtons: React.FC<ActionButtonsProps> = ({
             label: (
               <div
                 onClick={handleNotification}
-                className="flex items-center cursor-pointer text-gray-600 font-semibold px-2"
+                className="flex cursor-pointer items-center px-2 font-semibold text-gray-600"
               >
                 <FaRegBell
-                  className="text-yellow-500 hover:text-yellow-600 mr-2"
+                  className="mr-2 text-yellow-500 hover:text-yellow-600"
                   size={16}
                 />
                 Thông báo

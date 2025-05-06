@@ -12,13 +12,12 @@ interface MessageProps {
   previousMessage?: MessageType;
 }
 
-const Message: React.FC<MessageProps> = ({ message, conversation, previousMessage }) => {
+const Message: React.FC = ({ message, conversation, previousMessage }) => {
   const [imgLoaded, setImgLoaded] = useState(false);
   const { user: currentUser } = useAuthStore();
   const ownMessage = message.sender === currentUser?._id;
   const shouldHideAvatar =
-    !ownMessage &&
-    previousMessage?.sender === message.sender;
+    !ownMessage && previousMessage?.sender === message.sender;
 
   return (
     <div
@@ -26,7 +25,9 @@ const Message: React.FC<MessageProps> = ({ message, conversation, previousMessag
     >
       {ownMessage ? (
         <>
-          <div className={`flex flex-col ${!imgLoaded ? 'bg-green-700 p-2 mt-1' : ''} text-white rounded max-w-xs`}>
+          <div
+            className={`flex flex-col ${!imgLoaded ? 'mt-1 bg-green-700 p-2' : ''} max-w-xs rounded text-white`}
+          >
             {message.text && <p className="text-sm">{message.text}</p>}
             {message.img && (
               <div className="mt-2">
@@ -36,7 +37,7 @@ const Message: React.FC<MessageProps> = ({ message, conversation, previousMessag
                 <img
                   src={message.img}
                   alt="Message"
-                  className={`${imgLoaded ? 'block' : 'hidden'} rounded h-[160px] object-cover`}
+                  className={`${imgLoaded ? 'block' : 'hidden'} h-[160px] rounded object-cover`}
                   onLoad={() => setImgLoaded(true)}
                 />
               </div>
@@ -49,11 +50,14 @@ const Message: React.FC<MessageProps> = ({ message, conversation, previousMessag
             <div className="w-[40px]" />
           ) : (
             <Avatar
-              src={conversation.participants[0].avatar || '/img/default/default-avatar.png'}
+              src={
+                conversation.participants[0].avatar ||
+                '/img/default/default-avatar.png'
+              }
               size={40}
             />
           )}
-          <div className="flex flex-col bg-gray-300 text-black p-2 rounded max-w-xs mt-1">
+          <div className="mt-1 flex max-w-xs flex-col rounded bg-gray-300 p-2 text-black">
             {message.text && (
               <p className="text-sm text-gray-700">{message.text}</p>
             )}
@@ -71,11 +75,11 @@ const Message: React.FC<MessageProps> = ({ message, conversation, previousMessag
               </div>
             )}
           </div>
-          {
-            message.seen && <div className="self-end ml-1 text-blue-500 font-bold">
+          {message.seen && (
+            <div className="ml-1 self-end font-bold text-blue-500">
               <FaCheck size={14} />
             </div>
-          }
+          )}
         </>
       )}
     </div>

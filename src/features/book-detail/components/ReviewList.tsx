@@ -14,9 +14,7 @@ const ReviewList = () => {
 
   const comments = commentData?.data;
   if (isError || !comments)
-    return (
-      <p className="text-gray-500 text-sm mt-4">Chưa có bình luận nào!</p>
-    );
+    return <p className="mt-4 text-sm text-gray-500">Chưa có bình luận nào!</p>;
 
   return (
     <div className="mt-4">
