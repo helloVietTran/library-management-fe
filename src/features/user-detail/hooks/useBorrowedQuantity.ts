@@ -1,8 +1,8 @@
 import api from '@/config/axios';
 import { ApiResponse } from '@/interfaces/api-response';
-import createQueryFn from '@/utils/createQueryFn';
 import { useQuery } from '@tanstack/react-query';
 import { CountResponse } from '@/features/book-list/types/types';
+import queryKeys from '@/config/queryKey'
 
 const getBorrowedQuantity = async (
   userId: string
@@ -15,8 +15,8 @@ const getBorrowedQuantity = async (
 
 const useBorrowedQuantity = (userId: string) => {
   return useQuery<ApiResponse<CountResponse>>({
-    queryKey: ['user-detail', userId],
-    queryFn: createQueryFn(getBorrowedQuantity),
+    queryKey: [queryKeys.readBooksOfUser(userId), userId],
+    queryFn: () => getBorrowedQuantity(userId),
   });
 };
 

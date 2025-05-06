@@ -3,7 +3,6 @@ import { App, Rate } from 'antd';
 import { GoSortAsc, GoSortDesc } from 'react-icons/go';
 import { IoMdSend } from 'react-icons/io';
 
-import '../styles/ReviewActions.scss';
 import { useCreateComment } from '../hooks/useCreateComment';
 import { useParams } from 'next/navigation';
 

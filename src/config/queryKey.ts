@@ -7,13 +7,16 @@ const queryKeys = {
   BORROWED_TURN_STATS: 'borrowedTurn-stats',
   bookDetail: (bookId: string) => `book-${bookId}`,
   allBooksByAuthor: (authorId: string) => `all books of author-${authorId}`,
+
   // users
   USERS: 'users',
   NEW_USERS_STATS: 'new-user-stats',
   userDetail: (userId: string) => `user-${userId}`,
+  readBooksOfUser:  (userId: string) => `read-books-user-${userId}`,
 
   // authors
   AUTHORS: 'authors',
+  authorDetail: (authorId: string) => `author-${authorId}`,
 
   // borrow-return
   BORROWED_COUNT: 'borrowed-count',

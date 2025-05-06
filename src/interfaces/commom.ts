@@ -83,13 +83,20 @@ export interface Book extends Id {
   pageCount: number;
 }
 
+
+export enum PaymentMethod {
+  CASH = 'cash',
+  CARD = 'card',
+  BANK_TRANSFER = 'bank_transfer'
+}
+
 export interface Fine extends Id {
   amount: number;
   issuedDate: Date;
   paid: boolean;
   paidDate?: Date;
   reason: string;
-  paymentMethod?: string;
+  paymentMethod?: PaymentMethod;
   collectedBy?: User;
   user: User;
 }

@@ -1,22 +1,20 @@
 import axios from 'axios';
 
 const API_BASE_URL =
-  process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:3001/api/v1';
+  process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:3001/api/v1'; 
 
 const api = axios.create({
   baseURL: API_BASE_URL,
-  withCredentials: true, // Bạn có thể bỏ if không dùng cookie nữa
+  withCredentials: false,
 });
 
 let isRefreshing = false;
 let refreshSubscribers: ((token: string) => void)[] = [];
 
-// save access token
 const setToken = (token: string) => {
   sessionStorage.setItem('lib_jwt_token', token);
 };
 
-// save refresh token
 const setRefreshToken = (token: string) => {
   sessionStorage.setItem('lib_refresh_token', token);
 };

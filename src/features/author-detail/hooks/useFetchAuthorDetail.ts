@@ -1,20 +1,23 @@
 import api from '@/config/axios';
+import queryKeys from '@/config/queryKey';
 import { ApiResponse } from '@/interfaces/api-response';
 import { Author } from '@/interfaces/commom';
-import createQueryFn from '@/utils/createQueryFn';
 import { useQuery } from '@tanstack/react-query';
 
-const getAuthorById = async (authorId: string) :Promise<ApiResponse<Author>>=> {
+const fetchAuthorById = async (
+  authorId: string
+): Promise<ApiResponse<Author>> => {
   const { data } = await api.get<ApiResponse<Author>>(`/authors/${authorId}`);
   return data;
 };
 
-const useAuthorDetail = (authorId: string) => {
+const useFetchAuthorById = (authorId: string) => {
   return useQuery<ApiResponse<Author>>({
-    queryKey: ['author-detail', authorId],
-    queryFn: createQueryFn(getAuthorById),
+    queryKey: [queryKeys.authorDetail(authorId), authorId],
+    queryFn: () => fetchAuthorById(authorId),
     staleTime: 5 * 60 * 1000,
+    enabled: !!authorId,
   });
 };
 
-export default useAuthorDetail;
+export default useFetchAuthorById;

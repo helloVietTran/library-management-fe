@@ -15,7 +15,7 @@ const fetchCommentsByBookId = async (bookId: string, sortBy: string | null) => {
   return data;
 };
 
-const useComments = (bookId: string) => {
+const useFetchComments = (bookId: string) => {
   const searchParams = useSearchParams();
   const sortBy = searchParams.get('sortBy') || '1'; 
 
@@ -26,4 +26,4 @@ const useComments = (bookId: string) => {
   });
 };
 
-export default useComments;
+export default useFetchComments;

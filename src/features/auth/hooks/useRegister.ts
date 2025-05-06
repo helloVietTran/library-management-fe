@@ -1,13 +1,13 @@
 import { useMutation } from '@tanstack/react-query';
 import { App } from 'antd';
-
 import api from '@/config/axios';
 import { RegisterResponse, RegisterRequest } from '../types/types';
 import useAuthStore from '@/store/authStore';
 import { useRouter } from 'next/navigation';
 import { saveAuthToSession } from '@/utils/auth';
+import { handleErrResponseMsg } from '@/utils/handleErrResponseMsg';
 
-const useSignUp = () => {
+const useRegister = () => {
     const { message } = App.useApp();
     const { login: loginAction } = useAuthStore();
     const router = useRouter();
@@ -21,7 +21,7 @@ const useSignUp = () => {
         onSuccess: (data) => {
             message.success({
                 content: "Đăng ký thành công!",
-                key: 'sign-up',
+                key: 'register-success',
             });
             saveAuthToSession({
                 accessToken: data.accessToken,
@@ -31,15 +31,14 @@ const useSignUp = () => {
             loginAction(data.user);
         },
         onError: (err: any) => {
+            const msg = handleErrResponseMsg(err, 'Đăng ký thất bại!');
             message.error({
-                content: 'Đăng ký thất bại!',
-                key: 'sign-up',
+                content: msg,
+                key: 'register-fail',
             });
-
-            console.log(err.response.data);
         },
     });
 
 };
 
-export default useSignUp;
+export default useRegister;

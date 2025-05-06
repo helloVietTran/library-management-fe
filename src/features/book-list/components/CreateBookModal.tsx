@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { Modal, Input, Form, Select, Row, Col, InputNumber, App } from 'antd';
+import { Modal, Input, Form, Select, Row, Col, InputNumber, App, DatePicker } from 'antd';
 import debounce from 'lodash/debounce';
 
 import api from '@/config/axios';
-import { Author } from '@/types/types';
 import { PaginatedResponse } from '@/interfaces/api-response';
 import { useCreateBook } from '../hooks/useCreateBook';
+import { Author } from '@/interfaces/commom';
 
 interface CreateBookModalProps {
     openModal: boolean;
@@ -205,7 +205,12 @@ const CreateBookModal: React.FC<CreateBookModalProps> = ({ openModal, setOpenMod
                         </Form.Item>
 
                         <Form.Item name="publishedDate" label="Ngày xuất bản">
-                            <Input size="large" type="date" />
+                            <DatePicker
+                                size="large"
+                                style={{ width: '100%' }}
+                                placeholder="Chọn ngày xuất bản"
+                                format="DD/MM/YYYY"
+                            />
                         </Form.Item>
 
                         <Form.Item

@@ -15,11 +15,13 @@ const useDeleteBook = () => {
     onSuccess: () => {
       message.success('Xóa sách thành công!');
       queryClient.invalidateQueries({
-        queryKey: [
-          queryKeys.BOOKS,
-          queryKeys.BOOKS_COUNT,
-          queryKeys.BORROWED_TURN_STATS,
-        ],
+        queryKey: [queryKeys.BOOKS],
+      });
+      queryClient.invalidateQueries({
+        queryKey: [queryKeys.BOOKS_COUNT],
+      });
+      queryClient.invalidateQueries({
+        queryKey: [queryKeys.BORROWED_TURN_STATS],
       });
     },
     onError: (err) => {

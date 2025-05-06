@@ -76,6 +76,7 @@ const NewConversationModal: React.FC<NewConversationModalProps> = ({
                 onChange={(value) => setSelectedUser(value)}
                 value={selectedUser}
                 filterOption={false}
+                size='large'
                 notFoundContent={loading ? <Spin size="small" /> : null}
                 options={userOptions.map((u) => ({
                     label: u.label,

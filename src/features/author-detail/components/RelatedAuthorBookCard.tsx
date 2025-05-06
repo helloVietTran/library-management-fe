@@ -2,7 +2,7 @@ import { Avatar, Divider } from 'antd';
 import Link from 'next/link';
 import React from 'react';
 
-interface AuthorBookCardProps {
+interface RelatedAuthorBookCardProps {
   title: string;
   authors: string[];
   rating: number;
@@ -12,7 +12,7 @@ interface AuthorBookCardProps {
   bookId: string;
 }
 
-const AuthorBookCard: React.FC<AuthorBookCardProps> = ({
+const RelatedAuthorBookCard: React.FC<RelatedAuthorBookCardProps> = ({
   title,
   authors,
   rating,
@@ -60,7 +60,7 @@ const AuthorBookCard: React.FC<AuthorBookCardProps> = ({
             </span>
           </div>
           <p className="text-sm text-gray-600 mt-1">
-            {ratingsCount.toLocaleString()} đánh giá — xuất bản {publishedYear}
+            {ratingsCount.toLocaleString()} lượt đánh giá — xuất bản năm {publishedYear}
           </p>
         </div>
       </div>
@@ -68,4 +68,4 @@ const AuthorBookCard: React.FC<AuthorBookCardProps> = ({
   );
 };
 
-export default AuthorBookCard;
+export default RelatedAuthorBookCard;

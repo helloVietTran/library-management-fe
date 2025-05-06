@@ -17,12 +17,12 @@ const DataTableHeader: React.FC<DataTableHeaderProps> = ({
   pageSize = 10,
 }) => {
   return (
-    <div className="dataTable-header">
+    <div>
       <div className="py-[12px] flex justify-between">
-        <div className="dataTable-search relative">
+        <div className="relative">
           <input
             placeholder={searchPlaceholder}
-            className="dataTable-input rounded bg-white pl-12 w-[300px]"
+            className="data-table-input rounded bg-white pl-12 w-[300px]"
             onChange={(e) => onSearch(e.target.value)}
             value={searchValue}
           />

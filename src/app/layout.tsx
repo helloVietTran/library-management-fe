@@ -7,8 +7,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { App as AntApp } from 'antd';
 import viVN from 'antd/es/locale/vi_VN';
 
-import '../styles/app.scss';
-import '../styles/global.scss';
+import '../styles/index.css';
 import '../config/antdRender';
 
 const inter = Inter({ subsets: ['latin'] });

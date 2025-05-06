@@ -104,7 +104,7 @@ const BarChart: React.FC<BarChartProps> = ({
       },
       y: {
         beginAtZero: true,
-        max: Math.max(...vals) + 10,
+        max: Math.max(...vals) + 5,
       },
     },
     animation: {

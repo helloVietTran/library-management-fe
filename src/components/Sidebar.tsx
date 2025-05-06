@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { useMutation } from '@tanstack/react-query';
-import { App, Menu, Drawer, Button } from 'antd';
+import { App, Menu, Drawer } from 'antd';
 import {
   BiPen,
   BiSolidGridAlt
@@ -67,11 +67,6 @@ const Sidebar = () => {
       icon: <LuBookCopy size={18} />,
     },
     {
-      key: 'chat-app',
-      label: <Link href="/chat-app">Chat App</Link>,
-      icon: <BsChatLeftDots size={18} />,
-    },
-    {
       key: 'borrow-return',
       label: <Link href="/borrow-return">QL mượn trả sách</Link>,
       icon: <IoArrowUndoOutline size={18} />,
@@ -90,6 +85,11 @@ const Sidebar = () => {
       key: 'fines',
       label: <Link href="/fines">QL khoản phạt</Link>,
       icon: <TbMoneybag size={18} />,
+    },
+    {
+      key: 'chat-app',
+      label: <Link href="/chat-app">Chat App</Link>,
+      icon: <BsChatLeftDots size={18} />,
     },
     {
       key: 'statistic',
@@ -125,7 +125,7 @@ const Sidebar = () => {
         {/* Sidebar for large screens */}
         <div className="sidebar-menu hidden md:block">
           <ul className="menu mt-6 px-6">
-            <li className="sidebar-title px-4 my-6 mb-4 text-base list-none font-bold">
+            <li className="text-primary px-4 my-6 mb-4 text-base list-none font-bold">
               Menu
             </li>
             <Menu

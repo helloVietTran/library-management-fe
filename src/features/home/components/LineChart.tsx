@@ -97,6 +97,7 @@ const LineChart: React.FC<LineChartProps> = ({ chartTitle }) => {
         grid: {
           display: false,
         },
+       
       },
       y: {
         title: {

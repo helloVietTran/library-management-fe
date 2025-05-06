@@ -1,7 +1,5 @@
 import React from 'react';
 
-import '../styles/AuthorInfo.scss';
-
 interface TitleItem {
   label: string;
   key: string;

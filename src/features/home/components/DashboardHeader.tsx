@@ -31,7 +31,7 @@ const DashboardHeader = () => {
               </h2>
               <p className="flex items-center gap-1 text-sm text-gray-500 md:text-base">
                 <FiSmile className="text-blue-500 flex-shrink-0" />
-                Chào mừng {data?.data.fullName} đến với hệ thống quản lý thư viện
+                <span>Chào mừng {data?.data.fullName} đến với hệ thống quản lý thư viện</span>
               </p>
             </div>
           </Space>

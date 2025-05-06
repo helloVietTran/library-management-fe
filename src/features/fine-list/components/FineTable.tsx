@@ -6,12 +6,14 @@ import BoxContent from '@/components/BoxContent';
 import Pagination from '@/components/Pagination';
 import DataTableHeader from '@/components/DataTableHeader';
 import Loader from '@/components/Loader';
-import useFines from '../hooks/useFines';
+import useFetchFines from '../hooks/useFetchFines';
 import FineActionButtons from './FineActionButtons';
 import FineModal from './FineModal';
-import { BorrowRecord, Fine } from '@/interfaces/commom';
+import { BorrowRecord, Fine, PaymentMethod } from '@/interfaces/commom';
+import Footer from '@/components/Footer';
+import { translatePaymentMethod } from '@/utils/translatePaymentMethod'
 
-const FineTable: React.FC = () => {
+const FineTable = () => {
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [pageSize, setPageSize] = useState<number>(10);
   const [searchValue, setSearchValue] = useState<string>('');
@@ -20,7 +22,7 @@ const FineTable: React.FC = () => {
   const [selectedFine, setSelectedFine] = useState<Fine | null>(null);
   const [isConfirmModalOpen, setIsConfirmModalOpen] = useState(false);
 
-  const { data: fineData, isLoading } = useFines(
+  const { data: fineData, isLoading } = useFetchFines(
     currentPage,
     pageSize,
     searchValue,
@@ -36,19 +38,17 @@ const FineTable: React.FC = () => {
     setIsConfirmModalOpen(true);
   };
 
-  const confirmPaidFine = () => {
-    setIsConfirmModalOpen(false);
-  };
 
   const columns: TableColumnsType<Fine> = [
     {
       title: '',
       key: 'action',
-      render: (_: Fine, record: Fine) => (
-        <FineActionButtons
-          handleConfirmPayment={() => handlePaidFine(record)}
-        />
-      ),
+      render: (_: Fine, record: Fine) =>
+        !record.paid ? (
+          <FineActionButtons
+            handleConfirmPayment={() => handlePaidFine(record)}
+          />
+        ) : null,
     },
     {
       title: 'Ngày phát sinh',
@@ -83,11 +83,11 @@ const FineTable: React.FC = () => {
     },
     {
       title: 'Đã thanh toán',
-      dataIndex: 'paid',
-      key: 'paid',
-      render: (paid: boolean) => (
-        <Tag color={paid ? 'green' : 'volcano'}>
-          {paid ? 'Đã thanh toán' : 'Chưa thanh toán'}
+      dataIndex: 'paidDate',
+      key: 'paidDate',
+      render: (paidDate: string) => (
+        <Tag color={paidDate ? 'green' : 'volcano'}>
+          {paidDate ? 'Đã thanh toán' : 'Chưa thanh toán' }
         </Tag>
       ),
     },
@@ -102,7 +102,7 @@ const FineTable: React.FC = () => {
       title: 'Phương thức thanh toán',
       dataIndex: 'paymentMethod',
       key: 'paymentMethod',
-      render: (method: string | undefined) => method || 'Chưa có',
+      render: (method: PaymentMethod | undefined) => translatePaymentMethod(method),
     },
     {
       title: 'Người thu',
@@ -158,6 +158,7 @@ const FineTable: React.FC = () => {
           fineId={selectedFine?._id}
         />
       </BoxContent>
+      <Footer />
     </>
   );
 };

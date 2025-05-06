@@ -17,12 +17,13 @@ import Pagination from '@/components/Pagination';
 import BoxContent from '@/components/BoxContent';
 import Loader from '@/components/Loader';
 import ActionButtons from '@/components/ActionButtons';
-import useBooks from '../hooks/useBooks';
+import useFetchBooks from '../hooks/useFetchBooks';
 import useDeleteManyBooks from '../hooks/useDeleteManyBooks';
 import useDeleteBook from '../hooks/useDeleteBook';
 import CreateBookModal from './CreateBookModal';
 import UpdateBookModal from './UpdateBookModal';
 import { Book } from '@/interfaces/commom';
+import Footer from '@/components/Footer';
 
 const BookTable: React.FC = () => {
   // Overview toggle
@@ -45,7 +46,7 @@ const BookTable: React.FC = () => {
   const [openUpdateModal, setOpenUpdateModal] = useState<boolean>(false);
 
   // Data & mutations
-  const { data: bookData, isLoading: loadingBooks } = useBooks(currentPage, pageSize, searchValue);
+  const { data: bookData, isLoading: loadingBooks } = useFetchBooks(currentPage, pageSize, searchValue);
   const deleteManyMutation = useDeleteManyBooks();
   const deleteMutation = useDeleteBook();
 
@@ -158,8 +159,6 @@ const BookTable: React.FC = () => {
     { title: 'Số lượng', dataIndex: 'quantity', key: 'quantity' },
   ];
 
-  // Loading state
-  if (loadingBooks) return <Loader />;
 
   return (
     <>
@@ -222,6 +221,7 @@ const BookTable: React.FC = () => {
               selectedRowKeys,
               onChange: setSelectedRowKeys,
             }}
+            loading={loadingBooks}
           />
 
           <div className="mt-4 flex justify-center">
@@ -257,6 +257,7 @@ const BookTable: React.FC = () => {
           <p>Bạn có chắc chắn muốn xóa sách này không?</p>
         </Modal>
       </div>
+      <Footer />
     </>
   );
 };

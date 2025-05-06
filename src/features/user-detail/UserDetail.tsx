@@ -4,23 +4,23 @@ import ReviewCard from '../book-detail/components/ReviewCard';
 import PageTitle from '@/components/PageTitle';
 import { Divider } from 'antd';
 import { notFound, useParams } from 'next/navigation';
-import useUserDetail from './hooks/useUserDetail';
+
+import useFetchUserDetail from './hooks/useFetchUserDetail';
 import Loader from '@/components/Loader';
-import useComments from './hooks/useComments';
+import useComments from './hooks/useFetchCommentsByUserId';
 import { Comment } from '@/interfaces/commom';
 
 const UserDetail = () => {
   const params = useParams();
   const id = params.id as string;
-  const { data: userData, isLoading, isError } = useUserDetail(id);
+
+  const { data: userData, isLoading, isError } = useFetchUserDetail(id);
   const { data: commentData } = useComments(id);
 
   const user = userData?.data;
-
   if (isLoading) {
     return <Loader />;
   }
-
   if (isError || !user) {
     notFound();
   }
@@ -38,10 +38,10 @@ const UserDetail = () => {
       <UserHeader data={user} />
 
       <div className="flex flex-col gap-4">
-        {!Array.isArray(commentData?.data) ? (
+        {!Array.isArray(commentData?.data) || commentData.data.length === 0 ? (
           <span className="text-sm text-gray-600">Người dùng chưa bình luận!</span>
         ) : (
-          commentData?.data.map((comment: Comment, index: number) => (
+          commentData.data.map((comment: Comment) => (
             <ReviewCard
               key={comment._id}
               avatar={comment.user.avatar || '/img/default/default-avatar.png'}

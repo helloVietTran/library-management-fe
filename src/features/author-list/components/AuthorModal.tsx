@@ -46,7 +46,6 @@ const AuthorModal: React.FC<AuthorModalProps> = ({
     else form.resetFields();
   }, [authorId, form, openModal]);
 
-  // hủy
   const handleCancel = () => {
     form.resetFields();
     setOpenModal(false);

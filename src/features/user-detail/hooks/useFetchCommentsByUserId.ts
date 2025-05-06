@@ -11,10 +11,10 @@ const fetchCommentsByUserId = async (userId: string) => {
   return data;
 };
 
-const useComments = (bookId: string) => {
+const useComments = (userId: string) => {
   return useQuery<ApiResponse<Comment[]>>({
-    queryKey: [queryKeys.COMMENTS, bookId],
-    queryFn: () => fetchCommentsByUserId(bookId),
+    queryKey: [queryKeys.COMMENTS, userId],
+    queryFn: () => fetchCommentsByUserId(userId),
     staleTime: 5 * 60 * 1000,
   });
 };

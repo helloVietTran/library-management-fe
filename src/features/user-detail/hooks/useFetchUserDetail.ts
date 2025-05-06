@@ -1,21 +1,21 @@
+import { useQuery } from '@tanstack/react-query';
 import api from '@/config/axios';
 import queryKeys from '@/config/queryKey';
 import { ApiResponse } from '@/interfaces/api-response';
 import { User } from '@/interfaces/commom';
-import createQueryFn from '@/utils/createQueryFn';
-import { useQuery } from '@tanstack/react-query';
 
-const getUserById = async (userId: string) : Promise<ApiResponse<User>>=> {
+const fetchUserById = async (userId: string): Promise<ApiResponse<User>> => {
   const { data } = await api.get<ApiResponse<User>>(`/users/${userId}`);
   return data;
 };
 
-const useUserDetail = (userId: string) => {
+const useFetchUserDetail = (userId: string) => {
   return useQuery<ApiResponse<User>>({
     queryKey: [queryKeys.userDetail(userId), userId],
-    queryFn: createQueryFn(getUserById),
-    staleTime: 5 * 60 * 1000,
+    queryFn: () => fetchUserById(userId),
+    staleTime: 5 * 60 * 1000,  
+    enabled: !!userId
   });
 };
 
-export default useUserDetail;
+export default useFetchUserDetail;

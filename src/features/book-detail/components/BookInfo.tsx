@@ -1,5 +1,4 @@
 import React from 'react';
-import '../styles/Genre.scss';
 
 interface TitleItem {
   label: string;

@@ -12,11 +12,12 @@ import Slider from '@/components/Slider';
 import BookInfo from './components/BookInfo';
 import BookCard from './components/BookCard';
 import CommunityReviews from './components/CommunityReviews';
-import useBookDetail from './hooks/useBookDetail';
-import { Author } from '@/types/types';
+import useFetchBookById from './hooks/useFetchBookById';
 import ReviewList from './components/ReviewList';
 import SplashScreen from '@/components/SplashScreen';
 import { mockBooks } from '@/_mock/data';
+import { Author } from '@/interfaces/commom';
+import Footer from '@/components/Footer';
 
 const BookDetail: React.FC = () => {
   const titles = [
@@ -28,7 +29,7 @@ const BookDetail: React.FC = () => {
   const params = useParams();
   const id = params.id as string;
 
-  const { data: bookData, isLoading, isError } = useBookDetail(id);
+  const { data: bookData, isLoading, isError } = useFetchBookById(id);
   if (isLoading) {
     return <Loader />;
   }
@@ -112,7 +113,7 @@ const BookDetail: React.FC = () => {
               </span>
 
               {book.authors.map((author) => (
-                <AboutAuthor data={author} key={author._id}/>
+                <AboutAuthor data={author} key={author._id} />
               ))}
             </div>
 
@@ -131,8 +132,9 @@ const BookDetail: React.FC = () => {
           <CommunityReviews />
           <ReviewList />
         </div>
-        
+
       </BoxContent>
+      <Footer />
     </div>
   );
 };

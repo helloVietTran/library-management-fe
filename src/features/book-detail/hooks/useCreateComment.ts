@@ -1,5 +1,5 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { message } from 'antd';
+import { App } from 'antd';
 import queryKeys from '@/config/queryKey';
 import api from '@/config/axios';
 import { CreateCommentRequest } from '../types/types';
@@ -7,6 +7,7 @@ import { handleErrResponseMsg } from '@/utils/handleErrResponseMsg';
 
 export const useCreateComment = () => {
   const queryClient = useQueryClient();
+  const { message } = App.useApp();
 
   return useMutation({
     mutationFn: async (data: CreateCommentRequest) => {
@@ -15,7 +16,13 @@ export const useCreateComment = () => {
     },
     onSuccess: () => {
       message.success('Bình luận thành công!');
-      queryClient.invalidateQueries({ queryKey: [queryKeys.COMMENTS, queryKeys.RATING_STATS] });
+      queryClient.invalidateQueries({
+        queryKey: [queryKeys.COMMENTS],
+      });
+
+      queryClient.invalidateQueries({
+        queryKey: [queryKeys.RATING_STATS],
+      });
     },
     onError: (err: any) => {
       console.error(err);

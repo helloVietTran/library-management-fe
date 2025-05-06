@@ -4,7 +4,7 @@ import { App } from 'antd';
 import queryKeys from '@/config/queryKey';
 import api from '@/config/axios';
 
-const useAuthorMutation = (authorId?: string, handleCancel?: () => void) => {
+const useCreateOrUpdateAuthor = (authorId?: string, successCallback?: () => void) => {
   const queryClient = useQueryClient();
   const { message } = App.useApp();
 
@@ -26,7 +26,7 @@ const useAuthorMutation = (authorId?: string, handleCancel?: () => void) => {
       });
       queryClient.invalidateQueries({ queryKey: [queryKeys.AUTHORS] });
 
-      if (handleCancel) handleCancel();
+      if (successCallback) successCallback();
     },
     onError: (err) => {
       console.log(err);
@@ -40,4 +40,4 @@ const useAuthorMutation = (authorId?: string, handleCancel?: () => void) => {
   return mutation;
 };
 
-export default useAuthorMutation;
+export default useCreateOrUpdateAuthor;

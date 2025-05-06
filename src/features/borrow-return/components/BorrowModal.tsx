@@ -4,8 +4,8 @@ import dayjs from 'dayjs';
 import { debounce } from 'lodash';
 
 import api from '@/config/axios';
-import { Book, User } from '@/types/types';
 import { useCreateBorrowRecord } from '../hooks/useCreateBorrowRecord';
+import { Book, User } from '@/interfaces/commom';
 
 interface BorrowModalProps {
   openModal: boolean;

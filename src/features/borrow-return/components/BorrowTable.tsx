@@ -14,8 +14,7 @@ import dayjs from 'dayjs';
 import BoxContent from '@/components/BoxContent';
 import Pagination from '@/components/Pagination';
 import DataTableHeader from '@/components/DataTableHeader';
-import Loader from '@/components/Loader';
-import useBorrowRecords from '../hooks/useBorrowRecords';
+import useFetchBorrowRecords from '../hooks/useFetchBorrowRecords';
 import ExportDropdown from '@/components/ExportDropdown';
 import dowloadExcel from '@/utils/downloadExcel';
 import downloadPDF from '@/utils/dowloadPDF';
@@ -24,8 +23,10 @@ import BorrowReturnActions from './BorrowReturnActions';
 import OverdueEmailTemplate from './OverdueEmailTemplate';
 import SendEmailModal from '@/components/SendEmailModal';
 import ReturnBookModal from './ReturnBookModal';
-import { BorrowRecord } from '@/types/types';
 import useSendEmail from '../hooks/useSendEmail';
+import { BorrowRecord, User, Book } from '@/interfaces/commom';
+import Loader from '@/components/Loader'
+import Footer from '@/components/Footer';
 
 const emailTemplates = [
   {
@@ -45,19 +46,26 @@ const BorrowTable: React.FC = () => {
   const [searchValue, setSearchValue] = useState<string>('');
 
   const [filter, setFilter] = useState('all');
-  // notification
   const [selectedData, setSelectedData] = useState<BorrowRecord | null>(null);
   const [isOpenEmailModal, setIsOpenEmailModal] = useState<boolean>(false);
 
-  // call api
-  const { data: borrowData, isLoading } = useBorrowRecords(
+  // Gọi API
+  const { data: borrowPaginatedData, isLoading } = useFetchBorrowRecords(
     currentPage,
     pageSize,
     searchValue,
     filter
   );
 
-  // handlers
+  const sendMailMutation = useSendEmail();
+
+  if (!borrowPaginatedData || !borrowPaginatedData?.data) {
+    return <Loader />;
+  }
+
+  const borrowData = borrowPaginatedData?.data;
+
+  // Hàm xử lý các sự kiện
   const handlePageChange = (page: number) => setCurrentPage(page);
   const handleSearch = (value: string) => setSearchValue(value);
   const handlePageSizeChange = (value: number) => setPageSize(value);
@@ -69,8 +77,7 @@ const BorrowTable: React.FC = () => {
 
   const handleChange = (value: string) => setFilter(value);
 
-  // send mail
-  const sendMailMutation = useSendEmail();
+  // Hàm gửi email
   const handleSendEmail = () => {
     if (selectedData)
       sendMailMutation.mutate({
@@ -80,7 +87,7 @@ const BorrowTable: React.FC = () => {
 
     setIsOpenEmailModal(false);
   };
-  // gửi thông báo
+
   const handleNotify = (record: BorrowRecord) => {
     const isOverdue = record.dueDate
       ? dayjs().isAfter(dayjs(record.dueDate))
@@ -109,7 +116,7 @@ const BorrowTable: React.FC = () => {
     return <Tag color={tag.color}>{tag.text}</Tag>;
   };
 
-  // define columns
+  // Định nghĩa cột bảng
   const columns: TableColumnsType<BorrowRecord> = [
     {
       title: '',
@@ -127,57 +134,55 @@ const BorrowTable: React.FC = () => {
       title: 'Người mượn',
       dataIndex: 'user',
       key: 'user',
-      render: (_, record: BorrowRecord) => (
-        <Link
-          href={`/users/${record.user._id}`}
-          className="flex items-center gap-4"
-        >
-          <Avatar
-            size={32}
-            src={record.user.avatar || null}
-            style={{
-              backgroundColor: !record.user.avatar ? '#f56a00' : 'transparent',
-              color: !record.user.avatar ? '#fff' : undefined,
-            }}
+      render: (user: User | null) => {
+        if (!user) return null;
+        return (
+          <Link
+            href={`/users/${user._id}`}
+            className="flex items-center gap-4"
           >
-            {!record.user.avatar
-              ? record.user.fullName.charAt(0).toUpperCase()
-              : null}
-          </Avatar>
-          <span>{record.user.fullName}</span>
-        </Link>
-      ),
-
-      sorter: (a, b) => a.user.fullName.localeCompare(b.user.fullName),
+            <Avatar
+              size={32}
+              src={user.avatar || null}
+              style={{
+                backgroundColor: !user.avatar ? '#f56a00' : 'transparent',
+                color: !user.avatar ? '#fff' : undefined,
+              }}
+            >
+              {!user.avatar ? user.fullName.charAt(0).toUpperCase() : null}
+            </Avatar>
+            <span>{user.fullName}</span>
+          </Link>
+        );
+      },
+      sorter: (a, b) => a.user?.fullName?.localeCompare(b.user?.fullName) ?? 0,
     },
-
     {
       title: 'Đang mượn',
       dataIndex: 'book',
       key: 'book',
-      render: (_, record: BorrowRecord) => (
-        <Link
-          href={`/books/${record.book._id}`}
-          className="flex items-center gap-4"
-        >
-          <Avatar
-            shape="square"
-            size={32}
-            src={record.book.coverImage || null}
-            style={{
-              backgroundColor: !record.book.coverImage
-                ? '#87d068'
-                : 'transparent',
-              color: !record.book.coverImage ? '#fff' : undefined,
-            }}
+      render: (book: Book | null) => {
+        if (!book) return null;
+        return (
+          <Link
+            href={`/books/${book._id}`}
+            className="flex items-center gap-4"
           >
-            {!record.book.coverImage
-              ? record.book.title.charAt(0).toUpperCase()
-              : null}
-          </Avatar>
-          <span>{record.book.title}</span>
-        </Link>
-      ),
+            <Avatar
+              shape="square"
+              size={32}
+              src={book.coverImage || null}
+              style={{
+                backgroundColor: !book.coverImage ? '#87d068' : 'transparent',
+                color: !book.coverImage ? '#fff' : undefined,
+              }}
+            >
+              {!book.coverImage ? book.title.charAt(0).toUpperCase() : null}
+            </Avatar>
+            <span>{book.title}</span>
+          </Link>
+        );
+      },
     },
     {
       title: 'Ngày mượn',
@@ -225,7 +230,8 @@ const BorrowTable: React.FC = () => {
       render: (note) => (note?.trim() ? note : 'Không có'),
     },
   ];
-  // export file
+
+  // Export file
   const headers = [
     { id: 'user.fullName', header: 'Tên người mượn' },
     { id: 'book.title', header: 'Sách mượn' },
@@ -234,16 +240,20 @@ const BorrowTable: React.FC = () => {
     { id: 'status', header: 'Trạng thái sách' },
   ];
   const handleExportExcel = () => {
-    if (!borrowData) message.warning('Vui lòng chờ tải dữ liệu');
-    dowloadExcel(borrowData.data, headers, 'Data mượn trả sách');
+    if (!borrowData) {
+      message.warning('Vui lòng chờ tải dữ liệu');
+      return;
+    }
+    dowloadExcel(borrowData, headers, 'Data mượn trả sách');
   };
 
   const handleExportPDF = () => {
-    if (!borrowData) message.warning('Vui lòng chờ tải dữ liệu');
-    downloadPDF(borrowData.data, headers, 'Data mượn trả sách');
+    if (!borrowData) {
+      message.warning('Vui lòng chờ tải dữ liệu');
+      return;
+    }
+    downloadPDF(borrowData, headers, 'Data mượn trả sách');
   };
-
-  if (isLoading) return <Loader />;
 
   return (
     <>
@@ -279,16 +289,17 @@ const BorrowTable: React.FC = () => {
         />
         <Table
           columns={columns}
-          dataSource={borrowData.data}
+          dataSource={borrowData || []}
           rowKey="_id"
           pagination={false}
           scroll={{ x: 'max-content' }}
+          loading={isLoading}
         />
         <div className="mt-4 flex justify-center">
           <Pagination
             currentPage={currentPage}
             pageSize={pageSize}
-            totalElement={borrowData.totalElement}
+            totalElement={borrowPaginatedData.totalItems}
             handlePageChange={handlePageChange}
           />
         </div>
@@ -315,6 +326,7 @@ const BorrowTable: React.FC = () => {
         setOpenModal={setOpenReturnModal}
         recordId={selectedData?._id}
       />
+      <Footer />
     </>
   );
 };

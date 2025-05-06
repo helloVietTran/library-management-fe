@@ -1,12 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Button, Input, Skeleton } from 'antd';
+import { Button, Skeleton } from 'antd';
 import { BiChat } from 'react-icons/bi';
 import { Socket } from 'socket.io-client';
 
 import PageTitle from '@/components/PageTitle';
 import Conversation from './components/Conversation';
 import MessageContainer from './components/MessageContainer';
-import { FiPlus, FiSearch } from 'react-icons/fi';
+import { FiPlus } from 'react-icons/fi';
 import { getSocket } from '@/config/socket';
 import { getTokenFromSession } from '@/utils/auth';
 import { Conversation as ConversationType, Message as MessageType } from '@/interfaces/commom';
@@ -128,7 +128,7 @@ const ChatApp = () => {
                   <div className='flex gap-2 flex-col'>
                     {conversations.length > 0 && conversations.map((conv) => {
                       const user = conv.participants[0];
-                      const isOnline = onlineUsers.includes(user._id);
+                      const isOnline = user?._id ? onlineUsers.includes(user._id) : false;
 
                       return (
                         <Conversation

@@ -1,5 +1,5 @@
+import { User } from '@/interfaces/commom';
 import { create } from 'zustand';
-import { User } from '@/types/types';
 
 interface AuthState {
   user: User | null;
@@ -8,21 +8,19 @@ interface AuthState {
   isAuthenticated: boolean;
 }
 
-const useAuthStore = create<AuthState>()(
-    (set) => ({
+const useAuthStore = create<AuthState>((set) => ({
+  user: null,
+  isAuthenticated: false,
+  login: (userData) =>
+    set({
+      user: userData,
+      isAuthenticated: true,
+    }),
+  logout: () =>
+    set({
       user: null,
       isAuthenticated: false,
-      login: (userData) =>
-        set({
-          user: userData,
-          isAuthenticated: true,
-        }),
-      logout: () =>
-        set({
-          user: null,
-          isAuthenticated: false,
-        }),
-    })
-);
+    }),
+}));
 
 export default useAuthStore;

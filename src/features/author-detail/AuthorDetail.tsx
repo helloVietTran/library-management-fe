@@ -5,28 +5,29 @@ import { notFound, useParams } from 'next/navigation';
 import PageTitle from '@/components/PageTitle';
 import BoxContent from '@/components/BoxContent';
 import MaskDescription from '@/components/MaskDescription';
-import AuthorBookCard from './components/AuthorBookCard';
+import RelatedAuthorBookCard from './components/RelatedAuthorBookCard';
 import AuthorInfo from './components/AuthorInfo';
-import useAuthorDetail from './hooks/useAuthorDetail';
+import useFetchAuthorDetail from './hooks/useFetchAuthorDetail';
 import Loader from '@/components/Loader';
-import useAllBookByAuthor from './hooks/useAllBookByAuthor';
-import { Author, Book } from '@/types/types';
-
-const titles = [
-  { label: 'Tên tác giả', key: 'name' },
-  { label: 'Năm sinh', key: 'dob' },
-  { label: 'Quốc tịch', key: 'nationality' },
-];
+import useFetchBooksByAuthor from './hooks/useFetchBooksByAuthor';
+import Footer from '@/components/Footer';
+import { Author, Book } from '@/interfaces/commom';
 
 const AuthorDetail = () => {
   const params = useParams();
   const id = params.id as string;
 
-  const { data: authorResponse, isLoading, isError } = useAuthorDetail(id);
-  const author = authorResponse?.data; // Lấy data ra riêng
+  const { data: authorResponse, isLoading, isError } = useFetchAuthorDetail(id);
+  const author = authorResponse?.data;
 
-  const { data: allBooksByAuthor } = useAllBookByAuthor(author?._id ?? '');
+  const { data: allBooksByAuthor } = useFetchBooksByAuthor(author?._id ?? '');
 
+  const titles = [
+    { label: 'Tên tác giả', key: 'name' },
+    { label: 'Năm sinh', key: 'dob' },
+    { label: 'Quốc tịch', key: 'nationality' },
+  ];
+  
   if (isLoading) {
     return <Loader />;
   }
@@ -50,10 +51,10 @@ const AuthorDetail = () => {
       />
       <BoxContent>
         <div className="flex flex-col md:flex-row py-8">
-           <div className="flex-shrink-0 md:w-1/4">
+          <div className="flex-shrink-0 md:w-1/4">
             <div className="w-[80%] mx-auto">
               <img
-                src={author.imgSrc || '/img/defaul/default-avatar.png'}
+                src={author.imgSrc || '/img/default/default-avatar.png'}
                 alt={author.name}
                 className="w-full h-auto rounded-lg shadow"
               />
@@ -84,20 +85,21 @@ const AuthorDetail = () => {
               <p className="font-semibold text-gray-600">Cùng tác giả</p>
             </div>
             {allBooksByAuthor?.data?.map((book: Book) => (
-              <AuthorBookCard
+              <RelatedAuthorBookCard
                 key={book._id}
                 title={book.title}
                 authors={book.authors.map((author: Author) => author.name)}
                 rating={book.rating || 4}
                 ratingsCount={book.ratingsCount || 0}
                 publishedYear={new Date(book.publishedDate).getFullYear()}
-                bookImage={book.coverImage || '/img/defaul/default-book.png'}
+                bookImage={book.coverImage || '/img/default/default-book.png'}
                 bookId={book._id}
               />
             ))}
           </div>
         </div>
       </BoxContent>
+      <Footer />
     </div>
   );
 };

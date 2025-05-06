@@ -1,10 +1,10 @@
 import api from '@/config/axios';
 import { PaginatedResponse } from '@/interfaces/api-response';
 import { Author } from '@/interfaces/commom';
-import createQueryFn from '@/utils/createQueryFn';
 import { useQuery } from '@tanstack/react-query';
+import queryKeys from '@/config/queryKey'
 
-const getAuthors = async (
+const fetchAuthors = async (
   page: number,
   pageSize: number,
   search?: string
@@ -14,13 +14,13 @@ const getAuthors = async (
   });
   return data;
 };
-const useAuthors = (page: number, pageSize: number, search?: string) => {
+
+const useFetchAuthors = (page: number, pageSize: number, search?: string) => {
   return useQuery<PaginatedResponse<Author>>({
-    queryKey: ['authors', page, pageSize, search],
-    queryFn: createQueryFn(getAuthors),
-    placeholderData: (prevData) => prevData,
+    queryKey: [queryKeys.AUTHORS, page, pageSize, search],
+    queryFn: () => fetchAuthors(page, pageSize, search),
     staleTime: 5 * 60 * 1000,
   });
 };
 
-export default useAuthors;
+export default useFetchAuthors;

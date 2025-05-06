@@ -1,7 +1,6 @@
 import { Key } from 'react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { App } from 'antd';
-
 import queryKeys from '@/config/queryKey';
 import api from '@/config/axios';
 import { handleErrResponseMsg } from '@/utils/handleErrResponseMsg';
@@ -17,12 +16,10 @@ const useDeleteManyBooks = () => {
     onSuccess: () => {
       message.success('Xóa sách thành công!');
 
+      queryClient.invalidateQueries({ queryKey: [queryKeys.BOOKS] });
+      queryClient.invalidateQueries({ queryKey: [queryKeys.BOOKS_COUNT] });
       queryClient.invalidateQueries({
-        queryKey: [
-          queryKeys.BOOKS,
-          queryKeys.BOOKS_COUNT,
-          queryKeys.BORROWED_TURN_STATS,
-        ],
+        queryKey: [queryKeys.BORROWED_TURN_STATS],
       });
     },
     onError: (err) => {
@@ -32,7 +29,7 @@ const useDeleteManyBooks = () => {
       );
       message.error({
         content: msg,
-        key: 'delete-many-book-fail'
+        key: 'delete-many-book-fail',
       });
     },
   });

@@ -69,7 +69,7 @@ const BookOverview: React.FC<BookOverviewProps> = ({ openOverview }) => {
             <Option value="borrowedTurn">Lượt mượn</Option>
           </Select>
         </div>
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-4 lg:gap-12">
           <div style={{ width: '150px', height: '150px' }}>
             <Doughnut data={chartData} options={options} />
           </div>

@@ -13,7 +13,7 @@ import {
 import { useUpdateBook } from '../hooks/useUpdateBook';
 import { ApiResponse } from '@/interfaces/api-response';
 import api from '@/config/axios';
-import { Book } from '@/types/types';
+import { Book } from '@/interfaces/commom';
 
 interface UpdateBookModalProps {
   openModal: boolean;
@@ -143,13 +143,6 @@ const UpdateBookModal: React.FC<UpdateBookModalProps> = ({
             >
               <Input size="large" type="file" accept="image/*" />
             </Form.Item>
-            {form.getFieldValue('coverImage') && (
-              <img
-                src={form.getFieldValue('coverImage')}
-                alt="Ảnh bìa hiện tại"
-                className="rounded w-32 h-40 object-cover"
-              />
-            )}
           </Col>
 
           <Col span={12}>

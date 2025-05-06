@@ -1,7 +1,6 @@
 import React from 'react';
 import PageTitle from '@/components/PageTitle';
 import FineTable from './components/FineTable';
-import { Select } from 'antd';
 
 const FineList = () => {
   return (

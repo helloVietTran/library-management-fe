@@ -1,13 +1,11 @@
 import React from 'react';
-import { Divider, Rate } from 'antd';
-import { GoStarFill } from 'react-icons/go';
+import { Divider } from 'antd';
 import { useParams } from 'next/navigation';
 
 import RatingBreakdown from './RatingBreakdown';
 import ReviewActions from './ReviewActions';
 import useStatsRating from '../hooks/useStatsRating';
 import Loader from '@/components/Loader';
-import '../styles/CommunityReviews.scss';
 
 const CommunityReviews = () => {
   const params = useParams();

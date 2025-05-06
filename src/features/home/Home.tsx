@@ -8,6 +8,7 @@ import useNewUserStats from './hooks/useNewUserStats';
 import useNewBorrowRecordStats from './hooks/useNewBorrowRecordStats';
 import useNewBookStats from './hooks/useNewBookStats';
 import SplashScreen from '@/components/SplashScreen';
+import Footer from '@/components/Footer';
 
 const Home = () => {
   const { data: userStatsData } = useNewUserStats();
@@ -15,7 +16,7 @@ const Home = () => {
   const { data: bookStatsData } = useNewBookStats();
 
   return (
-    <div className="readonly__home__class mt-8 md:mt-0">
+    <div className="mt-8 md:mt-0">
       <SplashScreen />
       <DashboardHeader />
 
@@ -54,6 +55,7 @@ const Home = () => {
           <BarChart chartTitle="Lượt mượn theo tháng" chartLabel="Cuốn" />
         </div>
       </div>
+      <Footer />
     </div>
   );
 };

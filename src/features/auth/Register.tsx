@@ -3,23 +3,23 @@ import { Form, Input, Button, DatePicker } from 'antd';
 import { GoShieldLock } from 'react-icons/go';
 import { MdOutlineAlternateEmail } from "react-icons/md";
 
-import AuthLogo from '../components/AuthLogo';
-import AuthTitle from '../components/AuthTitle';
-import AuthNavigation from '../components/AuthNavigation';
-import useSignUp from '../hooks/useSignUp';
-import { RegisterRequest } from '../types/types';
+import AuthLogo from './components/AuthLogo';
+import AuthTitle from './components/AuthTitle';
+import AuthNavigation from './components/AuthNavigation';
+import useRegister from './hooks/useRegister';
 import SplashScreen from '@/components/SplashScreen';
+import { RegisterRequest } from './types/types';
 
 function Register() {
   const [form] = Form.useForm();
-  const signUpMutation = useSignUp();
+  const registerMutation = useRegister();
 
   const onFinish = (values: RegisterRequest) => {
-    signUpMutation.mutate(values);
+    registerMutation.mutate(values);
   };
 
   return (
-    <div className="readonly__register__class">
+    <>
       <SplashScreen />
       <AuthLogo />
       <AuthTitle label="Đăng ký" />
@@ -120,7 +120,7 @@ function Register() {
         primaryDescription="Đã có tài khoản?"
         primaryHref="/login"
       />
-    </div>
+    </>
   );
 }
 

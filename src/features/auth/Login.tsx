@@ -3,11 +3,11 @@ import { Form, Input, Button } from 'antd';
 import { MdOutlineAlternateEmail } from "react-icons/md";
 import { GoShieldCheck } from "react-icons/go";
 
-import AuthLogo from '../components/AuthLogo';
-import AuthTitle from '../components/AuthTitle';
-import AuthNavigation from '../components/AuthNavigation';
-import useLogin from '../hooks/useLogin';
-import { LoginRequest } from '../types/types';
+import AuthLogo from './components/AuthLogo';
+import AuthTitle from './components/AuthTitle';
+import AuthNavigation from './components/AuthNavigation';
+import useLogin from './hooks/useLogin';
+import { LoginRequest } from './types/types';
 import SplashScreen from '@/components/SplashScreen';
 
 function Login() {

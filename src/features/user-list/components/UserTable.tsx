@@ -7,13 +7,14 @@ import Pagination from '@/components/Pagination';
 import DataTableHeader from '@/components/DataTableHeader';
 import Loader from '@/components/Loader';
 import UserModal from './UpdateUserModal';
-import useUsers from '../hooks/useUsers';
-import { Role, User } from '@/types/types';
+import useFetchUsers from '../hooks/useFetchUsers';
+import { Role, User } from '@/interfaces/commom';
 import translateRole from '@/utils/translateRole';
 import useAuthStore from '@/store/authStore';
 import useDeleteUser from '../hooks/useDeleteUser';
 import UserActionButtons from './UserActionButtons';
 import useUpdateUserStatus from '../hooks/useUpdateUserStatus';
+import Footer from '@/components/Footer';
 
 const UserTable: React.FC = () => {
   const { user: currentUser } = useAuthStore();
@@ -27,7 +28,7 @@ const UserTable: React.FC = () => {
   const [isBanModalOpen, setIsBanModalOpen] = useState(false);
 
   // Fetch users
-  const { data: userData, isLoading } = useUsers(
+  const { data: userData, isLoading } = useFetchUsers(
     currentPage,
     pageSize,
     searchValue
@@ -151,73 +152,77 @@ const UserTable: React.FC = () => {
   }
 
   return (
-    <BoxContent>
-      <DataTableHeader
-        onPageSizeChange={setPageSize}
-        onSearch={setSearchValue}
-        searchValue={searchValue}
-        searchPlaceholder="Tìm kiếm người dùng"
-        pageSize={pageSize}
-      />
-
-      <Table
-        columns={columns}
-        dataSource={userData?.data}
-        rowKey="_id"
-        pagination={false}
-        scroll={{ x: 'max-content' }}
-      />
-
-      <div className="mt-4 flex justify-center">
-        <Pagination
-          currentPage={currentPage}
+    <>
+      <BoxContent>
+        <DataTableHeader
+          onPageSizeChange={setPageSize}
+          onSearch={setSearchValue}
+          searchValue={searchValue}
+          searchPlaceholder="Tìm kiếm người dùng"
           pageSize={pageSize}
-          totalElement={userData?.totalItems || 0}
-          handlePageChange={setCurrentPage}
         />
-      </div>
 
-      <UserModal
-        openModal={openModal}
-        setOpenModal={setOpenModal}
-        userId={selectedUser?._id}
-      />
+        <Table
+          columns={columns}
+          dataSource={userData?.data}
+          rowKey="_id"
+          pagination={false}
+          scroll={{ x: 'max-content' }}
+        />
 
-      {/* Modal xác nhận xóa */}
-      <Modal
-        title="Xác nhận xóa người dùng"
-        open={isConfirmModalOpen}
-        onOk={confirmDeleteUser}
-        onCancel={() => setIsConfirmModalOpen(false)}
-        okText="Xóa"
-        cancelText="Hủy"
-        okButtonProps={{ danger: true }}
-      >
-        <p>Bạn có chắc chắn muốn xóa người dùng này không?</p>
-      </Modal>
+        <div className="mt-4 flex justify-center">
+          <Pagination
+            currentPage={currentPage}
+            pageSize={pageSize}
+            totalElement={userData?.totalItems || 0}
+            handlePageChange={setCurrentPage}
+          />
+        </div>
 
-      <Modal
-        title={
-          selectedUser?.status === 'banned'
-            ? 'Mở khóa người dùng'
-            : 'Khóa người dùng'
-        }
-        open={isBanModalOpen}
-        onOk={confirmBanOrUnban}
-        onCancel={() => setIsBanModalOpen(false)}
-        okText={selectedUser?.status === 'banned' ? 'Mở khóa' : 'Khóa'}
-        cancelText="Hủy"
-        okButtonProps={{ danger: selectedUser?.status !== 'banned' }}
-      >
-        <p>
-          Bạn có chắc chắn muốn{' '}
-          <span>
-            {selectedUser?.status === 'banned' ? 'mở khóa' : 'khóa'}
-          </span>{' '}
-          người dùng này không?
-        </p>
-      </Modal>
-    </BoxContent>
+        <UserModal
+          openModal={openModal}
+          setOpenModal={setOpenModal}
+          userId={selectedUser?._id}
+        />
+
+        {/* Modal xác nhận xóa */}
+        <Modal
+          title="Xác nhận xóa người dùng"
+          open={isConfirmModalOpen}
+          onOk={confirmDeleteUser}
+          onCancel={() => setIsConfirmModalOpen(false)}
+          okText="Xóa"
+          cancelText="Hủy"
+          okButtonProps={{ danger: true }}
+        >
+          <p>Bạn có chắc chắn muốn xóa người dùng này không?</p>
+        </Modal>
+
+        <Modal
+          title={
+            selectedUser?.status === 'banned'
+              ? 'Mở khóa người dùng'
+              : 'Khóa người dùng'
+          }
+          open={isBanModalOpen}
+          onOk={confirmBanOrUnban}
+          onCancel={() => setIsBanModalOpen(false)}
+          okText={selectedUser?.status === 'banned' ? 'Mở khóa' : 'Khóa'}
+          cancelText="Hủy"
+          okButtonProps={{ danger: selectedUser?.status !== 'banned' }}
+        >
+          <p>
+            Bạn có chắc chắn muốn{' '}
+            <span>
+              {selectedUser?.status === 'banned' ? 'mở khóa' : 'khóa'}
+            </span>{' '}
+            người dùng này không?
+          </p>
+        </Modal>
+      </BoxContent>
+
+      <Footer />
+    </>
   );
 };
 

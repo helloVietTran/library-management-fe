@@ -1,8 +1,7 @@
-import { parse, format } from 'date-fns';
+import dayjs from 'dayjs';
 
 const formatDob = (dob: string) => {
-  const parsedDate = parse(dob, 'd/M/yyyy', new Date());
-  return format(parsedDate, 'yyyy-MM-dd');
+  return dayjs(dob).format('D/M/YYYY');
 };
 
 export default formatDob;

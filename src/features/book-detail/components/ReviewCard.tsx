@@ -3,11 +3,10 @@ import Link from 'next/link';
 import { AiOutlineLike } from 'react-icons/ai';
 import { FaBan } from 'react-icons/fa';
 import { IoIosMore } from 'react-icons/io';
-import { Avatar, Divider, Dropdown, MenuProps, Rate } from 'antd';
+import { Avatar, Dropdown, MenuProps, Rate } from 'antd';
 import { GoStarFill } from 'react-icons/go';
 
 import MaskDescription from '@/components/MaskDescription';
-import '../styles/ReviewCard.scss';
 import { useLikeComment } from '../hooks/useLikeComment';
 import { useDeleteComment } from '../hooks/useDeleteComment';
 
@@ -21,6 +20,7 @@ interface ReviewCardProps {
   content: string;
   rating: number;
   userId: string;
+  isLast?: boolean; // Thêm tham số isLast
 }
 
 const ReviewCard: React.FC<ReviewCardProps> = ({
@@ -32,7 +32,8 @@ const ReviewCard: React.FC<ReviewCardProps> = ({
   role,
   rating,
   userId,
-  reviewId
+  reviewId,
+  isLast = false, // Mặc định là false nếu không có giá trị
 }) => {
   const likeMutation = useLikeComment(reviewId);
   const deleteCommentMutation = useDeleteComment(reviewId);
@@ -69,7 +70,7 @@ const ReviewCard: React.FC<ReviewCardProps> = ({
   ];
 
   return (
-    <div className="review-card flex gap-4 p-4 px-6 border-b border-gray-400">
+    <div className={`review-card flex gap-4 p-4 px-6 ${!isLast ? 'border-b border-gray-400' : ''}`}>
       <div className="flex-shrink-0">
         <Link href={`/users/${userId}`}>
           <Avatar src={avatar} alt={userId} size={50} />

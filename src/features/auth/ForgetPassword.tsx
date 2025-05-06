@@ -2,9 +2,9 @@ import React from 'react';
 import { Form, Input, Button } from 'antd';
 import { SlEnvolope } from 'react-icons/sl';
 
-import AuthLogo from '../components/AuthLogo';
-import AuthTitle from '../components/AuthTitle';
-import AuthAction from '../components/AuthNavigation';
+import AuthLogo from './components/AuthLogo';
+import AuthTitle from './components/AuthTitle';
+import AuthAction from './components/AuthNavigation';
 
 const ForgetPassword = () => {
   const [form] = Form.useForm();

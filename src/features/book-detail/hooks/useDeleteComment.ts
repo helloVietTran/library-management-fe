@@ -25,8 +25,9 @@ export const useDeleteComment = (
         key: 'comment-delete-success',
       });
 
-      queryClient.invalidateQueries({ queryKey: [queryKeys.COMMENTS, queryKeys.RATING_STATS] });
-
+      queryClient.invalidateQueries({ queryKey: [queryKeys.COMMENTS] });
+      queryClient.invalidateQueries({ queryKey: [queryKeys.RATING_STATS] });
+      
       if (successHandler) {
         successHandler();
       }

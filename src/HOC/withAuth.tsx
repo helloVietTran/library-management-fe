@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import useAuthStore from '@/store/authStore';
 
-
 const withAuth = <P extends object>(
   WrappedComponent: React.ComponentType<P>
 ) => {
