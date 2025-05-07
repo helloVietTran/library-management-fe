@@ -2,7 +2,7 @@ import { Dropdown } from 'antd';
 import { FaCheckCircle, FaEnvelope } from 'react-icons/fa';
 import { IoIosMore } from 'react-icons/io';
 
-import { BorrowRecord } from '@/types/types';
+import { BorrowRecord } from '@/interfaces/commom';
 
 interface BorrowReturnActionsProps {
   record: BorrowRecord;
