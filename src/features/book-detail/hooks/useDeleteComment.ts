@@ -2,7 +2,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { App } from 'antd';
 import api from '@/config/axios';
 import queryKeys from '@/config/queryKey';
-import { ApiResponse } from '@/interfaces/api-response';
+import { ApiResponse, ErrorResponse } from '@/interfaces/api-response';
 import { handleErrResponseMsg } from '@/utils/handleErrResponseMsg';
 
 export const useDeleteComment = (
@@ -32,7 +32,7 @@ export const useDeleteComment = (
         successHandler();
       }
     },
-    onError: (err: any) => {
+    onError: (err: ErrorResponse) => {
       console.error(err);
       const msg = handleErrResponseMsg(err, 'Có lỗi xảy ra khi xóa bình luận.');
       message.error({

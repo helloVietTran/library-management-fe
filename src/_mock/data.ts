@@ -1,4 +1,13 @@
-export const mockBooks: any[] = [
+type BookPreview = {
+  id: string;
+  title: string;
+  imgSrc: string;
+  authorNames: string[];
+  reviewCount: number;
+  ratingPoint: number;
+};
+
+export const mockBooks: BookPreview[] = [
   {
     id: '680ba213787795b6b67e8b95',
     title: 'Số Đỏ',

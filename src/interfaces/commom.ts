@@ -80,6 +80,7 @@ export interface Book extends Id {
   price: number;
   rating?: number;
   ratingsCount?: number;
+  ratingPoint?: number;
   pageCount: number;
 }
 

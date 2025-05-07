@@ -75,7 +75,7 @@ const BookDetail: React.FC = () => {
               {book.title}
             </h2>
 
-            <p className="text-gray-700 text-lg mb-2 text-sm">
+            <p className="text-gray-700 mb-2 text-sm">
               by {book.authors.map((author: Author) => author.name).join(', ')}
             </p>
 
@@ -122,7 +122,7 @@ const BookDetail: React.FC = () => {
         </div>
 
         <div className="mb-4 px-6">
-          <p className="text-xl font-semibold mb-2 text-gray-600 mb-4">
+          <p className="text-xl font-semibold text-gray-600 mb-4">
             Đề xuất cho độc giả
           </p>
           <Slider data={mockBooks} SliderCard={BookCard} />

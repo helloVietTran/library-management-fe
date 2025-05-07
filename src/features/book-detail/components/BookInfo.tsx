@@ -1,3 +1,4 @@
+import { Book } from '@/interfaces/commom';
 import React from 'react';
 
 interface TitleItem {
@@ -5,9 +6,11 @@ interface TitleItem {
   key: string;
 }
 
+type BookMetaFields = Pick<Book, 'pageCount' | 'publisher' | 'language'>;
+
 interface BookInfoProps {
   titles: TitleItem[];
-  content: any;
+  content: BookMetaFields;
   genres?: string[];
   className?: string;
 }
