@@ -43,6 +43,7 @@ export const useCreateBook = (successHandler?: () => void) => {
         key: 'book-success',
       });
       queryClient.invalidateQueries({ queryKey: [queryKeys.BOOKS] });
+      queryClient.invalidateQueries({ queryKey: [queryKeys.BORROWED_TURN_STATS] });
       if (successHandler) {
         successHandler();
       }
