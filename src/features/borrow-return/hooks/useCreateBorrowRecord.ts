@@ -17,6 +17,7 @@ export const useCreateBorrowRecord = (successHandler: () => void) => {
     onSuccess: () => {
       message.success({ content: 'Chon mượn sách thành công!', key: 'borrow' });
       queryClient.invalidateQueries({ queryKey: [queryKeys.BORROW_RECORDS] });
+      queryClient.invalidateQueries({ queryKey: [queryKeys.MONTHLY_BORROW_RECORD_STATS] });
 
       successHandler();
     },
