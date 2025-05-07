@@ -51,14 +51,34 @@ Một hệ thống quản lý thư viện giúp quản lý sách, độc giả, 
 - Cung cấp một số thống kê dưới dạng số liệu, bảng biểu về tình hình thư viện: biến động mượn trả, thống kê sách theo lượt mượn
 - Cung cấp 1 Chat App đơn giản
 - Xác thực bằng JWT, refresh token
+- Hỗ trợ xuất file pdf hoặc xlsx
 
 ## 🛠️ Công nghệ nổi bật
      Next.js, TypeScript, Tailwind CSS, Zustand, Ant Design, Framer motion, React Query
 
 ## 🎬 Demo 
+
+<table>
+  <tr>
+    <td><img src="./public/demo/login.png" width="500"/></td>
+    <td><img src="./public/demo/home.png" width="500"/></td>
+  </tr>
+  <tr>
+    <td><img src="./public/demo/modal.png" width="500"/></td>
+    <td><img src="./public/demo/author.png" width="500"/></td>
+  </tr>
+  <tr>
+    <td><img src="./public/demo/author-detail.png" width="500"/></td>
+    <td><img src="./public/demo/user-detail.png" width="500"/></td>
+  </tr>
+  <tr>
+    <td><img src="./public/demo/book.png" width="500"/></td>
+    <td><img src="./public/demo/chat app.png" width="500"/></td>
+  </tr>
+</table>
     
 ## 👤 Thông tin tài khoản test 
-
+📌 Admin: tài khoản: admin@gmail.com | mật khẩu: admin123
 ## 📌 Hướng phát triển tương lai
 - Cung cấp tìm kiếm sách trên nhiều tiêu chí
 - Đề xuất các sách liên quan
