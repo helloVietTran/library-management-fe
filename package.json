@@ -6,7 +6,11 @@
     "dev": "bun run next dev --turbopack",
     "build": "bun run next build",
     "start": "bun run next start",
-    "lint": "bun run next lint"
+
+    "check:lint": "bun run next lint",
+    "check:orphans": "madge src --orphans",
+    "check:unused-exports": "ts-prune",
+    "check:all": "bun run check:lint && bun run check:orphans && bun run check:unused-exports"
   },
   "dependencies": {
     "@ant-design/v5-patch-for-react-19": "^1.0.3",
@@ -46,9 +50,11 @@
     "@types/react-icons": "^3.0.0",
     "eslint": "^9",
     "eslint-config-next": "15.2.3",
+    "eslint-plugin-unused-imports": "^4.1.4",
     "madge": "^8.0.0",
     "prettier": "^3.5.3",
     "tailwindcss": "^4",
+    "ts-prune": "^0.10.3",
     "typescript": "^5"
   }
 }

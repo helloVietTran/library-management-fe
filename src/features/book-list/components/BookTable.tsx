@@ -15,7 +15,6 @@ import dowloadExcel from '@/utils/downloadExcel';
 import downloadPDF from '@/utils/dowloadPDF';
 import Pagination from '@/components/Pagination';
 import BoxContent from '@/components/BoxContent';
-import Loader from '@/components/Loader';
 import ActionButtons from '@/components/ActionButtons';
 import useFetchBooks from '../hooks/useFetchBooks';
 import useDeleteManyBooks from '../hooks/useDeleteManyBooks';

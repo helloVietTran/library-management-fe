@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Modal, Form, Input, DatePicker, App } from 'antd';
 
 import dayjs from 'dayjs';
@@ -12,7 +12,6 @@ interface CreateUserModalProps {
 const CreateUserModal: React.FC<CreateUserModalProps> = ({ openModal, setOpenModal }) => {
     const { message } = App.useApp();
     const [form] = Form.useForm();
-    const [loading, setLoading] = useState(false);
 
     const handleCancel = () => {
         form.resetFields();
@@ -28,7 +27,7 @@ const CreateUserModal: React.FC<CreateUserModalProps> = ({ openModal, setOpenMod
                 
                 createUser.mutate(values);
             })
-            .catch((error) => {
+            .catch(() => {
                 message.error('Vui lòng điền đầy đủ thông tin hợp lệ!');
             });
     };
@@ -48,7 +47,6 @@ const CreateUserModal: React.FC<CreateUserModalProps> = ({ openModal, setOpenMod
             open={openModal}
             onOk={handleOk}
             onCancel={handleCancel}
-            confirmLoading={loading}
             okText="Tạo"
             cancelText="Hủy"
         >

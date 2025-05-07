@@ -33,11 +33,11 @@ const UpdateUserModal: React.FC<UpdateUserModalProps> = ({
           dob: userData.dob ? dayjs(userData.dob) : dayjs()
         });
 
-      } catch (error) {
+      } catch {
         message.error('Lỗi khi tải thông tin người dùng.');
       }
     }
-  }, [userId, form]);
+  }, [userId, form, message]);
 
   useEffect(() => {
     if (userId)
@@ -54,7 +54,7 @@ const UpdateUserModal: React.FC<UpdateUserModalProps> = ({
 
   const updateMutation = useUpdateUser(userId, handleCancel);
 
-  const handleSubmit = async (values: any) => {
+  const handleSubmit = async () => {
     form
       .validateFields()
       .then((values) => {

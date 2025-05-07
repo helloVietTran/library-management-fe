@@ -4,7 +4,6 @@ import MessageInput from './MessageInput';
 import Message from './Message';
 import { BsThreeDots } from 'react-icons/bs';
 import { Conversation as ConversationType, Message as MessageType } from '@/interfaces/commom';
-import useAuthStore from '@/store/authStore';
 
 interface MessageContainerProps {
   conversation: ConversationType;
@@ -19,7 +18,6 @@ const MessageContainer: React.FC<MessageContainerProps> = ({
   setMessages,
   isLoading
 }) => {
-  const { user: currentUser } = useAuthStore();
   const messageEndRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {

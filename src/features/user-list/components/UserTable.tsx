@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Table, TableColumnsType, Avatar, Tag, message, Modal } from 'antd';
+import { Table, TableColumnsType, Avatar, Tag, Modal } from 'antd';
 import Link from 'next/link';
 
 import BoxContent from '@/components/BoxContent';
