@@ -19,7 +19,7 @@ function Login() {
   };
 
   return (
-    <div className="readonly__login__class">
+    <div>
       <SplashScreen />
       <AuthLogo />
       <AuthTitle label="Đăng nhập" />
@@ -31,8 +31,8 @@ function Login() {
         onFinish={handleSubmit}
         requiredMark={false}
         initialValues={{
-          email: 'numberzero0909@gmail.com',
-          password: 'vietanh123',
+          email: 'admin@gmail.com',
+          password: 'admin123',
         }}
       >
         {/* Email */}
