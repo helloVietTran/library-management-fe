@@ -37,9 +37,10 @@ const AuthorModal: React.FC<AuthorModalProps> = ({
     if (authorId)
       api.get<ApiResponse<Author>>(`/authors/${authorId}`).then((res) => {
         const authorData = res.data.data;
+    
         form.setFieldsValue({
           ...authorData,
-          dob: authorData.dob ? dayjs(authorData.dob) : null,
+          dob: authorData.dob ?  dayjs(authorData.dob, "DD-MM-YYYY") : null,
           imgSrc: authorData.imgSrc,
         });
       });

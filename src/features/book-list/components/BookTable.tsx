@@ -153,7 +153,7 @@ const BookTable: React.FC = () => {
       title: 'Ngày xuất bản',
       dataIndex: 'publishedDate',
       key: 'publishedDate',
-      render: (date: string) => date ? new Date(date).toLocaleDateString() : 'N/A',
+      render: (date: string) => date || 'N/A',
     },
     { title: 'Số lượng', dataIndex: 'quantity', key: 'quantity' },
   ];

@@ -23,7 +23,6 @@ const useFetchUsers = (
   return useQuery<PaginatedResponse<User>>({
     queryKey: [queryKeys.USERS, page, pageSize, search],
     queryFn: () => fetchUsers(page, pageSize, search),
-    placeholderData: (prevData) => prevData,
     staleTime: 5 * 60 * 1000, 
   });
 };

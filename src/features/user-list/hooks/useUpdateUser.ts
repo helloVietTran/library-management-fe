@@ -15,6 +15,7 @@ const useUpdateUser = (userId?: string, handleCancel?: () => void) => {
     onSuccess: () => {
       message.success({ content: 'Cập nhật thành công!', key: 'user' });
       queryClient.invalidateQueries({ queryKey: [queryKeys.USERS] });
+      
       handleCancel?.();
     },
     onError: (err) => {

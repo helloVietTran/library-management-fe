@@ -129,18 +129,6 @@ const UpdateUserModal: React.FC<UpdateUserModalProps> = ({
         </Form.Item>
 
         <Form.Item
-          label="Trạng thái"
-          name="status"
-          rules={[{ required: true, message: 'Trạng thái là bắt buộc' }]}
-        >
-          <Select size="large" placeholder="Chọn trạng thái">
-            <Select.Option value="active">Đang hoạt động</Select.Option>
-            <Select.Option value="locked">Đã khóa</Select.Option>
-            <Select.Option value="banned">Đã cấm</Select.Option>
-          </Select>
-        </Form.Item>
-
-        <Form.Item
           name="file"
           label="Avatar"
           valuePropName="file"

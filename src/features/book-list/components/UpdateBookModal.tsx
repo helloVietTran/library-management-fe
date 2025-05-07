@@ -8,12 +8,14 @@ import {
   Row,
   Col,
   InputNumber,
+  DatePicker,
 } from 'antd';
 
 import { useUpdateBook } from '../hooks/useUpdateBook';
 import { ApiResponse } from '@/interfaces/api-response';
 import api from '@/config/axios';
 import { Book } from '@/interfaces/commom';
+import dayjs from 'dayjs';
 
 interface UpdateBookModalProps {
   openModal: boolean;
@@ -35,8 +37,10 @@ const UpdateBookModal: React.FC<UpdateBookModalProps> = ({
         if (bookId) {
           const res = await api.get<ApiResponse<Book>>(`/books/${bookId}`);
 
+          const bookData = res.data.data;
           form.setFieldsValue({
-            ...res.data.data,
+            ...bookData,
+            publishedDate: bookData.publishedDate ? dayjs(bookData.publishedDate, "DD-MM-YYYY") : null
           });
         } else
           form.resetFields();
@@ -132,7 +136,7 @@ const UpdateBookModal: React.FC<UpdateBookModalProps> = ({
             </Form.Item>
 
             <Form.Item name="publishedDate" label="Ngày xuất bản">
-              <Input size="large" type="date" />
+              <DatePicker size="large" format="YYYY-MM-DD" />
             </Form.Item>
 
             <Form.Item
