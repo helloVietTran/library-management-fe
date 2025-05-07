@@ -3,7 +3,7 @@ import { Dropdown } from 'antd';
 import { EditOutlined, DeleteOutlined } from '@ant-design/icons';
 import { IoIosMore } from 'react-icons/io';
 import { MdLock, MdLockOpen } from 'react-icons/md';
-import { User } from '@/types/types';
+import { User } from '@/interfaces/commom';
 
 interface UserActionButtonsProps {
   handleUpdate: () => void;

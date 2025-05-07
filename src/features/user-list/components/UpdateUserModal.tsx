@@ -6,7 +6,7 @@ import api from '@/config/axios';
 import { ApiResponse } from '@/interfaces/api-response';
 import { User } from '@/interfaces/commom';
 import useUpdateUser from '../hooks/useUpdateUser';
-import convertToFormData from '@/utils/convertFormdata';
+import convertToFormData from '@/utils/convertFormData';
 
 interface UpdateUserModalProps {
   openModal: boolean;

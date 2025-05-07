@@ -4,7 +4,7 @@ import { countries, ICountry } from 'countries-list';
 import dayjs from 'dayjs';
 
 import api from '@/config/axios';
-import convertToFormData from '@/utils/convertFormdata';
+import convertToFormData from '@/utils/convertFormData';
 import useCreateOrUpdateAuthor from '../hooks/useCreateOrUpdateAuthor';
 import { ApiResponse } from '@/interfaces/api-response';
 import { Author } from '@/interfaces/commom';
