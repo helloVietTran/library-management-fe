@@ -1,36 +1,76 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+## 📌Hướng Dẫn Cài Đặt và Chạy Dự Án
 
-## Getting Started
+Để clone dự án từ GitHub về máy tính của bạn, làm theo các bước sau:
 
-First, run the development server:
+1. Mở terminal trong Visual Studio Code
+   ```bash
+   git clone https://github.com/helloVietTran/library-management-fe
+2. Di chuyển tới thư mục dự án
+   ```bash
+   cd library-management-fe
+3. Kiểm tra đã cài bun chưa, nếu đã cải rồi bỏ qua bước 4
+   ```bash
+   bun --version
+4. Nếu không hiện version. Vui lòng cài Bun 🚀
+   
+      💻 **Nếu bạn sử dụng macOS, Linux, hoặc WSL**
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+     Dán dòng lệnh này vào terminal (macOS, Linux, hoặc WSL):
+     
+     ```bash
+     curl -fsSL https://bun.sh/install | bash
+     ```
+     💻 **Nếu là windows, dán dòng lệnh vào cmd:**
+    ```bash
+     powershell -c "irm bun.sh/install.ps1|iex"
+     ```
+     Hoặc cài thông qua npm:
+     ```bash
+     npm install -g bun
+5. Sau khi cài thành công bun, chạy lệnh sau trong terminal visual studio code ở thư mục dự án 
+     ```bash
+     bun install
+6. Để chạy dự án, chạy tiếp lệnh sau
+     ```bash
+     bun run dev
+     ```
+### 🎉 Chúc mừng! Bạn đã chạy dự án thành công 
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+# 📚 Về dự án - Library management website - Vbrary
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Một hệ thống quản lý thư viện giúp quản lý sách, độc giả, mượn trả sách. 
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🚀 Tính năng chính
 
-## Learn More
+- Quản lý sách (thêm, sửa, xoá, tìm kiếm)
+- Quản lý người dùng (đăng ký, cập nhật thông tin, xoá)
+- Quản lý mượn/trả sách
+- Hỗ trợ người dùng gửi email khi người dùng quá hạn trả sách
+- Phân quyền theo vai trò
+- Giao diện người dùng trực quan, responsive
+- Cung cấp một số thống kê dưới dạng số liệu, bảng biểu về tình hình thư viện: biến động mượn trả, thống kê sách theo lượt mượn
+- Cung cấp 1 Chat App đơn giản
+- Xác thực bằng JWT, refresh token
 
-To learn more about Next.js, take a look at the following resources:
+## 🛠️ Công nghệ nổi bật
+     Next.js, TypeScript, Tailwind CSS, Zustand, Ant Design, Framer motion, React Query
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🎬 Demo 
+    
+## 👤 Thông tin tài khoản test 
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 📌 Hướng phát triển tương lai
+- Cung cấp tìm kiếm sách trên nhiều tiêu chí
+- Đề xuất các sách liên quan
+- Cung cấp tính năng thống kê trên nhiều tiêu chí
+- Phát triển thêm giao diện mượn sách
 
-## Deploy on Vercel
+## 📄 License
+- Hoàn toàn miễn phí
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+   
+    
+   
+   
