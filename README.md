@@ -6,4 +6,4 @@
 
 1. Mở terminal trong Visual Studio Code
      ```bash
-   git clone https://github.com/username/repository-name.git
+   git clone https://github.com/helloVietTran/library-management-fe
