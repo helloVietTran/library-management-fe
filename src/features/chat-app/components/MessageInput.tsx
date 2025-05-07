@@ -55,7 +55,7 @@ const MessageInput: React.FC<MessageInputProps> = ({
         userId: currentUser?._id,
       });
 
-    } catch (err) {
+    } catch {
 
       setMessages((prev) => prev.filter((m) => m._id !== tempMessage._id));
     } finally {

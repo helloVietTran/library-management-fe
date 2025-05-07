@@ -67,7 +67,7 @@ const UpdateUserModal: React.FC<UpdateUserModalProps> = ({
         updateMutation.mutate(formData);
 
       })
-      .catch((error) => {
+      .catch(() => {
         message.error('Vui lòng điền đầy đủ thông tin hợp lệ!');
       });
   };

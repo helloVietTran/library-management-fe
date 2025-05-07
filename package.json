@@ -6,7 +6,6 @@
     "dev": "bun run next dev --turbopack",
     "build": "bun run next build",
     "start": "bun run next start",
-
     "check:lint": "bun run next lint",
     "check:orphans": "madge src --orphans",
     "check:unused-exports": "ts-prune",
