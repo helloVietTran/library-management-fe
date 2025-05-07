@@ -26,7 +26,7 @@ const ExportDropdown: React.FC<ExportDropdownProps> = ({
 
   return (
     <Dropdown menu={{ items: menuItems }} trigger={['click']}>
-      <span className="flex text-gray-600 font-semibold hover:text-gray-700 text-sm mr-4 cursor-pointer">
+      <span className="flex text-gray-500 font-semibold hover:text-gray-700 text-xs sm:text-sm mr-4 cursor-pointer">
         <FaFileExport size={16} className="mr-1 text-gray-500" />
         Xuất file
       </span>

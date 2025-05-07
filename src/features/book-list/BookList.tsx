@@ -4,7 +4,7 @@ import BookTable from './components/BookTable';
 
 const BookList = () => {
   return (
-    <div className="book-list">
+    <div className="book-list overflow-x-hidden">
       <PageTitle
         title="Quản lý sách"
         breadcrumbs={[

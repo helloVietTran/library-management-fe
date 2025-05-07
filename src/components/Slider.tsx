@@ -42,8 +42,8 @@ const Slider: React.FC<SliderProps> = ({ data, SliderCard }) => {
       </div>
       <Swiper
         modules={[Navigation, Autoplay]}
-        spaceBetween={50}
-        slidesPerView={2}
+        spaceBetween={10}
+        slidesPerView={1}
         loop={true}
         autoplay={{ delay: 5000 }}
         navigation={{
@@ -51,7 +51,7 @@ const Slider: React.FC<SliderProps> = ({ data, SliderCard }) => {
           nextEl: '.swiper-button-next',
         }}
         breakpoints={{
-          640: { slidesPerView: 1, spaceBetween: 10 },
+          640: { slidesPerView: 2, spaceBetween: 10 },
           768: { slidesPerView: 2, spaceBetween: 15 },
           1024: { slidesPerView: 4, spaceBetween: 20 },
         }}

@@ -20,7 +20,7 @@ const Home = () => {
       <SplashScreen />
       <DashboardHeader />
 
-      <div className="grid grid-cols-3 gap-4 mb-6 mt-4">
+      <div className="grid sm:grid-cols-3 gap-4 mb-6 mt-4">
         <BoxContent className="bg-[url('/img/bg/overview-bg-6.jpg')] bg-no-repeat bg-cover bg-center rounded-none border-s-5 border-[#76ca36]">
           <StatisticCard
             title="Người dùng mới"

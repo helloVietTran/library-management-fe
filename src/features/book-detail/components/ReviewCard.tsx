@@ -20,7 +20,7 @@ interface ReviewCardProps {
   content: string;
   rating: number;
   userId: string;
-  isLast?: boolean; // Thêm tham số isLast
+  isLast?: boolean;
 }
 
 const ReviewCard: React.FC<ReviewCardProps> = ({
@@ -33,7 +33,7 @@ const ReviewCard: React.FC<ReviewCardProps> = ({
   rating,
   userId,
   reviewId,
-  isLast = false, // Mặc định là false nếu không có giá trị
+  isLast = false, 
 }) => {
   const likeMutation = useLikeComment(reviewId);
   const deleteCommentMutation = useDeleteComment(reviewId);
@@ -93,8 +93,8 @@ const ReviewCard: React.FC<ReviewCardProps> = ({
 
         {/* Post */}
         <div className="mt-2 mb-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-3">
+          <div className="flex flex-col gap-2 sm:flex-row sm:items-center justify-between">
+            <div className="flex items-center gap-2">
               <Rate
                 disabled
                 defaultValue={rating}
@@ -102,7 +102,7 @@ const ReviewCard: React.FC<ReviewCardProps> = ({
                 character={<GoStarFill size={16} />}
                 className="star-icon"
               />
-              <span className="text-sm font-medium">{rating}</span>
+              <span className="text-sm font-medium">{rating} / 5</span>
             </div>
             <p className="text-xs text-gray-500">{createdAt}</p>
           </div>

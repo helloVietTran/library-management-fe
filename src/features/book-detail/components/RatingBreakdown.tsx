@@ -10,7 +10,7 @@ const RatingBreakdown: React.FC<RatingBreakdownProps> = ({
   totalComments,
 }) => {
   return (
-    <div className="space-y-2 w-[75%] text-sm">
+    <div className="space-y-2 w-full sm:w-[75%] text-sm">
       {Object.entries(ratingsBreakdown)
         .sort(([a], [b]) => Number(a) - Number(b))
         .map(([stars, value]) => {

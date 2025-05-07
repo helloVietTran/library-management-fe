@@ -1,3 +1,4 @@
+import { cn } from '@/utils/cn';
 import React, { useState, useEffect, useRef } from 'react';
 
 interface MaskDescriptionProps {
@@ -20,12 +21,12 @@ const MaskDescription: React.FC<MaskDescriptionProps> = ({
   useEffect(() => {
     if (contentRef.current) {
       const { scrollHeight, offsetHeight } = contentRef.current;
-      setHasMore(scrollHeight > offsetHeight); // Kiểm tra nếu nội dung bị cắt
+      setHasMore(scrollHeight > offsetHeight); 
     }
   }, [content]);
 
   return (
-    <div className={`mask-des ${className}`}>
+    <div className={cn('mask-des', className)}>
       <p
         ref={contentRef}
         className={`description text-gray-700 ${

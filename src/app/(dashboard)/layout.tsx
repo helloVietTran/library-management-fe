@@ -13,29 +13,29 @@ const SidebarLayout = ({
 }: Readonly<{
   children: React.ReactNode;
 }>) => {
-  const router = useRouter();
-  const { login } = useAuthStore();
-  const [checkingAuth, setCheckingAuth] = useState(true);
+  // const router = useRouter();
+  // const { login } = useAuthStore();
+  // const [checkingAuth, setCheckingAuth] = useState(true);
 
-  useEffect(() => {
-    const fetchUser = async () => {
-      try {
-        const res = await api.get<ApiResponse<User>>('/users/my');
-        login(res.data.data);
-      } catch (err) {
-        console.error('Lỗi xác thực người dùng:', err);
-        router.replace('/login');
-      } finally {
-        setCheckingAuth(false);
-      }
-    };
+  // useEffect(() => {
+  //   const fetchUser = async () => {
+  //     try {
+  //       const res = await api.get<ApiResponse<User>>('/users/my');
+  //       login(res.data.data);
+  //     } catch (err) {
+  //       console.error('Lỗi xác thực người dùng:', err);
+  //       router.replace('/login');
+  //     } finally {
+  //       setCheckingAuth(false);
+  //     }
+  //   };
 
-    fetchUser();
-  }, [login, router]);
+  //   fetchUser();
+  // }, [login, router]);
 
-  if (checkingAuth) {
-    return null;
-  }
+  // if (checkingAuth) {
+  //   return null;
+  // }
   return (
     <>
       <Sidebar />

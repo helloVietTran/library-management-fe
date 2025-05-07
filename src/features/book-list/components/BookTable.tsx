@@ -184,7 +184,7 @@ const BookTable: React.FC = () => {
             )}
           </div>
 
-          <div className="flex gap-2 items-center">
+          <div className="flex gap-1 sm:gap-2 items-center">
             <ExportDropdown
               downloadExcel={handleExportExcel}
               downloadPDF={handleExportPDF}
@@ -194,7 +194,6 @@ const BookTable: React.FC = () => {
               type="primary"
               icon={<FiPlus size={18} />}
               size="middle"
-              className="text-sm"
             >
               Thêm
             </Button>

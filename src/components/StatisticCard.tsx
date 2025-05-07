@@ -17,7 +17,7 @@ const StatisticCard: FC<StatisticCardProps> = ({
   const difference = currentValue - previousValue;
   return (
     <div
-      className={`statistic-card w-full border-${borderRightColor} text-primary`}
+      className={`w-full border-${borderRightColor} text-primary`}
     >
       <div className="flex justify-between items-center gap">
         <h3 className="text-sm font-bold">{title}</h3>

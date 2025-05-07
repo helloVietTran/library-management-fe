@@ -96,7 +96,6 @@
 /* css for data-table-header*/
 .data-table-input {
   min-height: calc(1.5em + 0.934rem + 2px);
-  font-size: 16px;
   line-height: 1.5;
   color: var(--color-text-variant-3);
   background-clip: padding-box;

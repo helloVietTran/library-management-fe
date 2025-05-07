@@ -1,4 +1,5 @@
 import React from 'react';
+import { cn } from '@/utils/cn';
 
 interface BoxContentProps {
   children: React.ReactNode;
@@ -10,7 +11,7 @@ const BoxContent: React.FC<BoxContentProps> = ({
   className = '',
 }) => {
   return (
-    <div className={`p-4 bg-white rounded-lg shadow ${className}`}>
+    <div className={cn('p-4 bg-white rounded-lg shadow', className)}>
       {children}
     </div>
   );

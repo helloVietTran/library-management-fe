@@ -1,6 +1,5 @@
 'use client';
 
-
 const AuthLayout = ({
   children,
 }: Readonly<{
@@ -8,7 +7,7 @@ const AuthLayout = ({
 }>) => {
   return (
 
-    <div className="m-h-100vh overflow-scroll">
+    <div className="m-h-100vh overflow-y-scroll overflow-x-hidden">
       <div className="flex h-full">
         <div className="lg:w-7/12 w-full flex justify-center bg-white">
           <div className="auth-left py-10">{children}</div>

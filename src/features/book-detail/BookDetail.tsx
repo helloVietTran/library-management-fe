@@ -54,7 +54,7 @@ const BookDetail: React.FC = () => {
           { label: bookData?.data.title, href: `/books/${book._id}`, isActive: true },
         ]}
       />
-      <BoxContent className="mt-4">
+      <BoxContent className="mt-4 px-6">
         <div className="flex flex-col md:flex-row py-8">
           <div className="flex-shrink-0 md:w-1/4">
             <div className="w-[80%] mx-auto">
@@ -79,7 +79,7 @@ const BookDetail: React.FC = () => {
               by {book.authors.map((author: Author) => author.name).join(', ')}
             </p>
 
-            <div className="flex items-center gap-2 mb-4">
+            <div className="flex flex flex-col sm:flex-row sm:items-center gap-2 mb-4">
               <Rate
                 disabled
                 defaultValue={book.rating || 3.5}
@@ -98,6 +98,9 @@ const BookDetail: React.FC = () => {
             </div>
 
             <Divider className="custom-divider" />
+            <span className="font-semibold mb-2 text-base text-gray-600">
+              Mô tả
+            </span>
             <MaskDescription
               className="mb-6 text-sm"
               content={book.description || 'Không có mô tả'}
@@ -121,14 +124,14 @@ const BookDetail: React.FC = () => {
           </div>
         </div>
 
-        <div className="mb-4 px-6">
+        <div className="mb-4">
           <p className="text-xl font-semibold text-gray-600 mb-4">
             Đề xuất cho độc giả
           </p>
           <Slider data={mockBooks} SliderCard={BookCard} />
         </div>
 
-        <div className="mb-4 px-6">
+        <div className="mb-4">
           <CommunityReviews />
           <ReviewList />
         </div>

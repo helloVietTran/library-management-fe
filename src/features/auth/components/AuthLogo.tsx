@@ -1,20 +1,18 @@
 import React from 'react';
-import Link from 'next/link';
 import Image from 'next/image';
 
 const AuthLogo = () => {
   return (
-    <div className="readonly__auth__logo">
-      <Link href="/">
-        <Image
-          src="/img/logo/logo.png"
-          alt="logo"
-          width={220}
-          height={40}
-          priority
-          style={{ objectFit: 'contain' }}
-        />
-      </Link>
+    <div className="w-[160px] sm:w-[200px] h-auto">
+      <Image
+        src="/img/logo/logo.png"
+        alt="logo"
+        width={220} 
+        height={0}
+        sizes="(max-width: 639px) 160px, 200px"
+        style={{ width: '100%', height: 'auto', objectFit: 'contain' }}
+        priority
+      />
     </div>
   );
 };

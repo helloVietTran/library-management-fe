@@ -264,7 +264,7 @@ const BorrowTable: React.FC = () => {
           <Select.Option value="returned">Đã trả</Select.Option>
         </Select>
 
-        <div className="flex items-center gap-2">
+        <div className="flex items-center sm:gap-2">
           <ExportDropdown
             downloadExcel={handleExportExcel}
             downloadPDF={handleExportPDF}

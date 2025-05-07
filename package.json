@@ -20,6 +20,7 @@
     "axios": "^1.8.4",
     "chart.js": "^4.4.7",
     "chartjs-plugin-datalabels": "^2.2.0",
+    "clsx": "^2.1.1",
     "countries-list": "^3.1.1",
     "dayjs": "^1.11.13",
     "file-saver": "^2.0.5",
@@ -35,6 +36,7 @@
     "react-spinners": "^0.17.0",
     "socket.io-client": "^4.8.1",
     "swiper": "^11.2.0",
+    "tailwind-merge": "^3.2.0",
     "xlsx": "^0.18.5",
     "zustand": "^5.0.3"
   },
