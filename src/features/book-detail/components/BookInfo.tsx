@@ -22,17 +22,24 @@ const BookInfo: React.FC<BookInfoProps> = ({
   className,
 }) => {
   return (
-    <div
-      className={`table border-spacing-3 border-separate w-full ${className}`}
-    >
-      {titles.map((title, index) => (
-        <div className="table-row" key={index}>
-          <div className="info-table-title table-cell font-semibold text-primary text-sm">
-            {title.label}
+    <div className={`table border-spacing-3 border-separate w-full ${className}`}>
+      {titles.map((title, index) => {
+        const value = content[title.key as keyof BookMetaFields];
+        const isEmpty = value === undefined || value === null || value === '';
+
+        return (
+          <div
+            key={index}
+            className="table-row"
+            style={{ display: isEmpty ? 'none' : 'table-row' }}
+          >
+            <div className="info-table-title table-cell font-semibold text-primary text-sm">
+              {title.label}
+            </div>
+            <div className="table-cell">{value}</div>
           </div>
-          <div className="table-cell">{content[title.key]}</div>
-        </div>
-      ))}
+        );
+      })}
 
       {genres && genres.length > 0 && (
         <div className="table-row">

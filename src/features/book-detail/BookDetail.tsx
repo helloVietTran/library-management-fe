@@ -46,7 +46,7 @@ const BookDetail: React.FC = () => {
 
   return (
     <div className="book-detail">
-      <SplashScreen />
+      {isLoading ? <SplashScreen /> : <></>}
       <PageTitle
         title="Thông tin chi tiết"
         breadcrumbs={[
@@ -79,7 +79,7 @@ const BookDetail: React.FC = () => {
               by {book.authors.map((author: Author) => author.name).join(', ')}
             </p>
 
-            <div className="flex flex flex-col sm:flex-row sm:items-center gap-2 mb-4">
+            <div className="flex flex-col sm:flex-row sm:items-center gap-2 mb-4">
               <Rate
                 disabled
                 defaultValue={book.rating || 3.5}

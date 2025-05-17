@@ -27,7 +27,7 @@ const AuthorDetail = () => {
     { label: 'Năm sinh', key: 'dob' },
     { label: 'Quốc tịch', key: 'nationality' },
   ];
-  
+
   if (isLoading) {
     return <Loader />;
   }
@@ -81,9 +81,12 @@ const AuthorDetail = () => {
 
             <Divider className="custom-divider" />
 
-            <div className="flex items-center justify-between">
-              <p className="font-semibold text-gray-600">Cùng tác giả</p>
-            </div>
+            {allBooksByAuthor?.data.length > 0 ?
+              <div className="flex items-center justify-between">
+                <p className="font-semibold text-gray-600">Cùng tác giả</p>
+              </div>
+              : <></>
+            }
             {allBooksByAuthor?.data?.map((book: Book) => (
               <RelatedAuthorBookCard
                 key={book._id}

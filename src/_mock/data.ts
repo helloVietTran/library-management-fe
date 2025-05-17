@@ -9,48 +9,47 @@ type BookPreview = {
 
 export const mockBooks: BookPreview[] = [
   {
-    id: '680ba213787795b6b67e8b95',
-    title: 'Số Đỏ',
+    id: '681b612bc9bb0234c78ee31e',
+    title: 'Sống mòn',
     imgSrc:
-      'https://static.oreka.vn/800-800_af691e7a-2d44-4875-8fad-1311bde56fe8.webp',
-    authorNames: ['Vũ Trọng Phụng'],
+      'https://res.cloudinary.com/ds0zvwotk/image/upload/v1746624812/library-resources/owxoeaeefl0ltx8jutmj.jpg',
+    authorNames: ['Nam Cao'],
     reviewCount: 312,
     ratingPoint: 4.7,
   },
   {
-    id: '680ba213787795b6b67e8b99',
-    title: 'Cánh Đồng Bất Tận',
+    id: '6827522e152e9fb4c4a7939e',
+    title: 'Harry Potter',
     imgSrc:
-      'https://salt.tikicdn.com/cache/w1200/media/catalog/product/d/a/dac-nhan-tam.jpg',
-    authorNames: ['Nguyễn Ngọc Tư'],
+      'https://res.cloudinary.com/ds0zvwotk/image/upload/v1747407407/library-resources/gdehwquyagjf9bwirqzd.jpg',
+     authorNames: ['J. K. Rowling'],
     reviewCount: 890,
     ratingPoint: 4.8,
   },
   {
-    id: '680ba213787795b6b67e8b98',
-    title: 'Mắt Biếc',
-    authorNames: ['Nguyễn Nhật Ánh'],
-    imgSrc:
-      'https://salt.tikicdn.com/cache/w1200/media/catalog/product/d/a/dac-nhan-tam.jpg',
-
-    reviewCount: 420,
-    ratingPoint: 4.6,
-  },
-  {
-    id: '680ba213787795b6b67e8b9b',
+    id: '68274d86152e9fb4c4a7928d',
     title: 'Dế mèn phiêu lưu ký',
     authorNames: ['Tô Hoài'],
     imgSrc:
-      'https://salt.tikicdn.com/cache/w1200/media/catalog/product/d/a/dac-nhan-tam.jpg',
+      'https://res.cloudinary.com/ds0zvwotk/image/upload/v1747406215/library-resources/brnf3vnliw67f6kgoddc.jpg',
     reviewCount: 580,
     ratingPoint: 4.9,
   },
   {
-    id: '680ba213787795b6b67e8b97',
-    title: 'Người Thợ Xây',
+    id: '68275186152e9fb4c4a79375',
+    title: 'Nhà giả kim',
     imgSrc:
-      'https://salt.tikicdn.com/cache/w1200/media/catalog/product/d/a/dac-nhan-tam.jpg',
-    authorNames: ['Nguyễn Minh Châu'],
+      'https://res.cloudinary.com/ds0zvwotk/image/upload/v1747407239/library-resources/qlavh3vjxydhxjwktivf.jpg',
+    authorNames: ['Paulo Coelho'],
+    reviewCount: 215,
+    ratingPoint: 4.5,
+  },
+   {
+    id: '68275436152e9fb4c4a793f4',
+    title: 'Rừng Na Uy',
+    imgSrc:
+      'https://res.cloudinary.com/ds0zvwotk/image/upload/v1747407927/library-resources/cm8xkpazmgh4xgsij4b7.jpg',
+    authorNames: ['Murakami Haruki'],
     reviewCount: 215,
     ratingPoint: 4.5,
   },

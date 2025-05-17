@@ -189,6 +189,7 @@ const CreateBookModal: React.FC<CreateBookModalProps> = ({ openModal, setOpenMod
                                                 new Error('Thể loại phải là một mảng chuỗi.')
                                             ),
                                 },
+                                { required: true, message: 'Vui lòng nhập thể loại' }
                             ]}
                         >
                             <Select
@@ -204,7 +205,7 @@ const CreateBookModal: React.FC<CreateBookModalProps> = ({ openModal, setOpenMod
                             <Input size="large" placeholder="Nhập nhà xuất bản" />
                         </Form.Item>
 
-                        <Form.Item name="publishedDate" label="Ngày xuất bản">
+                        <Form.Item name="publishedDate" label="Ngày xuất bản" rules={[{ required: true, message: 'Vui lòng chọn ngày xuất bản' }]}>
                             <DatePicker
                                 size="large"
                                 style={{ width: '100%' }}
@@ -229,7 +230,10 @@ const CreateBookModal: React.FC<CreateBookModalProps> = ({ openModal, setOpenMod
                             />
                         </Form.Item>
 
-                        <Form.Item name="description" label="Mô tả">
+                        <Form.Item name="description" label="Mô tả" rules={[
+                            { required: true, message: 'Vui lòng nhập mô tả.' },
+
+                        ]}>
                             <Input.TextArea size="large" placeholder="Nhập mô tả" />
                         </Form.Item>
                     </Col>

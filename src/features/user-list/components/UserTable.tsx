@@ -5,7 +5,6 @@ import Link from 'next/link';
 import BoxContent from '@/components/BoxContent';
 import Pagination from '@/components/Pagination';
 import DataTableHeader from '@/components/DataTableHeader';
-import Loader from '@/components/Loader';
 import UserModal from './UpdateUserModal';
 import useFetchUsers from '../hooks/useFetchUsers';
 import { Role, User } from '@/interfaces/commom';
@@ -15,8 +14,9 @@ import useDeleteUser from '../hooks/useDeleteUser';
 import UserActionButtons from './UserActionButtons';
 import useUpdateUserStatus from '../hooks/useUpdateUserStatus';
 import Footer from '@/components/Footer';
+import SplashScreen from '@/components/SplashScreen';
 
-const UserTable: React.FC = () => {
+const UserTable = () => {
   const { user: currentUser } = useAuthStore();
 
   const [currentPage, setCurrentPage] = useState<number>(1);
@@ -147,12 +147,10 @@ const UserTable: React.FC = () => {
     },
   ];
 
-  if (isLoading) {
-    return <Loader />;
-  }
 
   return (
     <>
+      {isLoading ? <SplashScreen /> : <></>}
       <BoxContent>
         <DataTableHeader
           onPageSizeChange={setPageSize}
@@ -168,6 +166,7 @@ const UserTable: React.FC = () => {
           rowKey="_id"
           pagination={false}
           scroll={{ x: 'max-content' }}
+          loading={isLoading}
         />
 
         <div className="mt-4 flex justify-center">

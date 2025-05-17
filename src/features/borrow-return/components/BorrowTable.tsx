@@ -186,7 +186,7 @@ const BorrowTable: React.FC = () => {
     },
     {
       title: 'Ngày mượn',
-      dataIndex: 'borrowDate',
+      dataIndex: 'createdAt',
       key: 'createdAt',
       render: (createdAt) => dayjs(createdAt).format('DD-M-YYYY'),
       sorter: (a, b) =>
@@ -204,20 +204,28 @@ const BorrowTable: React.FC = () => {
       key: 'returnDate',
       render: (_: any, record: BorrowRecord) => {
         const { returnDate, dueDate } = record;
+
         if (returnDate) {
           return dayjs(returnDate).format('DD-MM-YYYY');
         }
 
-        const isOverdue = dayjs().isAfter(dayjs(dueDate));
-        return (
-          <Tag color={isOverdue ? 'volcano' : 'red'}>
-            {isOverdue ? 'Quá hạn' : 'Chưa trả'}
-          </Tag>
-        );
+        const now = dayjs();
+        const due = dayjs(dueDate);
+
+        if (now.isAfter(due)) {
+          const overdueDays = now.diff(due, 'day');
+          return (
+            <Tag color='volcano'>
+              Quá hạn {overdueDays} ngày
+            </Tag>
+          );
+        }
+
+        return <Tag color='green'>Chưa đến hạn</Tag>;
       },
     },
     {
-      title: 'Tình trạng sách',
+      title: 'Tình trạng sách lúc mượn',
       dataIndex: 'status',
       key: 'status',
       render: renderStatusTag,
@@ -286,6 +294,7 @@ const BorrowTable: React.FC = () => {
           searchValue={searchValue}
           searchPlaceholder="Tìm kiếm lịch sử mượn trả"
           pageSize={pageSize}
+
         />
         <Table
           columns={columns}

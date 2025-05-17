@@ -37,10 +37,10 @@ const AuthorModal: React.FC<AuthorModalProps> = ({
     if (authorId)
       api.get<ApiResponse<Author>>(`/authors/${authorId}`).then((res) => {
         const authorData = res.data.data;
-    
+
         form.setFieldsValue({
           ...authorData,
-          dob: authorData.dob ?  dayjs(authorData.dob, "DD-MM-YYYY") : null,
+          dob: authorData.dob ? dayjs(authorData.dob, "DD-MM-YYYY") : null,
           imgSrc: authorData.imgSrc,
         });
       });
@@ -143,7 +143,7 @@ const AuthorModal: React.FC<AuthorModalProps> = ({
         <Form.Item
           name="biography"
           label="Giới thiệu"
-          rules={[{ type: 'string', message: 'Giới thiệu phải là một chuỗi.' }]}
+          rules={[{ type: 'string', message: 'Giới thiệu phải là một chuỗi.' }, { required: true, message: 'Giới thiệu về tác giả là bắt buộc.' }]}
         >
           <Input.TextArea size="large" rows={4} placeholder="Nhập giới thiệu" />
         </Form.Item>

@@ -11,13 +11,13 @@ import SplashScreen from '@/components/SplashScreen';
 import Footer from '@/components/Footer';
 
 const Home = () => {
-  const { data: userStatsData } = useNewUserStats();
+  const { data: userStatsData, isLoading: isUserLoading } = useNewUserStats();
   const { data: borrowRecordStatsData } = useNewBorrowRecordStats();
   const { data: bookStatsData } = useNewBookStats();
 
   return (
     <div className="mt-8 md:mt-0">
-      <SplashScreen />
+      {isUserLoading ? <SplashScreen /> : <></>}
       <DashboardHeader />
 
       <div className="grid sm:grid-cols-3 gap-4 mb-6 mt-4">

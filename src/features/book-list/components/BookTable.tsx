@@ -161,7 +161,7 @@ const BookTable: React.FC = () => {
 
   return (
     <>
-      <SplashScreen />
+      {loadingBooks ? <SplashScreen /> : <></>}
       <BookOverview openOverview={openOverview} />
 
       <div className="page-content">

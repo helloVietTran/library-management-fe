@@ -7,7 +7,6 @@ import AuthLogo from './components/AuthLogo';
 import AuthTitle from './components/AuthTitle';
 import AuthNavigation from './components/AuthNavigation';
 import useRegister from './hooks/useRegister';
-import SplashScreen from '@/components/SplashScreen';
 import { RegisterRequest } from './types/types';
 
 function Register() {
@@ -20,7 +19,6 @@ function Register() {
 
   return (
     <>
-      <SplashScreen />
       <AuthLogo />
       <AuthTitle label="Đăng ký" />
 

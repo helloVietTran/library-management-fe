@@ -11,6 +11,7 @@ import useFetchAuthors from '../hooks/useFetchAuthors';
 import AuthorModal from './AuthorModal';
 import Footer from '@/components/Footer';
 import { Author } from '@/interfaces/commom';
+import SplashScreen from '@/components/SplashScreen';
 
 const AuthorTable = () => {
   const [currentPage, setCurrentPage] = useState<number>(1);
@@ -30,7 +31,7 @@ const AuthorTable = () => {
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
   };
-  
+
   const handleSearch = (value: string) => {
     setSearchValue(value);
   };
@@ -110,6 +111,7 @@ const AuthorTable = () => {
 
   return (
     <>
+      {isLoading ? <SplashScreen /> : <></>}
       <BoxContent>
         <DataTableHeader
           onPageSizeChange={handlePageSizeChange}

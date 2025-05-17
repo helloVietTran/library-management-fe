@@ -8,7 +8,6 @@ import AuthTitle from './components/AuthTitle';
 import AuthNavigation from './components/AuthNavigation';
 import useLogin from './hooks/useLogin';
 import { LoginRequest } from './types/types';
-import SplashScreen from '@/components/SplashScreen';
 
 function Login() {
   const [form] = Form.useForm();
@@ -19,8 +18,7 @@ function Login() {
   };
 
   return (
-    <div>
-      <SplashScreen />
+    <>
       <AuthLogo />
       <AuthTitle label="Đăng nhập" />
 
@@ -77,7 +75,7 @@ function Login() {
         primaryDescription="Không có tài khoản?"
         primaryHref="/register"
       />
-    </div>
+    </>
   );
 }
 
