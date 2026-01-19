@@ -1,7 +1,35 @@
-### 📚 Về dự án - Library management website - Vbrary
-Một hệ thống quản lý thư viện giúp quản lý sách, độc giả, mượn trả sách.
+# 📚 Về dự án - Library management website - Vbrary
 
-### Tính năng chính
+Một hệ thống quản lý thư viện giúp quản lý sách, độc giả, mượn trả sách giải quyết vấn đề bất cập khi quản lý thủ công thư viện
+
+## 📌 I. Một số bài toán đã giải quyết
+
+### Thông báo người dùng khi sắp đến hạn trả sách
+
+**Bài toán**
+- Người dùng thường quên hạn trả sách, dẫn đến quá hạn và khó quản lý
+- Cần một cơ chế **chủ động nhắc nhở** để giảm tình trạng trả sách trễ
+
+**Giải pháp**
+- Lưu thời điểm mượn và hạn trả sách trong collection `borrow_records`
+- Cron job chạy định kỳ (hàng ngày):
+  - Kiểm tra các bản ghi **sắp đến hạn trả** (ví dụ: còn 1–2 ngày)
+  - Tự động gửi email nhắc nhở đến người dùng
+
+**Luồng xử lý**
+1. Cron job truy vấn các lượt mượn chưa trả
+2. Lọc các bản ghi gần đến hạn
+3. Gửi email thông báo qua Email Service
+4. Đánh dấu đã gửi để tránh gửi trùng
+
+**Lợi ích**
+- Giảm số lượng sách trả trễ
+- Nâng cao trải nghiệm người dùng
+- Giúp thư viện quản lý mượn/trả hiệu quả hơn
+
+---
+
+### II. Tính năng chính
 - Hỗ trợ gửi email khi người dùng quá hạn trả sách
 - Quản lý sách (thêm, sửa, xoá, tìm kiếm)
 - Quản lý người dùng (đăng ký, cập nhật thông tin, xoá)
@@ -12,22 +40,10 @@ Một hệ thống quản lý thư viện giúp quản lý sách, độc giả, 
 - Xác thực bằng JWT, refresh token
 - Tải file .pdf, .xlsx chứa thông tin sách và tác giả
 
-
-### Công việc thực hiện ở frontend
-
-- Sử dụng thư viện UI Ant Design và Tailwind CSS để xây dựng giao diện và responsive giao diện
-- Tổ chức thư mục dự án rõ ràng, code splitting
-- Quản lý state toàn cục với Zustand (state authenticate)
-- Kết nối và tương tác với API backend qua Axios
-- Sử dụng React Query để quản lý call API
-- Viết interface cho các request và response từ server
-- Triển khai frontend lên Vercel
-- Sử dụng thư viện Framer Motion làm hiệu ứng chuyển trang (FadeIn, Loading Screen)
-
-### 🛠️ Công nghệ nổi bật
+## 🛠️ III. Công nghệ nổi bật
      Next.js, TypeScript, Tailwind CSS, Zustand, Ant Design, Framer motion, React Query
 
-### 🎬 Demo 
+## 🎬 IV. Demo 
 
 <table>
   <tr>
@@ -48,45 +64,38 @@ Một hệ thống quản lý thư viện giúp quản lý sách, độc giả, 
   </tr>
 </table>
 
-### 📌Hướng Dẫn Cài Đặt và Chạy Dự Án
+## 📌 V. Hướng Dẫn Cài Đặt và Chạy Dự Án
 
-Để clone dự án từ GitHub về máy tính của bạn, làm theo các bước sau:
-
-1. Mở terminal trong Visual Studio Code
+1. Clone source
    ```bash
    git clone https://github.com/helloVietTran/library-management-fe
-2. Di chuyển tới thư mục dự án
-   ```bash
    cd library-management-fe
-3. Kiểm tra đã cài bun chưa, nếu đã cải rồi bỏ qua bước 4
-   ```bash
-   bun --version
-4. Nếu không hiện version. Vui lòng cài Bun 🚀
+   ```
+
+2. Nếu đã cài đặt Bun, bỏ qua bước này
    
-      💻 **Nếu bạn sử dụng macOS, Linux, hoặc WSL**
+      💻 **Nếu sử dụng macOS, Linux, hoặc WSL**
 
      Dán dòng lệnh này vào terminal (macOS, Linux, hoặc WSL):
      
      ```bash
-     curl -fsSL https://bun.sh/install | bash
+          curl -fsSL https://bun.sh/install | bash
      ```
+     
      💻 **Nếu là windows, dán dòng lệnh vào cmd:**
     ```bash
-     powershell -c "irm bun.sh/install.ps1|iex"
-     ```
-     Hoặc cài thông qua npm:
-     ```bash
-     npm install -g bun
-5. Sau khi cài thành công bun, chạy lệnh sau trong terminal visual studio code ở thư mục dự án 
-     ```bash
-     bun install
-6. Để chạy dự án, chạy tiếp lệnh sau
-     ```bash
-     bun run dev
+          powershell -c "irm bun.sh/install.ps1|iex"
      ```
     
-## 👤 Thông tin tài khoản test 
-📌 Admin: tài khoản: admin@gmail.com | mật khẩu: admin123
+     Hoặc cài thông qua npm:
+     ```bash
+          npm install -g bun
+     ```
+3. Sau khi cài thành công bun, chạy lệnh sau trong terminal visual studio code ở thư mục dự án 
+     ```bash
+     bun install
+     bun run dev
+     ```
 
 
 
